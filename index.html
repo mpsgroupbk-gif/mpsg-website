@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="gu" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>મહારાણા પ્રતાપ સેવા ગ્રુપ બનાસકાંઠા</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brandRed: '#b91c1c',     /* ગ્રુપનો લાલ કલર */
+                        brandOrange: '#f97316',  /* ગ્રુપનો કેસરી કલર */
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        html { scroll-behavior: smooth; }
+        .glass-nav { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
+
+    <nav class="glass-nav bg-brandRed/95 dark:bg-gray-900/95 text-white shadow-lg sticky top-0 z-50 transition-colors duration-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                
+                <div class="flex items-center">
+                    <span class="font-bold text-xl tracking-wider"><i class="fa-solid fa-shield-halved mr-2"></i><span data-i18n="nav_title">MPSG બનાસકાંઠા</span></span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-6 font-semibold">
+                    <a href="#home" data-i18n="nav_home" class="hover:text-brandOrange transition duration-300">હોમ</a>
+                    <a href="#about" data-i18n="nav_about" class="hover:text-brandOrange transition duration-300">અમારા વિશે</a>
+                    <a href="#activities" data-i18n="nav_activities" class="hover:text-brandOrange transition duration-300">સેવા કાર્યો</a>
+                    <a href="#gallery" data-i18n="nav_gallery" class="hover:text-brandOrange transition duration-300">ગેલેરી</a>
+                    <button onclick="toggleTheme()" class="text-xl mx-4 hover:text-yellow-300 transition duration-300">
+                        <i id="theme-icon" class="fa-solid fa-moon"></i>
+                    </button>
+                    <div class="flex bg-white/20 rounded-full p-1 mr-4">
+                        <button onclick="changeLanguage('gu')" id="btn-gu" class="px-2 py-1 rounded-full bg-white text-brandRed text-xs font-bold shadow-sm transition-all">GU</button>
+                        <button onclick="changeLanguage('hi')" id="btn-hi" class="px-2 py-1 rounded-full text-white hover:text-gray-200 text-xs font-bold transition-all">HI</button>
+                    </div>
+                    <a href="#join" data-i18n="nav_join" class="bg-white text-brandRed px-4 py-2 rounded shadow hover:bg-brandOrange hover:text-white transition duration-300">જોડાવવા માટે</a>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+    <main id="main-content">
+        
+        <section id="home" class="relative bg-gradient-to-br from-brandOrange to-brandRed dark:from-gray-900 dark:to-gray-800 text-white py-24 px-4 sm:px-6 lg:px-8 text-center shadow-inner transition-colors duration-500 overflow-hidden" data-aos="zoom-in" data-aos-duration="1000">
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-20 pointer-events-none">
+        <div class="absolute -top-24 -left-24 w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-3xl animate-pulse"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-yellow-300 rounded-full mix-blend-overlay filter blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+    </div>
+            <div class="max-w-4xl mx-auto relative z-10 glass-card p-8 md:p-12 rounded-3xl shadow-2xl border border-white/20">
+                <p data-i18n="trust_name" class="text-sm md:text-lg font-bold text-yellow-200 tracking-widest uppercase mb-4 drop-shadow-md">
+    જન સેવા ચેરીટેબલ ટ્રસ્ટ દ્વારા સંચાલિત
+</p>
+<h1 data-i18n="group_name" class="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight mb-4 drop-shadow-lg leading-tight">
+                    મહારાણા પ્રતાપ સેવા ગ્રુપ બનાસકાંઠા
+                </h1>
+                <p data-i18n="hero_quote" class="text-xl sm:text-2xl font-bold text-yellow-300 tracking-wide mb-6 drop-shadow-sm italic">
+                    "સેવા એ જ પરમો ધર્મ"
+                </p>
+                <div class="w-24 h-1 bg-white mx-auto mb-6 rounded-full"></div>
+                
+                <p data-i18n="hero_desc" class="text-lg sm:text-xl max-w-2xl mx-auto mb-8 font-medium leading-relaxed bg-black/20 p-4 rounded-lg backdrop-blur-sm">
+                    અંતર્ગત <span class="text-yellow-300 font-bold">''મારું પણ એક ઘર હોય''</span> અભિયાન. વિના મૂલ્યે ચકલી ઘર અને પાણીના કુંડા વિતરણ તેમજ માનવ સેવા એ જ પ્રભુ સેવાના કાર્યો.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="#activities" data-i18n="hero_btn_activities" class="w-full sm:w-auto bg-white text-brandRed hover:bg-yellow-300 hover:text-brandRed dark:bg-gray-800 dark:text-yellow-400 dark:hover:bg-gray-700 dark:hover:text-yellow-300 font-bold px-8 py-3 rounded-full shadow-lg transition duration-300">
+                        અમારા સેવા કાર્યો જુઓ
+                    </a>
+                    <a href="#join" data-i18n="hero_btn_join" class="w-full sm:w-auto border-2 border-white text-white hover:bg-white hover:text-brandRed font-bold px-8 py-3 rounded-full shadow-lg transition duration-300">
+                        સ્વયંસેવક બનો
+                    </a>
+                </div>
+            </div>
+        </section>
+        <section id="announcement" class="bg-yellow-100 dark:bg-yellow-900/20 border-l-4 border-yellow-500 text-yellow-900 dark:text-yellow-100 p-4 mx-4 sm:mx-6 lg:mx-8 my-8 shadow-md rounded-r-lg max-w-6xl md:mx-auto transition-colors duration-500">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <i class="fa-solid fa-bullhorn text-3xl text-brandRed dark:text-brandOrange mr-4 animate-bounce"></i>
+                    <div>
+                        <h3 data-i18n="event_title" class="font-bold text-lg md:text-xl text-brandRed dark:text-brandOrange">આગામી ઇવેન્ટ: મહા રક્તદાન કેમ્પ - ૨૦૨૬</h3>
+                        <p data-i18n="event_details" class="text-sm md:text-base font-semibold mt-1">
+                            <i class="fa-regular fa-calendar-days mr-1"></i> તારીખ: ૦૭/૦૬/૨૦૨૬, રવિવાર | 
+                            <i class="fa-solid fa-location-dot ml-2 mr-1"></i> સ્થળ: શ્રી રાજપૂત કેળવણી સહાયક મંડળ, પાલનપુર
+                        </p>
+                    </div>
+                </div>
+                <div>
+                    <a href="tel:7096272350" class="inline-block bg-brandRed text-white px-6 py-2 rounded-full shadow-md hover:bg-brandOrange transition duration-300 font-bold whitespace-nowrap">
+                        <i class="fa-solid fa-phone mr-2"></i><span data-i18n="event_contact">સંપર્ક: 70962 72350</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <section id="facilities" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900 transition-colors duration-500 overflow-hidden">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <!-- મહારાણા પ્રતાપ આશ્રમ -->
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md border-t-4 border-brandOrange p-8 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 border border-transparent dark:border-gray-800" data-aos="fade-right" data-aos-duration="800">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-orange-100 text-brandOrange rounded-full flex items-center justify-center text-2xl mr-4">
+                                <i class="fa-solid fa-house-chimney-user"></i>
+                            </div>
+                            <h3 data-i18n="fac_ashram_title" class="text-2xl font-bold text-gray-800">મહારાણા પ્રતાપ આશ્રમ</h3>
+                        </div>
+                        <p data-i18n="fac_ashram_desc" class="text-gray-600 dark:text-gray-300 text-lg font-medium leading-relaxed mt-2">
+                            મા બાપ વિહોણા અને જરૂરિયાતમંદ બાળકો ને રહેવાનું, જમવાનું અને શિક્ષણ - <strong class="text-brandRed">તદ્દન મફત</strong>.
+                        </p>
+                    </div>
+
+                    <!-- ચેતક લાઇબ્રેરી -->
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md border-t-4 border-brandRed p-8 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 border border-transparent dark:border-gray-800" data-aos="fade-left" data-aos-duration="800">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-red-100 text-brandRed rounded-full flex items-center justify-center text-2xl mr-4">
+                                <i class="fa-solid fa-book-open-reader"></i>
+                            </div>
+                            <h3 data-i18n="fac_lib_title" class="text-2xl font-bold text-gray-800">ચેતક લાઇબ્રેરી</h3>
+                        </div>
+                        <p data-i18n="fac_lib_desc" class="text-gray-600 dark:text-gray-300 text-lg font-medium leading-relaxed mt-2">
+                            એસી (AC) વાળી ચેતક લાઇબ્રેરી, જ્યાં સર્વ સમાજના ભાઈઓ તથા બહેનો માટે <strong class="text-brandOrange">ફ્રી વાંચન</strong> ની સુવિધા.
+                        </p>
+                    </div>
+
+                </div>
+                
+                                <div class="mt-10 bg-white dark:bg-gray-800 p-6 md:p-8 rounded-2xl shadow-md border border-gray-200 dark:border-gray-800 flex flex-col md:flex-row items-center justify-between hover:shadow-lg transition duration-300" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="flex items-center mb-6 md:mb-0">
+                        <div class="text-4xl text-brandRed mr-5 animate-bounce">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <h4 data-i18n="fac_loc_title" class="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">આશ્રમ અને લાઇબ્રેરીનું સ્થળ</h4>
+                            <p data-i18n="fac_loc_address" class="text-gray-600 font-medium">મહારાણા પ્રતાપ આશ્રમ, પાલનપુર (અહીં તમારું પૂરું એડ્રેસ આવશે)</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 w-full md:w-auto mt-6 md:mt-0">
+                        <p data-i18n="fac_qr_title" class="text-sm font-bold text-gray-800 mb-2">ગુગલ મેપ (Google Map) સ્કેન કરો</p>
+                                                <div class="w-24 h-24 bg-white border-2 border-dashed border-gray-400 flex items-center justify-center text-5xl text-gray-400 rounded-md">
+                            <i class="fa-solid fa-qrcode"></i>
+                        </div>
+                        <p data-i18n="fac_qr_note" class="text-xs text-gray-500 mt-2 text-center">*અહીં QR કોડનો ફોટો મૂકી શકાશે.</p>
+<div class="mt-4 w-full h-32 rounded-md overflow-hidden shadow-sm border border-gray-300 dark:border-gray-600 grayscale hover:grayscale-0 transition-all duration-500">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14578.100913959146!2d72.2471676!3d24.1706692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395ce99522137cd5%3A0x6bba847bb0de186b!2sPalanpur%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="about" class="py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors duration-500">
+            <div class="max-w-7xl mx-auto">
+                
+                <div class="text-center mb-12">
+                    <h2 data-i18n="about_title" class="text-3xl md:text-4xl font-extrabold text-brandRed mb-4 inline-block border-b-4 border-brandOrange pb-2">અમારા વિશે: એક અનોખો સેવા યજ્ઞ</h2>
+<p data-i18n="about_subtitle" class="text-lg text-gray-600 dark:text-gray-400 font-medium max-w-2xl mx-auto">અહીં કોઈ જ હોદ્દેદાર નથી, સૌ માત્ર 'સ્વયંસેવક' છે.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+                    
+                    <div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition duration-300">
+                        <div class="text-brandOrange mb-4">
+                            <i class="fa-solid fa-people-group text-4xl"></i>
+                        </div>
+                        <h3 data-i18n="dedication_title" class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">સમર્પણની સાચી વ્યાખ્યા</h3>
+<p data-i18n="dedication_p1" class="text-gray-700 dark:text-gray-300 leading-relaxed mb-6 text-justify">
+    મહારાણા પ્રતાપ સેવા ગ્રુપ બનાસકાંઠા કોઈ સામાન્ય સંસ્થા નથી, પણ એક પરિવાર છે. આ ગ્રુપની સૌથી મોટી તાકાત એ છે કે અહીં કોઈ પ્રમુખ કે મંત્રી નથી. દરેક સભ્ય પોતાને માત્ર અને માત્ર <strong class="text-brandRed">'સ્વયંસેવક'</strong> માને છે. 
+</p>
+<p data-i18n="dedication_p2" class="text-gray-700 dark:text-gray-300 leading-relaxed text-justify">
+    તમને જાણીને નવાઈ લાગશે કે, આ ગ્રુપમાં એવા પણ સદસ્યો છે જેઓને મોટી ઓફિસોમાં મળવા માટે કલાકો સુધી લાઈનમાં ઊભું રહેવું પડે છે. પરંતુ જ્યારે અંબાજી કેમ્પની વાત આવે, ત્યારે એ જ લોકો હાથમાં સાવરણી લઈને કચરો વાળવાથી લઈને, માઈ ભક્તોના પગ પર ટ્યુબ ઘસીને માલિશ કરવાની સેવા ચહેરા પર હળવા સ્મિત સાથે કરે છે. જમીન સાથે જોડાયેલા આ સભ્યો જ ગ્રુપનો અસલી પાયો છે.
+</p>
+                    </div>
+
+                    <div class="bg-red-50 dark:bg-red-900/10 p-6 rounded-2xl shadow-sm border border-red-100 dark:border-red-900/30 relative w-full overflow-hidden flex flex-col">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 data-i18n="exp_title" class="text-xl md:text-2xl font-bold text-gray-800 dark:text-gray-100"><i class="fa-solid fa-hands-holding-circle text-brandRed mr-2"></i>સ્વયંસેવકોના અનુભવો</h3>
+                            <span class="text-xs bg-brandRed text-white px-3 py-1 rounded-full animate-pulse whitespace-nowrap">Swipe <i class="fa-solid fa-arrow-right-long ml-1"></i></span>
+                        </div>
+                        
+                        <div class="flex overflow-x-auto gap-4 pb-4 snap-x snap-mandatory scroll-smooth" style="scrollbar-width: thin;">
+                            
+                            <div class="min-w-[100%] md:min-w-[85%] bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 snap-center relative">
+                                <i class="fa-solid fa-quote-right absolute top-4 right-4 text-4xl text-red-50 dark:text-gray-800 opacity-50"></i>
+                                <h4 data-i18n="exp1_title" class="font-bold text-brandRed mb-1">કલાકો લાઈનમાં, પણ સેવામાં આગળ</h4>
+<p data-i18n="exp1_desc" class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed text-justify mb-3">
+    અમારા ગ્રુપમાં એવા પણ સદસ્યો છે જેઓને મોટી ઓફિસોમાં મળવા માટે કલાકો સુધી લાઈનમાં ઊભું રહેવું પડે છે. સામાન્ય જીવનમાં તેઓ ખૂબ વ્યસ્ત હોય છે.
+</p>
+                                <blockquote data-i18n="exp1_quote" class="italic text-gray-800 dark:text-gray-400 border-l-4 border-brandOrange pl-3 text-sm text-justify">
+                                    "પરંતુ જ્યારે અંબાજી કેમ્પ શરૂ થાય, ત્યારે તેઓ પોતાનો મોભો બાજુ પર મૂકીને હાથમાં સાવરણી લઈ કચરો વાળવાનું અને માઈ ભક્તોના પગ પર ટ્યુબ ઘસીને માલિશ કરવાનું કામ પણ ખુશીથી કરે છે."
+                                </blockquote>
+                            </div>
+
+                            <div class="min-w-[100%] md:min-w-[85%] bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 snap-center relative">
+                                <i class="fa-solid fa-quote-right absolute top-4 right-4 text-4xl text-red-50 dark:text-gray-800 opacity-50"></i>
+                                <h4 data-i18n="exp2_title" class="font-bold text-brandRed mb-1">અડધી રાત્રે લોહીની વ્યવસ્થા</h4>
+                                <p data-i18n="exp2_author" class="text-sm text-gray-500 dark:text-gray-400 mb-3 font-semibold">- અન્ય સભ્યનું નામ</p>
+                                <p data-i18n="exp2_desc" class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed text-justify mb-3">
+                                    સેવા એ સમયની મોહતાજ નથી હોતી. રાત્રે ૨ વાગ્યે હોસ્પિટલમાંથી એક ઇમરજન્સી કોલ આવ્યો કે ઓપરેશન માટે તાત્કાલિક લોહીની જરૂર છે.
+                                </p>
+                                <blockquote data-i18n="exp2_quote" class="italic text-gray-800 dark:text-gray-400 border-l-4 border-brandOrange pl-3 text-sm text-justify">
+                                    "કોઈ પણ જાતનો વિચાર કર્યા વગર અમારા સભ્યો અડધી રાત્રે પોતાની બાઈક લઈને અલગ-અલગ બ્લડ બેંકોમાં ફર્યા અને આખરે દર્દીને સમયસર લોહી પહોંચાડીને એક નવું જીવન આપ્યું."
+                                </blockquote>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <section id="activities" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900 transition-colors duration-500 overflow-hidden">
+            <div class="max-w-7xl mx-auto">
+                
+                <div class="text-center mb-12">
+                    <h2 data-i18n="act_title" class="text-3xl md:text-4xl font-extrabold text-brandRed mb-2 inline-block border-b-4 border-brandOrange pb-2">સેવા કાર્યોની ઐતિહાસિક સફર</h2>
+<p class="text-xl text-brandOrange font-bold mt-4 max-w-2xl mx-auto drop-shadow-sm"><span data-i18n="act_subtitle">મહારાણા પ્રતાપ સેવા ગ્રુપ બનાસકાંઠા</span> <span data-i18n="act_year" class="text-gray-600 dark:text-gray-400">(૨૦૨૧ થી અવિરત લોક સેવા)</span></p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                                        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 p-6 border-b-4 border-brandRed flex flex-col items-center text-center group border-x border-t border-transparent dark:border-gray-700" data-aos="zoom-in" data-aos-duration="800">
+                        <div class="w-16 h-16 bg-red-100 dark:bg-red-900/30 text-brandRed dark:text-red-400 rounded-full flex-shrink-0 flex items-center justify-center text-3xl mb-4 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300">
+                            <i class="fa-solid fa-droplet"></i>
+                        </div>
+                        <div>
+                            <h3 data-i18n="act1_title" class="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">૧. ઇમરજન્સી બ્લડ સેવા</h3>
+<p data-i18n="act1_desc" class="text-gray-700 dark:text-gray-300 font-medium text-sm leading-relaxed text-center">બનાસકાંઠામાં સૌથી ઝડપી બ્લડની સેવા. રક્તદાન કેમ્પ તેમજ જરૂર સમયે દર્દી સુધી તાત્કાલિક બ્લડ પહોંચાડવું.</p>
+                        </div>
+                    </div>
+
+                                        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 p-6 border-b-4 border-brandOrange flex flex-col items-center text-center group border-x border-t border-transparent dark:border-gray-700" data-aos="zoom-in" data-aos-duration="800">
+                        <div class="w-16 h-16 bg-orange-100 dark:bg-orange-900/30 text-brandOrange dark:text-orange-400 rounded-full flex-shrink-0 flex items-center justify-center text-3xl mb-4 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300">
+                            <i class="fa-solid fa-snowflake"></i>
+                        </div>
+                        <div>
+                            <h3 data-i18n="act2_title" class="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">૨. શિયાળામાં હૂંફ</h3>
+<p data-i18n="act2_desc" class="text-gray-700 dark:text-gray-300 font-medium text-sm leading-relaxed text-center">શિયાળાની કડકડતી ઠંડીમાં જરૂરિયાતમંદ પરિવારોને ધાબળા તથા ગરીબ બાળકોને સ્વેટર પહોંચાડવા.</p>
+                        </div>
+                    </div>
+
+                                        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 p-6 border-b-4 border-brandRed flex flex-col items-center text-center group border-x border-t border-transparent dark:border-gray-700" data-aos="zoom-in" data-aos-duration="800">
+                        <div class="w-16 h-16 bg-red-100 dark:bg-red-900/30 text-brandRed dark:text-red-400 rounded-full flex-shrink-0 flex items-center justify-center text-3xl mb-4 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300">
+                            <i class="fa-solid fa-box-open"></i>
+                        </div>
+                        <div>
+                            <h3 data-i18n="act3_title" class="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">૩. દિવાળી મીઠાઈ વિતરણ</h3>
+<p data-i18n="act3_desc" class="text-gray-700 dark:text-gray-300 font-medium text-sm leading-relaxed text-center">દિવાળી પર બનાસ ઘીમાંથી બનેલી મીઠાઈ અને ફરસાણ ૫ તાલુકા (અમીરગઢ, સતલાસણા, દાંતા, વડગામ, પાલનપુર) ના ૨૫૦૦ પરિવારો સુધી વિતરણ.</p>
+                        </div>
+                    </div>
+
+                                        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 p-6 border-b-4 border-brandOrange flex flex-col items-center text-center group border-x border-t border-transparent dark:border-gray-700" data-aos="zoom-in" data-aos-duration="800">
+                        <div class="w-16 h-16 bg-orange-100 dark:bg-orange-900/30 text-brandOrange dark:text-orange-400 rounded-full flex-shrink-0 flex items-center justify-center text-3xl mb-4 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300">
+                            <i class="fa-solid fa-motorcycle"></i>
+                        </div>
+                        <div>
+                            <h3 data-i18n="act4_title" class="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">૪. ઉતરાયણ સેફ્ટી</h3>
+<p data-i18n="act4_desc" class="text-gray-700 dark:text-gray-300 font-medium text-sm leading-relaxed text-center">ઉતરાયણના પર્વ પર દોરીથી બચવા ૫૦૦ થી વધુ બાઈક ચાલકોને સેફ્ટી કાર્ડ / સળિયાનું વિનામૂલ્યે વિતરણ.</p>
+                        </div>
+                    </div>
+
+                                        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 p-6 border-b-4 border-brandRed flex flex-col items-center text-center group border-x border-t border-transparent dark:border-gray-700" data-aos="zoom-in" data-aos-duration="800">
+                        <div class="w-16 h-16 bg-red-100 dark:bg-red-900/30 text-brandRed dark:text-red-400 rounded-full flex-shrink-0 flex items-center justify-center text-3xl mb-4 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300">
+                            <i class="fa-solid fa-glass-water"></i>
+                        </div>
+                        <div>
+                            <h3 data-i18n="act5_title" class="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">૫. જળ એ જ જીવન</h3>
+<p data-i18n="act5_desc" class="text-gray-700 dark:text-gray-300 font-medium text-sm leading-relaxed text-center">ઉનાળાની કાળઝાળ ગરમીમાં રાહદારીઓ માટે મિનરલ પાણીની પરબની સેવા (વડગામ અને અમદાવાદ ખાતે).</p>
+                        </div>
+                    </div>
+
+                                        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 p-6 border-b-4 border-brandOrange flex flex-col items-center text-center group border-x border-t border-transparent dark:border-gray-700" data-aos="zoom-in" data-aos-duration="800">
+                        <div class="w-16 h-16 bg-orange-100 dark:bg-orange-900/30 text-brandOrange dark:text-orange-400 rounded-full flex-shrink-0 flex items-center justify-center text-3xl mb-4 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300">
+                            <i class="fa-solid fa-dove"></i>
+                        </div>
+                        <div>
+                            <h3 data-i18n="act6_title" class="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">૬. પક્ષીઓ માટે અભિયાન</h3>
+<p data-i18n="act6_desc" class="text-gray-700 dark:text-gray-300 font-medium text-sm leading-relaxed text-center">ઉનાળામાં ૨૦,૦૦૦ ચકલી ઘર તેમજ ૨૦,૦૦૦ પાણીના કુંડાઓનું ૫ જિલ્લાઓ અને ૧૮ તાલુકાઓમાં મેગા વિતરણ.</p>
+                        </div>
+                    </div>
+
+                                        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 p-6 border-b-4 border-brandRed flex flex-col items-center text-center group border-x border-t border-transparent dark:border-gray-700" data-aos="zoom-in" data-aos-duration="800">
+                        <div class="w-16 h-16 bg-red-100 dark:bg-red-900/30 text-brandRed dark:text-red-400 rounded-full flex-shrink-0 flex items-center justify-center text-3xl mb-4 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300">
+                            <i class="fa-solid fa-person-hiking"></i>
+                        </div>
+                        <div>
+                            <h3 data-i18n="act7_title" class="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">૭. અંબાજી ભાદરવી કેમ્પ</h3>
+<p data-i18n="act7_desc" class="text-gray-700 dark:text-gray-300 font-medium text-sm leading-relaxed text-center">પગપાળા જતા યાત્રિકો માટે ૭ દિવસ અને ૭ રાતનો કેમ્પ. જેમાં મેડિકલ સેવા, ઇલેક્ટ્રિક માછલી મસાજ, અને ચા-પાણી-નાસ્તો.</p>
+                        </div>
+                    </div>
+
+                                        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 p-6 border-b-4 border-brandOrange flex flex-col items-center text-center group border-x border-t border-transparent dark:border-gray-700" data-aos="zoom-in" data-aos-duration="800">
+                        <div class="w-16 h-16 bg-orange-100 dark:bg-orange-900/30 text-brandOrange dark:text-orange-400 rounded-full flex-shrink-0 flex items-center justify-center text-3xl mb-4 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300">
+                            <i class="fa-solid fa-tent"></i>
+                        </div>
+                        <div>
+                            <h3 data-i18n="act8_title" class="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">૮. રણુજા સેવા કેમ્પ</h3>
+<p data-i18n="act8_desc" class="text-gray-700 dark:text-gray-300 font-medium text-sm leading-relaxed text-center">રણુજા (રામદેવપીર) દર્શનાર્થે જતા પદયાત્રીઓ માટે ૨ દિવસ અને ૨ રાતની વિશેષ વ્યવસ્થા અને સેવા કેમ્પ.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- Activities Section પૂર્ણ -->
+
+        <!-- Blood Donation Stats Section શરૂઆત -->
+        <section id="blood-stats" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-black transition-colors duration-500 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-full h-full overflow-hidden z-0 opacity-10 pointer-events-none">
+        <div class="absolute top-1/4 right-0 w-96 h-96 bg-brandRed rounded-full mix-blend-overlay filter blur-[100px] animate-pulse"></div>
+    </div>
+
+    <div class="max-w-4xl mx-auto relative z-10">
+        <div class="text-center mb-16" data-aos="fade-down">
+            <h2 class="text-3xl md:text-5xl font-black mb-4 drop-shadow-md text-brandRed dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-brandOrange dark:to-brandRed">
+                <i class="fa-solid fa-hand-holding-droplet mr-3 text-brandRed dark:text-brandOrange"></i><span data-i18n="blood_title">૯. રક્તદાન મહાદાન: ઐતિહાસિક સફર</span>
+            </h2>
+            <p data-i18n="blood_subtitle" class="text-lg md:text-xl text-gray-600 dark:text-gray-400 font-bold max-w-3xl mx-auto border-b-4 border-brandOrange inline-block pb-2">૨૦૨૨ થી શરૂ થયેલ 'મહા રક્તદાન કેમ્પ' ની ડીપ ટાઈમલાઈન</p>
+        </div>
+
+        <div class="relative border-l-4 border-gray-300 dark:border-gray-800 ml-4 md:ml-8 space-y-12 pb-8">
+            
+            <div class="relative pl-8 md:pl-12" data-aos="fade-up" data-aos-duration="800">
+                <div class="absolute -left-[26px] bg-white dark:bg-gray-900 border-4 border-gray-300 dark:border-gray-700 text-gray-500 w-12 h-12 rounded-full flex items-center justify-center text-xl z-10 shadow-sm"><i class="fa-solid fa-droplet"></i></div>
+                <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-6 md:p-8 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between mb-3 gap-2">
+                        <h3 data-i18n="blood_2022_title" class="text-2xl md:text-3xl font-black text-brandOrange">૨૦૨૨: સેવાનો શુભારંભ</h3>
+                        <div class="text-left md:text-right">
+                            <span class="text-3xl font-black text-gray-800 dark:text-white drop-shadow-sm group-hover:scale-110 inline-block transition-transform">૨૧૮</span> <span data-i18n="blood_bottle_1" class="text-gray-500 dark:text-gray-400 font-medium text-sm">બોટલ</span>
+                        </div>
+                    </div>
+                    <p data-i18n="blood_2022_desc" class="text-gray-600 dark:text-gray-300 text-sm md:text-base leading-relaxed text-justify mb-5">ઉનાળાના આકરા તાપમાં જ્યારે લોહીની સૌથી વધુ અછત સર્જાય છે, ત્યારે મહારાણા પ્રતાપ સેવા ગ્રુપે આ મહાયજ્ઞની શરૂઆત કરી અને પ્રથમ વર્ષે જ ૨૧૮ લોકોનું જીવન બચાવવા માટે રક્ત એકત્રિત કર્યું.</p>
+                    <div class="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-3 shadow-inner overflow-hidden">
+                        <div class="bg-gradient-to-r from-gray-300 to-gray-400 dark:from-gray-600 dark:to-gray-500 h-full rounded-full relative" style="width: 21%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative pl-8 md:pl-12" data-aos="fade-up" data-aos-duration="800">
+                <div class="absolute -left-[26px] bg-white dark:bg-gray-900 border-4 border-gray-300 dark:border-gray-700 text-gray-500 w-12 h-12 rounded-full flex items-center justify-center text-xl z-10 shadow-sm"><i class="fa-solid fa-droplet"></i></div>
+                <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-6 md:p-8 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between mb-3 gap-2">
+                        <h3 data-i18n="blood_2023_title" class="text-2xl md:text-3xl font-black text-brandOrange">૨૦૨૩: જાગૃતિ અને પ્રસાર</h3>
+                        <div class="text-left md:text-right">
+                            <span class="text-3xl font-black text-gray-800 dark:text-white drop-shadow-sm group-hover:scale-110 inline-block transition-transform">૩૦૮</span> <span data-i18n="blood_bottle_2" class="text-gray-500 dark:text-gray-400 font-medium text-sm">બોટલ</span>
+                        </div>
+                    </div>
+                    <p data-i18n="blood_2023_desc" class="text-gray-600 dark:text-gray-300 text-sm md:text-base leading-relaxed text-justify mb-5">ગ્રુપના સ્વયંસેવકોની મહેનત રંગ લાવી. લોકોમાં રક્તદાન પ્રત્યે જાગૃતિ આવતા સંખ્યામાં વધારો નોંધાયો અને ૩૦૮ યુવાનોએ સ્વૈચ્છિક રક્તદાન કર્યું.</p>
+                    <div class="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-3 shadow-inner overflow-hidden">
+                        <div class="bg-gradient-to-r from-brandOrange/50 to-brandOrange h-full rounded-full relative" style="width: 30%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative pl-8 md:pl-12" data-aos="fade-up" data-aos-duration="800">
+                <div class="absolute -left-[26px] bg-white dark:bg-gray-900 border-4 border-gray-300 dark:border-gray-700 text-gray-500 w-12 h-12 rounded-full flex items-center justify-center text-xl z-10 shadow-sm"><i class="fa-solid fa-droplet"></i></div>
+                <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-6 md:p-8 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between mb-3 gap-2">
+                        <h3 data-i18n="blood_2024_title" class="text-2xl md:text-3xl font-black text-brandOrange">૨૦૨૪: યુવાનોનો સિંહફાળો</h3>
+                        <div class="text-left md:text-right">
+                            <span class="text-3xl font-black text-gray-800 dark:text-white drop-shadow-sm group-hover:scale-110 inline-block transition-transform">૩૨૮</span> <span data-i18n="blood_bottle_3" class="text-gray-500 dark:text-gray-400 font-medium text-sm">બોટલ</span>
+                        </div>
+                    </div>
+                    <p data-i18n="blood_2024_desc" class="text-gray-600 dark:text-gray-300 text-sm md:text-base leading-relaxed text-justify mb-5">સેવા કાર્યોની સુવાસ વધુ ફેલાઈ. બનાસકાંઠાના ખૂણે ખૂણેથી યુવાનો આ રક્તદાન કેમ્પમાં જોડાયા અને સતત ત્રીજા વર્ષે ગ્રાફ ઉપર તરફ ગયો.</p>
+                    <div class="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-3 shadow-inner overflow-hidden">
+                        <div class="bg-gradient-to-r from-brandOrange to-brandRed/80 h-full rounded-full relative" style="width: 32%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative pl-8 md:pl-12" data-aos="fade-up" data-aos-duration="800">
+                <div class="absolute -left-[26px] bg-white dark:bg-gray-900 border-4 border-brandOrange text-brandOrange w-12 h-12 rounded-full flex items-center justify-center text-xl z-10 shadow-sm"><i class="fa-solid fa-droplet"></i></div>
+                <div class="bg-white dark:bg-gray-800 border border-brandOrange/30 dark:border-brandOrange/50 p-6 md:p-8 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between mb-3 gap-2">
+                        <h3 data-i18n="blood_2025_title" class="text-2xl md:text-3xl font-black text-brandRed">૨૦૨૫: મહા રક્તદાન તરફ પ્રયાણ</h3>
+                        <div class="text-left md:text-right">
+                            <span class="text-4xl font-black text-gray-800 dark:text-white drop-shadow-sm group-hover:scale-110 inline-block transition-transform">૫૧૬</span> <span data-i18n="blood_bottle_4" class="text-gray-500 dark:text-gray-400 font-medium text-sm">બોટલ</span>
+                        </div>
+                    </div>
+                    <p data-i18n="blood_2025_desc" class="text-gray-600 dark:text-gray-300 text-sm md:text-base leading-relaxed text-justify mb-5">આ વર્ષે સંસ્થાએ એક મોટો માઇલસ્ટોન પાર કર્યો. અડધા હજારથી વધુ રક્તદાતાઓ ઉમટી પડ્યા અને ૫૧૬ બોટલ બ્લડ એકત્ર કરીને એક નવો જ આયામ સ્થાપિત કર્યો.</p>
+                    <div class="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-3 shadow-inner overflow-hidden">
+                        <div class="bg-gradient-to-r from-brandOrange to-brandRed h-full rounded-full relative" style="width: 50%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative pl-8 md:pl-12" data-aos="fade-up" data-aos-duration="1000">
+                <div class="absolute -left-[32px] bg-brandRed border-4 border-yellow-300 text-yellow-300 w-16 h-16 rounded-full flex items-center justify-center text-2xl z-10 shadow-lg shadow-brandRed/50 animate-bounce"><i class="fa-solid fa-trophy"></i></div>
+                <div class="bg-gradient-to-br from-brandRed to-brandOrange text-white border-2 border-yellow-400 p-6 md:p-10 rounded-2xl shadow-2xl transition-all duration-500 hover:scale-[1.02] group relative overflow-hidden">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-4 relative z-10">
+                        <div>
+                            <h3 data-i18n="blood_2026_title" class="text-3xl md:text-4xl font-black text-yellow-300 drop-shadow-md">૨૦૨૬: ઐતિહાસિક સિદ્ધિ</h3>
+                        </div>
+                        <div class="text-left md:text-right bg-white/20 px-5 py-2 rounded-xl backdrop-blur-md border border-white/30 shadow-inner">
+                            <span class="text-5xl md:text-6xl font-black text-white drop-shadow-lg group-hover:scale-110 inline-block transition-transform duration-300">૧૦૨૫</span> <span data-i18n="blood_2026_record" class="text-yellow-200 font-bold block md:inline text-sm tracking-widest uppercase mt-1 md:mt-0">બ્લડ બોટલ (રેકોર્ડ)</span>
+                        </div>
+                    </div>
+                    <p data-i18n="blood_2026_desc" class="text-yellow-50 text-base md:text-lg leading-relaxed text-justify mb-6 font-medium relative z-10">પાંચ વર્ષની અવિરત નિષ્ઠા અને જનતાના અપાર પ્રેમે ઇતિહાસ રચી દીધો. એક જ કેમ્પમાં ૧૦૨૫ બ્લડ બોટલ એકત્ર કરીને બનાસકાંઠામાં એક નવો રેકોર્ડ પ્રસ્થાપિત કર્યો.</p>
+                    
+                    <div class="w-full bg-black/30 rounded-full h-5 shadow-inner overflow-hidden border border-white/20 relative z-10">
+                        <div class="bg-gradient-to-r from-yellow-500 via-yellow-200 to-yellow-500 h-full rounded-full relative w-full flex items-center justify-end px-4">
+                             <span data-i18n="blood_target" class="text-xs font-black text-brandRed drop-shadow-sm">૧૦૦% લક્ષ્ય પૂર્ણ</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+        <!-- Blood Donation Stats Section પૂર્ણ -->
+
+        <!-- Gallery Section (ફોટો ગેલેરી ડાયનેમિક) શરૂઆત -->
+        <section id="gallery" class="py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900 transition-colors duration-500">
+            <div class="max-w-7xl mx-auto">
+                
+                <!-- Section Title -->
+                <div class="text-center mb-12">
+                    <h2 data-i18n="gallery_title" class="text-3xl md:text-4xl font-extrabold text-brandRed mb-4 inline-block border-b-4 border-brandOrange pb-2">અમારી સેવાકીય ઝલક</h2>
+                    <p data-i18n="gallery_subtitle" class="text-lg text-gray-600 dark:text-gray-400 font-medium max-w-2xl mx-auto">અમારા વિવિધ સેવા કેમ્પો અને કાર્યોની કેટલીક યાદગાર ક્ષણો.</p>
+                </div>
+
+                <!-- Dynamic Gallery Grid -->
+                <div id="dynamic-gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    <!-- Loading Spinner -->
+                    <div id="gallery-loader" class="col-span-full flex flex-col items-center justify-center py-12 text-gray-500">
+                        <i class="fa-solid fa-spinner fa-spin text-4xl text-brandOrange mb-4"></i>
+                        <p class="font-bold">ફોટાઓ લોડ થઈ રહ્યા છે...</p>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-10">
+                    <p data-i18n="gallery_note" class="text-sm text-gray-500 italic">*નોંધ: આ ફોટાઓ ડાયરેક્ટ Google Drive માંથી લોડ થાય છે.</p>
+                </div>
+            </div>
+        </section>
+        <!-- Gallery Section પૂર્ણ -->
+
+        <!-- Join Us & Footer Section શરૂઆત -->
+        <section id="join" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-100 dark:bg-black transition-colors duration-500">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+                
+                <!-- Left: Form for Volunteer / Blood Request -->
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-md border-t-4 border-brandRed transition-colors duration-300">
+                    <h3 data-i18n="contact_title" class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6">મદદ માટે કે સ્વયંસેવક બનવા સંપર્ક કરો</h3>
+                    <form id="contact-form" class="space-y-4">
+                        <div>
+                            <label data-i18n="form_name" class="block text-gray-700 dark:text-gray-300 font-medium mb-1">તમારું નામ</label>
+                            <input type="text" name="name" data-placeholder="form_name_ph" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg px-4 py-2 focus:outline-none focus:border-brandRed transition-colors duration-300" placeholder="પૂરું નામ લખો" required>
+                        </div>
+                        <div>
+                            <label data-i18n="form_mobile" class="block text-gray-700 dark:text-gray-300 font-medium mb-1">મોબાઇલ નંબર</label>
+                            <input type="tel" name="mobile" data-placeholder="form_mobile_ph" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg px-4 py-2 focus:outline-none focus:border-brandRed transition-colors duration-300" placeholder="૧૦ આંકડાનો નંબર" required>
+                        </div>
+                        <div>
+                            <label data-i18n="form_reason" class="block text-gray-700 dark:text-gray-300 font-medium mb-1">સંપર્કનું કારણ</label>
+                            <select name="reason" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg px-4 py-2 focus:outline-none focus:border-brandRed transition-colors duration-300">
+                                <option data-i18n="form_opt1">સ્વયંસેવક તરીકે જોડાવવા</option>
+                                <option data-i18n="form_opt2">ઇમરજન્સી રક્ત (Blood) ની જરૂર છે</option>
+                                <option data-i18n="form_opt3">અન્ય માહિતી / પ્રશ્ન</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label data-i18n="form_details" class="block text-gray-700 dark:text-gray-300 font-medium mb-1">વિગતવાર માહિતી</label>
+                            <textarea name="details" rows="3" data-placeholder="form_details_ph" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg px-4 py-2 focus:outline-none focus:border-brandRed transition-colors duration-300" placeholder="અહીં વિગત લખો (જેમ કે કયું બ્લડ ગ્રુપ જોઈએ છે)"></textarea>
+                        </div>
+                        <button type="submit" id="submit-btn" data-i18n="form_submit" class="w-full bg-brandRed text-white font-bold py-3 rounded-lg shadow-md hover:bg-brandOrange transition duration-300">
+                            માહિતી મોકલો
+                        </button>
+                        <p id="form-msg" class="hidden text-sm font-bold mt-2 text-center"></p>
+                        <p data-i18n="form_note" class="text-xs text-gray-500 mt-2 text-center">*આ ફોર્મનો ડેટા સીધો અમારી ટીમને મળશે.</p>
+                    </form>
+                </div>
+
+                <!-- Right: Donation Info & Contact -->
+                <div class="flex flex-col justify-between">
+                    <!-- Donation Card -->
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-md border-t-4 border-brandOrange mb-6 transition-colors duration-300">
+                        <h3 data-i18n="donate_title" class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4"><i class="fa-solid fa-hand-holding-heart text-brandOrange mr-2"></i>સેવા કાર્યમાં સહયોગ આપો</h3>
+                        <p data-i18n="donate_desc" class="text-gray-600 dark:text-gray-300 mb-6 font-medium text-justify">આપના દ્વારા મળેલું દાન ગરીબ બાળકો, મૂંગા પશુ-પક્ષીઓ અને નિઃસ્વાર્થ સેવા કાર્યોમાં વપરાશે.</p>
+                        
+                        <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600 transition-colors duration-300">
+                            <p data-i18n="bank_title" class="font-bold text-gray-800 dark:text-gray-100 mb-2">બેંક વિગતો (Bank Details):</p>
+                            <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1 mb-4">
+                                <li><strong data-i18n="bank_name_lbl">બેંક:</strong> Banas Bank</li>
+                                <li><strong data-i18n="acc_name_lbl">ખાતાનું નામ:</strong> Jan Seva Charitable Trust</li>
+                                <li><strong data-i18n="acc_no_lbl">ખાતા નંબર:</strong> 118006290849</li>
+                                <li><strong>IFSC Code:</strong> GSCB0BKD001</li>
+                            </ul>
+                            <div class="border-t border-gray-300 dark:border-gray-600 pt-3 flex items-center justify-between transition-colors duration-300">
+                                <div>
+                                    <p class="font-bold text-gray-800 dark:text-gray-100"><i class="fa-brands fa-google-pay text-xl mr-1 align-middle text-brandRed"></i> Google Pay:</p>
+                                    <p class="text-lg font-bold text-brandOrange">762280 6382</p>
+                                </div>
+                                <div class="text-5xl text-gray-300">
+                                    <i class="fa-solid fa-qrcode"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Contact Info -->
+                    <div class="bg-brandRed text-white p-6 rounded-2xl shadow-md">
+                        <h4 data-i18n="contact_info" class="text-xl font-bold mb-3">સંપર્ક સૂત્ર</h4>
+                        <p class="mb-1"><i class="fa-solid fa-phone mr-2"></i>70962 72350 / 98259 86382</p>
+                        <p class="mb-3"><i class="fa-brands fa-instagram mr-2"></i>@mpsgroupbk</p>
+                        <div class="flex space-x-4 mt-4">
+                            <a href="#" class="w-10 h-10 bg-white text-brandRed rounded-full flex items-center justify-center hover:bg-brandOrange hover:text-white transition duration-300"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" class="w-10 h-10 bg-white text-brandRed rounded-full flex items-center justify-center hover:bg-brandOrange hover:text-white transition duration-300"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" class="w-10 h-10 bg-white text-brandRed rounded-full flex items-center justify-center hover:bg-brandOrange hover:text-white transition duration-300"><i class="fa-brands fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- Join Us & Footer Section પૂર્ણ -->
+
+    </main>
+
+    <!-- Bottom Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-6 text-center">
+        <p data-i18n="footer_copy">© 2026 મહારાણા પ્રતાપ સેવા ગ્રુપ - બનાસકાંઠા. સર્વાધિકાર સુરક્ષિત.</p>
+        <p data-i18n="footer_dev" class="text-sm mt-2">Design & Developed with <i class="fa-solid fa-heart text-brandRed"></i> by MPSG Team - ચેતન ભૂદેવ (Shree Maa Studio vadgam)</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // અહીં તમારો નવો વેબ એપ URL મૂકવામાં આવ્યો છે
+        const webAppUrl = "https://script.google.com/macros/s/AKfycbxOPZdPj28m-ZD3GbZUcH8Zy5p8IyBAMfFQekwEA_cCsm6uE0QsghmjotH76UlAKvFRUg/exec";
+
+        // ૧. સ્મૂથ એનિમેશન ચાલુ કરવા
+        AOS.init({ once: true, offset: 100 });
+        
+        // ૨. ડાર્ક મોડ કંટ્રોલ
+        const htmlTag = document.documentElement;
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlTag.classList.add('dark');
+        }
+        
+        window.onload = () => {
+            const icon = document.getElementById('theme-icon');
+            if (icon && htmlTag.classList.contains('dark')) icon.className = 'fa-solid fa-sun';
+            loadGalleryImages(); // પેજ લોડ થાય એટલે ફોટા લાવશે
+        };
+
+        function toggleTheme() {
+            htmlTag.classList.toggle('dark');
+            localStorage.setItem('theme', htmlTag.classList.contains('dark') ? 'dark' : 'light');
+            const icon = document.getElementById('theme-icon');
+            if (icon) icon.className = htmlTag.classList.contains('dark') ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+        }
+
+        // ૩. ડાયનેમિક ગેલેરી લોડ કરવાનું ફંક્શન (સ્માર્ટ જુગાડ)
+        async function loadGalleryImages() {
+            const galleryGrid = document.getElementById('dynamic-gallery-grid');
+            try {
+                const response = await fetch(webAppUrl);
+                const images = await response.json();
+                
+                galleryGrid.innerHTML = ''; // લોડિંગ આઇકન દૂર કરવા
+                
+                if (images.length === 0) {
+                    galleryGrid.innerHTML = '<p class="col-span-full text-center text-gray-500">હજુ સુધી કોઈ ફોટા અપલોડ કરવામાં આવ્યા નથી.</p>';
+                    return;
+                }
+
+                images.forEach(img => {
+                    const imgUrl = `https://drive.google.com/uc?export=view&id=${img.id}`;
+                    const html = `
+                    <div class="group relative overflow-hidden rounded-xl shadow-md cursor-pointer">
+                        <img src="${imgUrl}" alt="${img.name}" class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-brandOrange bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
+                            <i class="fa-solid fa-magnifying-glass-plus text-white opacity-0 group-hover:opacity-100 text-4xl drop-shadow-md"></i>
+                        </div>
+                    </div>`;
+                    galleryGrid.insertAdjacentHTML('beforeend', html);
+                });
+            } catch (error) {
+                galleryGrid.innerHTML = '<p class="col-span-full text-center text-red-500">ફોટા લોડ કરવામાં ભૂલ આવી. કૃપા કરીને થોડીવાર પછી ફરી પ્રયાસ કરો.</p>';
+                console.error("Gallery Error: ", error);
+            }
+        }
+
+        // ૪. ફોર્મ સબમિટ કરવાનું લોજીક (Google Sheet માટે)
+        const contactForm = document.getElementById('contact-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const formMsg = document.getElementById('form-msg');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // બટનનું સ્ટેટસ બદલીએ
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>મોકલવામાં આવી રહ્યું છે...';
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-70');
+            formMsg.classList.add('hidden');
+
+            const formData = new FormData(contactForm);
+
+            fetch(webAppUrl, { method: 'POST', body: formData })
+                .then(response => response.text())
+                .then(data => {
+                    formMsg.innerHTML = "માહિતી સફળતાપૂર્વક મોકલાઈ ગઈ છે! અમે ટૂંક સમયમાં સંપર્ક કરીશું.";
+                    formMsg.className = "text-green-600 dark:text-green-400 mt-4 text-center font-bold block";
+                    contactForm.reset();
+                })
+                .catch(error => {
+                    formMsg.innerHTML = "ભૂલ આવી! કૃપા કરીને ફરી પ્રયાસ કરો.";
+                    formMsg.className = "text-red-600 dark:text-red-400 mt-4 text-center font-bold block";
+                })
+                .finally(() => {
+                    submitBtn.innerHTML = 'માહિતી મોકલો';
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('opacity-70');
+                });
+        });
+
+        // ૫. ફાઇનલ માસ્ટર ભાષાંતર ડિક્શનરી (Master Bilingual Setup)
+        const translations = {
+            gu: { 
+                nav_title: "MPSG બનાસકાંઠા", nav_home: "હોમ", nav_about: "અમારા વિશે", nav_activities: "સેવા કાર્યો", nav_gallery: "ગેલેરી", nav_join: "જોડાવવા માટે",
+                trust_name: "જન સેવા ચેરીટેબલ ટ્રસ્ટ દ્વારા સંચાલિત", group_name: "મહારાણા પ્રતાપ સેવા ગ્રુપ બનાસકાંઠા", hero_quote: "\"સેવા એ જ પરમો ધર્મ\"", hero_desc: "અંતર્ગત <span class='text-yellow-300 font-bold'>''મારું પણ એક ઘર હોય''</span> અભિયાન. વિના મૂલ્યે ચકલી ઘર અને પાણીના કુંડા વિતરણ તેમજ માનવ સેવા એ જ પ્રભુ સેવાના કાર્યો.",
+                fac_ashram_title: "મહારાણા પ્રતાપ આશ્રમ", fac_ashram_desc: "મા બાપ વિહોણા અને જરૂરિયાતમંદ બાળકો ને રહેવાનું, જમવાનું અને શિક્ષણ - <strong class='text-brandRed'>તદ્દન મફત</strong>.",
+                fac_lib_title: "ચેતક લાઇબ્રેરી", fac_lib_desc: "એસી (AC) વાળી ચેતક લાઇબ્રેરી, જ્યાં સર્વ સમાજના ભાઈઓ તથા બહેનો માટે <strong class='text-brandOrange'>ફ્રી વાંચન</strong> ની સુવિધા.",
+                fac_loc_title: "આશ્રમ અને લાઇબ્રેરીનું સ્થળ", fac_loc_address: "મહારાણા પ્રતાપ આશ્રમ, પાલનપુર (અહીં તમારું પૂરું એડ્રેસ આવશે)",
+                fac_qr_title: "ગુગલ મેપ (Google Map) સ્કેન કરો", fac_qr_note: "*અહીં QR કોડનો ફોટો મૂકી શકાશે.",
+                about_title: "અમારા વિશે: એક અનોખો સેવા યજ્ઞ", about_subtitle: "અહીં કોઈ જ હોદ્દેદાર નથી, સૌ માત્ર 'સ્વયંસેવક' છે.",
+                dedication_title: "સમર્પણની સાચી વ્યાખ્યા", 
+                dedication_p1: "મહારાણા પ્રતાપ સેવા ગ્રુપ બનાસકાંઠા કોઈ સામાન્ય સંસ્થા નથી, પણ એક પરિવાર છે. આ ગ્રુપની સૌથી મોટી તાકાત એ છે કે અહીં કોઈ પ્રમુખ કે મંત્રી નથી. દરેક સભ્ય પોતાને માત્ર અને માત્ર <strong>'સ્વયંસેવક'</strong> માને છે.",
+                dedication_p2: "તમને જાણીને નવાઈ લાગશે કે, આ ગ્રુપમાં એવા પણ સદસ્યો છે જેઓને મોટી ઓફિસોમાં મળવા માટે કલાકો સુધી લાઈનમાં ઊભું રહેવું પડે છે. પરંતુ જ્યારે અંબાજી કેમ્પની વાત આવે, ત્યારે એ જ લોકો હાથમાં સાવરણી લઈને કચરો વાળવાથી લઈને, માઈ ભક્તોના પગ પર ટ્યુબ ઘસીને માલિશ કરવાની સેવા ચહેરા પર હળવા સ્મિત સાથે કરે છે. જમીન સાથે જોડાયેલા આ સભ્યો જ ગ્રુપનો અસલી પાયો છે.",
+                exp_title: "<i class='fa-solid fa-hands-holding-circle text-brandRed mr-2'></i>સ્વયંસેવકોના અનુભવો",
+                exp1_title: "કલાકો લાઈનમાં, પણ સેવામાં આગળ", exp1_desc: "અમારા ગ્રુપમાં એવા પણ સદસ્યો છે જેઓને મોટી ઓફિસોમાં મળવા માટે કલાકો સુધી લાઈનમાં ઊભું રહેવું પડે છે. સામાન્ય જીવનમાં તેઓ ખૂબ વ્યસ્ત હોય છે.", exp1_quote: "\"પરંતુ જ્યારે અંબાજી કેમ્પ શરૂ થાય, ત્યારે તેઓ પોતાનો મોભો બાજુ પર મૂકીને હાથમાં સાવરણી લઈ કચરો વાળવાનું અને માઈ ભક્તોના પગ પર ટ્યુબ ઘસીને માલિશ કરવાનું કામ પણ ખુશીથી કરે છે.\"",
+                act_title: "સેવા કાર્યોની ઐતિહાસિક સફર", act_subtitle: "મહારાણા પ્રતાપ સેવા ગ્રુપ બનાસકાંઠા", act_year: "(૨૦૨૧ થી અવિરત લોક સેવા)",
+                act1_title: "૧. ઇમરજન્સી બ્લડ સેવા", act1_desc: "બનાસકાંઠામાં સૌથી ઝડપી બ્લડની સેવા. રક્તદાન કેમ્પ તેમજ જરૂર સમયે દર્દી સુધી તાત્કાલિક બ્લડ પહોંચાડવું.",
+                act2_title: "૨. શિયાળામાં હૂંફ", act2_desc: "શિયાળાની કડકડતી ઠંડીમાં જરૂરિયાતમંદ પરિવારોને ધાબળા તથા ગરીબ બાળકોને સ્વેટર પહોંચાડવા.",
+                act3_title: "૩. દિવાળી મીઠાઈ વિતરણ", act3_desc: "દિવાળી પર બનાસ ઘીમાંથી બનેલી મીઠાઈ અને ફરસાણ ૫ તાલુકા (અમીરગઢ, સતલાસણા, દાંતા, વડગામ, પાલનપુર) ના ૨૫૦૦ પરિવારો સુધી વિતરણ.",
+                act4_title: "૪. ઉતરાયણ સેફ્ટી", act4_desc: "ઉતરાયણના પર્વ પર દોરીથી બચવા ૫૦૦ થી વધુ બાઈક ચાલકોને સેફ્ટી કાર્ડ / સળિયાનું વિનામૂલ્યે વિતરણ.",
+                act5_title: "૫. જળ એ જ જીવન", act5_desc: "ઉનાળાની કાળઝાળ ગરમીમાં રાહદારીઓ માટે મિનરલ પાણીની પરબની સેવા (વડગામ અને અમદાવાદ ખાતે).",
+                act6_title: "૬. પક્ષીઓ માટે અભિયાન", act6_desc: "ઉનાળામાં ૨૦,૦૦૦ ચકલી ઘર તેમજ ૨૦,૦૦૦ પાણીના કુંડાઓનું ૫ જિલ્લાઓ અને ૧૮ તાલુકાઓમાં મેગા વિતરણ.",
+                act7_title: "૭. અંબાજી ભાદરવી કેમ્પ", act7_desc: "પગપાળા જતા યાત્રિકો માટે ૭ દિવસ અને ૭ રાતનો કેમ્પ. જેમાં મેડિકલ સેવા, ઇલેક્ટ્રિક માછલી મસાજ, અને ચા-પાણી-નાસ્તો.",
+                act8_title: "૮. રણુજા સેવા કેમ્પ", act8_desc: "રણુજા (રામદેવપીર) દર્શનાર્થે જતા પદયાત્રીઓ માટે ૨ દિવસ અને ૨ રાતની વિશેષ વ્યવસ્થા અને સેવા કેમ્પ.",
+                blood_title: "૯. રક્તદાન મહાદાન: ઐતિહાસિક સફર", blood_subtitle: "૨૦૨૨ થી શરૂ થયેલ 'મહા રક્તદાન કેમ્પ' ની ડીપ ટાઈમલાઈન",
+                blood_2022_title: "૨૦૨૨: સેવાનો શુભારંભ", blood_bottle_1: "બોટલ", blood_2022_desc: "ઉનાળાના આકરા તાપમાં જ્યારે લોહીની સૌથી વધુ અછત સર્જાય છે, ત્યારે મહારાણા પ્રતાપ સેવા ગ્રુપે આ મહાયજ્ઞની શરૂઆત કરી અને પ્રથમ વર્ષે જ ૨૧૮ લોકોનું જીવન બચાવવા માટે રક્ત એકત્રિત કર્યું.",
+                blood_2023_title: "૨૦૨૩: જાગૃતિ અને પ્રસાર", blood_bottle_2: "બોટલ", blood_2023_desc: "ગ્રુપના સ્વયંસેવકોની મહેનત રંગ લાવી. લોકોમાં રક્તદાન પ્રત્યે જાગૃતિ આવતા સંખ્યામાં વધારો નોંધાયો અને ૩૦૮ યુવાનોએ સ્વૈચ્છિક રક્તદાન કર્યું.",
+                blood_2024_title: "૨૦૨૪: યુવાનોનો સિંહફાળો", blood_bottle_3: "બોટલ", blood_2024_desc: "સેવા કાર્યોની સુવાસ વધુ ફેલાઈ. બનાસકાંઠાના ખૂણે ખૂણેથી યુવાનો આ રક્તદાન કેમ્પમાં જોડાયા અને સતત ત્રીજા વર્ષે ગ્રાફ ઉપર તરફ ગયો.",
+                blood_2025_title: "૨૦૨૫: મહા રક્તદાન તરફ પ્રયાણ", blood_bottle_4: "બોટલ", blood_2025_desc: "આ વર્ષે સંસ્થાએ એક મોટો માઇલસ્ટોન પાર કર્યો. અડધા હજારથી વધુ રક્તદાતાઓ ઉમટી પડ્યા અને ૫૧૬ બોટલ બ્લડ એકત્ર કરીને એક નવો જ આયામ સ્થાપિત કર્યો.",
+                blood_2026_title: "૨૦૨૬: ઐતિહાસિક સિદ્ધિ", blood_2026_record: "બ્લડ બોટલ (રેકોર્ડ)", blood_2026_desc: "પાંચ વર્ષની અવિરત નિષ્ઠા અને જનતાના અપાર પ્રેમે ઇતિહાસ રચી દીધો. એક જ કેમ્પમાં ૧૦૨૫ બ્લડ બોટલ એકત્ર કરીને બનાસકાંઠામાં એક નવો રેકોર્ડ પ્રસ્થાપિત કર્યો.",
+                blood_target: "૧૦૦% લક્ષ્ય પૂર્ણ",
+                gallery_title: "અમારી સેવાકીય ઝલક", gallery_subtitle: "અમારા વિવિધ સેવા કેમ્પો અને કાર્યોની કેટલીક યાદગાર ક્ષણો.", gallery_note: "*નોંધ: આ ફોટાઓ ડાયરેક્ટ Google Drive માંથી લોડ થાય છે.",
+                contact_title: "મદદ માટે કે સ્વયંસેવક બનવા સંપર્ક કરો", form_name: "તમારું નામ", form_mobile: "મોબાઇલ નંબર", form_reason: "સંપર્કનું કારણ", 
+                form_opt1: "સ્વયંસેવક તરીકે જોડાવવા", form_opt2: "ઇમરજન્સી રક્ત (Blood) ની જરૂર છે", form_opt3: "અન્ય માહિતી / પ્રશ્ન", form_details: "વિગતવાર માહિતી", 
+                form_submit: "માહિતી મોકલો", form_note: "*આ ફોર્મનો ડેટા સીધો અમારી ટીમને મળશે.",
+                donate_title: "સેવા કાર્યમાં સહયોગ આપો", donate_desc: "આપના દ્વારા મળેલું દાન ગરીબ બાળકો, મૂંગા પશુ-પક્ષીઓ અને નિઃસ્વાર્થ સેવા કાર્યોમાં વપરાશે.",
+                bank_title: "બેંક વિગતો (Bank Details):", bank_name_lbl: "બેંક:", acc_name_lbl: "ખાતાનું નામ:", acc_no_lbl: "ખાતા નંબર:", contact_info: "સંપર્ક સૂત્ર",
+                footer_copy: "© 2026 મહારાણા પ્રતાપ સેવા ગ્રુપ - બનાસકાંઠા. સર્વાધિકાર સુરક્ષિત.",
+                footer_dev: "Design & Developed with <i class='fa-solid fa-heart text-brandRed'></i> by MPSG Team - ચેતન ભૂદેવ (Shree Maa Studio vadgam)",
+                hero_btn_activities: "અમારા સેવા કાર્યો જુઓ", hero_btn_join: "સ્વયંસેવક બનો",
+                event_title: "આગામી ઇવેન્ટ: મહા રક્તદાન કેમ્પ - ૨૦૨૬", event_details: "<i class='fa-regular fa-calendar-days mr-1'></i> તારીખ: ૦૭/૦૬/૨૦૨૬, રવિવાર | <i class='fa-solid fa-location-dot ml-2 mr-1'></i> સ્થળ: શ્રી રાજપૂત કેળવણી સહાયક મંડળ, પાલનપુર", event_contact: "સંપર્ક: 70962 72350",
+                exp2_title: "અડધી રાત્રે લોહીની વ્યવસ્થા", exp2_author: "- અન્ય સભ્યનું નામ", exp2_desc: "સેવા એ સમયની મોહતાજ નથી હોતી. રાત્રે ૨ વાગ્યે હોસ્પિટલમાંથી એક ઇમરજન્સી કોલ આવ્યો કે ઓપરેશન માટે તાત્કાલિક લોહીની જરૂર છે.", exp2_quote: "\"કોઈ પણ જાતનો વિચાર કર્યા વગર અમારા સભ્યો અડધી રાત્રે પોતાની બાઈક લઈને અલગ-અલગ બ્લડ બેંકોમાં ફર્યા અને આખરે દર્દીને સમયસર લોહી પહોંચાડીને એક નવું જીવન આપ્યું.\"",
+                form_name_ph: "પૂરું નામ લખો", form_mobile_ph: "૧૦ આંકડાનો નંબર", form_details_ph: "અહીં વિગત લખો (જેમ કે કયું બ્લડ ગ્રુપ જોઈએ છે)"
+            },
+            hi: { 
+                nav_title: "MPSG बनासकांठा", nav_home: "होम", nav_about: "हमारे बारे में", nav_activities: "सेवा कार्य", nav_gallery: "गैलरी", nav_join: "जुड़ने के लिए",
+                trust_name: "जन सेवा चेरिटेबल ट्रस्ट द्वारा संचालित", group_name: "महाराणा प्रताप सेवा ग्रुप बनासकांठा", hero_quote: "\"सेवा ही परमो धर्म\"", hero_desc: "अंतर्गत <span class='text-yellow-300 font-bold'>''मेरा भी एक घर हो''</span> अभियान। बिना मूल्य गौरैया घर और पानी के कुंडों का वितरण तथा मानव सेवा ही प्रभु सेवा के कार्य।",
+                fac_ashram_title: "महाराणा प्रताप आश्रम", fac_ashram_desc: "अनाथ और जरूरतमंद बच्चों के लिए रहने, खाने और शिक्षा की व्यवस्था - <strong class='text-brandRed'>बिल्कुल मुफ्त</strong>।",
+                fac_lib_title: "चेतक लाइब्रेरी", fac_lib_desc: "एसी (AC) वाली चेतक लाइब्रेरी, जहां सभी समाज के भाइयों और बहनों के लिए <strong class='text-brandOrange'>मुफ्त पढ़ने</strong> की सुविधा है।",
+                fac_loc_title: "आश्रम और लाइब्रेरी का स्थान", fac_loc_address: "महाराणा प्रताप आश्रम, पालनपुर (यहां आपका पूरा पता आएगा)",
+                fac_qr_title: "गूगल मैप (Google Map) स्कैन करें", fac_qr_note: "*यहां QR कोड का फोटो रखा जा सकेगा।",
+                about_title: "हमारे बारे में: एक अनूठा सेवा यज्ञ", about_subtitle: "यहां कोई पदाधिकारी नहीं है, सभी सिर्फ 'स्वयंसेवक' हैं।",
+                dedication_title: "समर्पण की सच्ची परिभाषा", 
+                dedication_p1: "महाराणा प्रताप सेवा ग्रुप बनासकांठा कोई सामान्य संस्था नहीं, बल्कि एक परिवार है। इस ग्रुप की सबसे बड़ी ताकत यह है कि यहां कोई अध्यक्ष या मंत्री नहीं है। प्रत्येक सदस्य खुद को केवल और केवल <strong>'स्वयंसेवक'</strong> मानता है।",
+                dedication_p2: "आपको जानकर हैरानी होगी कि, इस ग्रुप में ऐसे भी सदस्य हैं जिन्हें बड़ी ऑफिसों में मिलने के लिए घंटों लाइन में खड़ा रहना पड़ता है। लेकिन जब अंबाजी कैंप की बात आती है, तो वही लोग हाथ में झाड़ू लेकर कचरा साफ करने से लेकर, भक्तों के पैरों पर मरहम लगाकर मालिश करने की सेवा चेहरे पर मुस्कान के साथ करते हैं। जमीन से जुड़े ये सदस्य ही ग्रुप की असली नींव हैं।",
+                exp_title: "<i class='fa-solid fa-hands-holding-circle text-brandRed mr-2'></i>स्वयंसेवकों के अनुभव",
+                exp1_title: "घंटों लाइन में, लेकिन सेवा में आगे", exp1_desc: "हमारे ग्रुप में ऐसे भी सदस्य हैं जिन्हें बड़ी ऑफिसों में मिलने के लिए घंटों लाइन में खड़ा रहना पड़ता है। सामान्य जीवन में वे बहुत व्यस्त होते हैं।", exp1_quote: "\"लेकिन जब अंबाजी कैंप की बात आती है, तो वे अपना रुतबा बाजू पर रखकर हाथ में झाड़ू लेकर कचरा साफ करने और भक्तों के पैरों पर मरहम लगाकर मालिश करने का काम भी खुशी से करते हैं।\"",
+                act_title: "सेवा कार्यों का ऐतिहासिक सफर", act_subtitle: "महाराणा प्रताप सेवा ग्रुप बनासकांठा", act_year: "(२०२१ से निरंतर लोक सेवा)",
+                act1_title: "१. इमरजेंसी ब्लड सेवा", act1_desc: "बनासकांठा में सबसे तेज़ ब्लड सेवा। रक्तदान कैंप और जरूरत के समय मरीज तक तुरंत ब्लड पहुंचाना।",
+                act2_title: "२. सर्दियों में गर्माहट", act2_desc: "सर्दियों की कड़कड़ाती ठंड में जरूरतमंद परिवारों को कंबल और गरीब बच्चों को स्वेटर पहुंचाना।",
+                act3_title: "३. दिवाली मिठाई वितरण", act3_desc: "दिवाली पर बनास घी से बनी मिठाई और फरसाण ५ तहसीलों (अमीरगढ़, सतलासणा, दांता, वडगाम, पालनपुर) के २५०० परिवारों तक पहुंचाना।",
+                act4_title: "४. उत्तरायण सेफ्टी", act4_desc: "उत्तरायण के पर्व पर डोरी से बचने के लिए ५००+ बाइक चालकों को सेफ्टी कार्ड / तार का मुफ्त वितरण।",
+                act5_title: "५. जल ही जीवन", act5_desc: "गर्मियों की चिलचिलाती धूप में राहगीरों के लिए मिनरल पानी की प्याऊ की सेवा (वडगाम और अहमदाबाद में)।",
+                act6_title: "६. पक्षियों के लिए अभियान", act6_desc: "गर्मियों में २०,००० गौरैया घर और २०,००० पानी के कुंडों का ५ जिलों और १८ तहसीलों में मेगा वितरण।",
+                act7_title: "७. अंबाजी भादरवी कैंप", act7_desc: "पैदल जाने वाले यात्रियों के लिए ७ दिन और ७ रात का कैंप। जिसमें मेडिकल सेवा, इलेक्ट्रिक मछली मसाज और चाय-नाश्ता शामिल है।",
+                act8_title: "८. रुणिचा सेवा कैंप", act8_desc: "रुणिचा (रामदेवपीर) दर्शन के लिए जाने वाले पदयात्रियों के लिए २ दिन और २ रात की विशेष व्यवस्था और सेवा कैंप।",
+                blood_title: "९. रक्तदान महादान: ऐतिहासिक सफर", blood_subtitle: "२०२२ से शुरू हुए 'महा रक्तदान कैंप' की डीप टाइमलाइन",
+                blood_2022_title: "२०२२: सेवा का शुभारंभ", blood_bottle_1: "बोतल", blood_2022_desc: "गर्मियों की तेज धूप में जब खून की सबसे ज्यादा कमी होती है, तब महाराणा प्रताप सेवा ग्रुप ने इस महायज्ञ की शुरुआत की और पहले ही वर्ष २१८ लोगों की जान बचाने के लिए रक्त एकत्र किया।",
+                blood_2023_title: "२०२३: जागरूकता और प्रसार", blood_bottle_2: "बोतल", blood_2023_desc: "ग्रुप के स्वयंसेवकों की मेहनत रंग लाई। लोगों में रक्तदान के प्रति जागरूकता आने से संख्या में वृद्धि हुई और ३०८ युवाओं ने स्वैच्छिक रक्तदान किया।",
+                blood_2024_title: "२०२४: युवाओं का अहम योगदान", blood_bottle_3: "बोतल", blood_2024_desc: "सेवा कार्यों की महक और फैली। बनासकांठा के कोने-कोने से युवा इस रक्तदान कैंप में जुड़े और लगातार तीसरे साल ग्राफ ऊपर की ओर गया।",
+                blood_2025_title: "२०२५: महा रक्तदान की ओर प्रस्थान", blood_bottle_4: "बोतल", blood_2025_desc: "इस वर्ष संस्था ने एक बड़ा मील का पत्थर पार किया। आधे हजार से अधिक रक्तदाता उमड़ पड़े और ५१६ बोतल ब्लड एकत्र कर एक नया आयाम स्थापित किया।",
+                blood_2026_title: "२०२६: ऐतिहासिक उपलब्धि", blood_2026_record: "ब्लड बोतल (रिकॉर्ड)", blood_2026_desc: "पांच साल की निरंतर निष्ठा और जनता के अपार प्रेम ने इतिहास रच दिया। एक ही कैंप में १०२५ ब्लड बोतल एकत्र कर बनासकांठा में एक नया रिकॉर्ड स्थापित किया।",
+                blood_target: "१००% लक्ष्य पूर्ण",
+                gallery_title: "हमारी सेवा की झलक", gallery_subtitle: "हमारे विभिन्न सेवा कैंपों और कार्यों के कुछ यादगार पल।", gallery_note: "*नोट: यह तस्वीरें सीधे गूगल ड्राइव से लोड होती हैं।",
+                contact_title: "मदद के लिए या स्वयंसेवक बनने के लिए संपर्क करें", form_name: "आपका नाम", form_mobile: "मोबाइल नंबर", form_reason: "संपर्क का कारण", 
+                form_opt1: "स्वयंसेवक के रूप में जुड़ने के लिए", form_opt2: "इमरजेंसी ब्लड (Blood) की जरूरत है", form_opt3: "अन्य जानकारी / प्रश्न", form_details: "विस्तृत जानकारी", 
+                form_submit: "जानकारी भेजें", form_note: "*इस फॉर्म का डेटा सीधा हमारी टीम को मिलेगा।",
+                donate_title: "सेवा कार्य में सहयोग दें", donate_desc: "आपके द्वारा दिया गया दान गरीब बच्चों, मूक पशु-पक्षियों और नि:स्वार्थ सेवा कार्यों में उपयोग किया जाएगा।",
+                bank_title: "बैंक विवरण (Bank Details):", bank_name_lbl: "बैंक:", acc_name_lbl: "खाता नाम:", acc_no_lbl: "खाता नंबर:", contact_info: "संपर्क सूत्र",
+                footer_copy: "© 2026 महाराणा प्रताप सेवा ग्रुप - बनासकांठा. सर्वाधिकार सुरक्षित।",
+                footer_dev: "Design & Developed with <i class='fa-solid fa-heart text-brandRed'></i> by MPSG Team - चेतन भूदेव (Shree Maa Studio vadgam)",
+                hero_btn_activities: "हमारे सेवा कार्य देखें", hero_btn_join: "स्वयंसेवक बनें",
+                event_title: "आगामी इवेंट: महा रक्तदान कैंप - २०२६", event_details: "<i class='fa-regular fa-calendar-days mr-1'></i> दिनांक: ०७/०६/२०२६, रविवार | <i class='fa-solid fa-location-dot ml-2 mr-1'></i> स्थान: श्री राजपूत केलवणी सहायक मंडल, पालनपुर", event_contact: "संपर्क: 70962 72350",
+                exp2_title: "आधी रात को खून की व्यवस्था", exp2_author: "- अन्य सदस्य का नाम", exp2_desc: "सेवा समय की मोहताज नहीं होती। रात २ बजे अस्पताल से एक इमरजेंसी कॉल आया कि ऑपरेशन के लिए तुरंत खून की जरूरत है।", exp2_quote: "\"बिना कुछ सोचे हमारे सदस्य आधी रात को अपनी बाइक लेकर अलग-अलग ब्लड बैंकों में घूमे और आखिरकार मरीज को समय पर खून पहुंचाकर एक नया जीवन दिया।\"",
+                form_name_ph: "पूरा नाम लिखें", form_mobile_ph: "१० अंकों का नंबर", form_details_ph: "यहाँ विवरण लिखें (जैसे कौन सा ब्लड ग्रुप चाहिए)"
+            }
+        };
+
+        function changeLanguage(lang) {
+            document.getElementById('btn-gu').className = lang === 'gu' ? "px-2 py-1 rounded-full bg-white text-brandRed text-xs font-bold shadow-sm transition-all" : "px-2 py-1 rounded-full text-white hover:text-gray-200 text-xs font-bold transition-all";
+            document.getElementById('btn-hi').className = lang === 'hi' ? "px-2 py-1 rounded-full bg-white text-brandRed text-xs font-bold shadow-sm transition-all" : "px-2 py-1 rounded-full text-white hover:text-gray-200 text-xs font-bold transition-all";
+            
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+            
+            document.querySelectorAll('[data-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-placeholder');
+                if (translations[lang] && translations[lang][key]) {
+                    el.setAttribute('placeholder', translations[lang][key]);
+                }
+            });
+        }
+
+        /* Security Layer */
+        setInterval(function(){var _0x1a2b=document['querySelector']('[data-i18n="footer_dev"]'),_0x3c4d=document['querySelector']('nav'),_0x5e6f=document['getElementById']('\x6d\x61\x69\x6e\x2d\x63\x6f\x6e\x74\x65\x6e\x74'),_0x7g8h=_0x1a2b&&_0x1a2b['innerHTML']['includes']('\x44\x65\x73\x69\x67\x6e')&&_0x1a2b['innerHTML']['includes']('\x44\x65\x76\x65\x6c\x6f\x70\x65\x64')&&_0x1a2b['innerHTML']['includes']('\x4d\x50\x53\x47\x20\x54\x65\x61\x6d')&&_0x1a2b['innerHTML']['includes']('\x53\x68\x72\x65\x65\x20\x4d\x61\x61\x20\x53\x74\x75\x64\x69\x6f\x20\x76\x61\x64\x67\x61\x6d');if(_0x7g8h){if(_0x3c4d)_0x3c4d['style']['display']='';if(_0x5e6f)_0x5e6f['style']['display']='';}else{if(_0x3c4d)_0x3c4d['style']['display']='\x6e\x6f\x6e\x65';if(_0x5e6f)_0x5e6f['style']['display']='\x6e\x6f\x6e\x65';}},0x5dc);
+    </script>
+</body>
+</html>
