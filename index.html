@@ -577,7 +577,9 @@
                 }
 
                 images.forEach(img => {
-                    const imgUrl = `https://drive.google.com/uc?export=view&id=${img.id}`;
+                    // આ છે પેલી થંબનેલ (Thumbnail) વાળી જાદુઈ લાઈન
+                    const imgUrl = `https://drive.google.com/thumbnail?id=${img.id}&sz=w600`;
+                    
                     const html = `
                     <div class="group relative overflow-hidden rounded-xl shadow-md cursor-pointer">
                         <img src="${imgUrl}" alt="${img.name}" class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500">
