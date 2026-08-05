@@ -537,8 +537,11 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // અહીં તમારો નવો વેબ એપ URL મૂકવામાં આવ્યો છે
-        const webAppUrl = "https://script.google.com/macros/s/AKfycbxOPZdPj28m-ZD3GbZUcH8Zy5p8IyBAMfFQekwEA_cCsm6uE0QsghmjotH76UlAKvFRUg/exec";
+        // ફોર્મ સબમિટ કરવા માટેનો નવો સિક્યોરિટી ગાર્ડ URL (ગિટહબ તિજોરી માટે)
+        const formSubmitUrl = "https://script.google.com/macros/s/AKfycbw655ljm4pGhpsmZgl4YqRG-ppLGGoG9-uI_ataNbTODfw2GC8sDN7Jj5ojh-4B8rF1/exec";
+        
+        // ગેલેરી માટેનો URL (સ્ટેપ ૩.૨ માં ગિટહબ સાથે જોડાશે)
+        const webAppUrl = "";
 
         // ૧. સ્મૂથ એનિમેશન ચાલુ કરવા
         AOS.init({ once: true, offset: 100 });
@@ -562,27 +565,28 @@
             if (icon) icon.className = htmlTag.classList.contains('dark') ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
         }
 
-        // ૩. ડાયનેમિક ગેલેરી લોડ કરવાનું ફંક્શન (સ્માર્ટ જુગાડ)
+        // ૩. ગિટહબ આધારિત ડાયનેમિક ગેલેરી લોડ કરવાનું ફંક્શન (સુપરફાસ્ટ સ્પીડ)
         async function loadGalleryImages() {
             const galleryGrid = document.getElementById('dynamic-gallery-grid');
             try {
-                const response = await fetch(webAppUrl);
+                // ગિટહબ પર પડેલી images.json ફાઈલની ડાયરેક્ટ લિંક
+                const jsonUrl = "https://raw.githubusercontent.com/mpsgroupbk-gif/mpsg-website/main/images/images.json";
+                const response = await fetch(jsonUrl);
                 const images = await response.json();
                 
                 galleryGrid.innerHTML = ''; // લોડિંગ આઇકન દૂર કરવા
                 
-                if (images.length === 0) {
+                if (!images || images.length === 0) {
                     galleryGrid.innerHTML = '<p class="col-span-full text-center text-gray-500">હજુ સુધી કોઈ ફોટા અપલોડ કરવામાં આવ્યા નથી.</p>';
                     return;
                 }
 
                 images.forEach(img => {
-                    // આ છે પેલી થંબનેલ (Thumbnail) વાળી જાદુઈ લાઈન
-                    const imgUrl = `https://drive.google.com/thumbnail?id=${img.id}&sz=w600`;
-                    
+                    // સીધા ગિટહબના images/ ફોલ્ડરમાંથી ફોટો લોડ થશે
+                    const imgUrl = `images/${img.filename}`;
                     const html = `
                     <div class="group relative overflow-hidden rounded-xl shadow-md cursor-pointer">
-                        <img src="${imgUrl}" alt="${img.name}" class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500">
+                        <img src="${imgUrl}" alt="${img.title || 'MPSG Photo'}" class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500">
                         <div class="absolute inset-0 bg-brandOrange bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
                             <i class="fa-solid fa-magnifying-glass-plus text-white opacity-0 group-hover:opacity-100 text-4xl drop-shadow-md"></i>
                         </div>
@@ -590,7 +594,7 @@
                     galleryGrid.insertAdjacentHTML('beforeend', html);
                 });
             } catch (error) {
-                galleryGrid.innerHTML = '<p class="col-span-full text-center text-red-500">ફોટા લોડ કરવામાં ભૂલ આવી. કૃપા કરીને થોડીવાર પછી ફરી પ્રયાસ કરો.</p>';
+                galleryGrid.innerHTML = '<p class="col-span-full text-center text-gray-500">હજુ સુધી કોઈ ફોટા અપલોડ કરવામાં આવ્યા નથી.</p>';
                 console.error("Gallery Error: ", error);
             }
         }
@@ -611,7 +615,7 @@
 
             const formData = new FormData(contactForm);
 
-            fetch(webAppUrl, { method: 'POST', body: formData })
+            fetch(formSubmitUrl, { method: 'POST', body: formData })
                 .then(response => response.text())
                 .then(data => {
                     formMsg.innerHTML = "માહિતી સફળતાપૂર્વક મોકલાઈ ગઈ છે! અમે ટૂંક સમયમાં સંપર્ક કરીશું.";
