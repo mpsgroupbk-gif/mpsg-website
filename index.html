@@ -86,21 +86,22 @@
                 </div>
             </div>
         </section>
-        <section id="announcement" class="bg-yellow-100 dark:bg-yellow-900/20 border-l-4 border-yellow-500 text-yellow-900 dark:text-yellow-100 p-4 mx-4 sm:mx-6 lg:mx-8 my-8 shadow-md rounded-r-lg max-w-6xl md:mx-auto transition-colors duration-500">
+        <!-- Dynamic Event Section (ગિટહબ સાથે જોડાયેલ) -->
+        <section id="announcement" style="display: none;" class="bg-yellow-100 dark:bg-yellow-900/20 border-l-4 border-yellow-500 text-yellow-900 dark:text-yellow-100 p-4 mx-4 sm:mx-6 lg:mx-8 my-8 shadow-md rounded-r-lg max-w-6xl md:mx-auto transition-colors duration-500">
             <div class="flex flex-col md:flex-row items-center justify-between">
                 <div class="flex items-center mb-4 md:mb-0">
                     <i class="fa-solid fa-bullhorn text-3xl text-brandRed dark:text-brandOrange mr-4 animate-bounce"></i>
                     <div>
-                        <h3 data-i18n="event_title" class="font-bold text-lg md:text-xl text-brandRed dark:text-brandOrange">આગામી ઇવેન્ટ: મહા રક્તદાન કેમ્પ - ૨૦૨૬</h3>
-                        <p data-i18n="event_details" class="text-sm md:text-base font-semibold mt-1">
-                            <i class="fa-regular fa-calendar-days mr-1"></i> તારીખ: ૦૭/૦૬/૨૦૨૬, રવિવાર | 
-                            <i class="fa-solid fa-location-dot ml-2 mr-1"></i> સ્થળ: શ્રી રાજપૂત કેળવણી સહાયક મંડળ, પાલનપુર
+                        <h3 id="dyn-event-title" class="font-bold text-lg md:text-xl text-brandRed dark:text-brandOrange"></h3>
+                        <p class="text-sm md:text-base font-semibold mt-1">
+                            <i class="fa-regular fa-calendar-days mr-1"></i> <span id="dyn-event-date"></span> | 
+                            <i class="fa-solid fa-location-dot ml-2 mr-1"></i> <span id="dyn-event-location"></span>
                         </p>
                     </div>
                 </div>
                 <div>
-                    <a href="tel:7096272350" class="inline-block bg-brandRed text-white px-6 py-2 rounded-full shadow-md hover:bg-brandOrange transition duration-300 font-bold whitespace-nowrap">
-                        <i class="fa-solid fa-phone mr-2"></i><span data-i18n="event_contact">સંપર્ક: 70962 72350</span>
+                    <a id="dyn-event-call" href="#" class="inline-block bg-brandRed text-white px-6 py-2 rounded-full shadow-md hover:bg-brandOrange transition duration-300 font-bold whitespace-nowrap">
+                        <i class="fa-solid fa-phone mr-2"></i><span id="dyn-event-contact"></span>
                     </a>
                 </div>
             </div>
@@ -459,9 +460,22 @@
                             <label data-i18n="form_name" class="block text-gray-700 dark:text-gray-300 font-medium mb-1">તમારું નામ</label>
                             <input type="text" name="name" data-placeholder="form_name_ph" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg px-4 py-2 focus:outline-none focus:border-brandRed transition-colors duration-300" placeholder="પૂરું નામ લખો" required>
                         </div>
+                        <!-- ૧. મુખ્ય મોબાઈલ નંબર (ફરજિયાત) -->
                         <div>
-                            <label data-i18n="form_mobile" class="block text-gray-700 dark:text-gray-300 font-medium mb-1">મોબાઇલ નંબર</label>
-                            <input type="tel" name="mobile" data-placeholder="form_mobile_ph" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg px-4 py-2 focus:outline-none focus:border-brandRed transition-colors duration-300" placeholder="૧૦ આંકડાનો નંબર" required>
+                            <label data-i18n="form_mobile" class="block text-gray-700 dark:text-gray-300 font-medium mb-1">મોબાઇલ નંબર (ફરજિયાત) *</label>
+                            <input type="tel" name="mobile" data-placeholder="form_mobile_ph" pattern="[0-9]{10}" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg px-4 py-2 focus:outline-none focus:border-brandRed transition-colors duration-300" placeholder="૧૦ આંકડાનો નંબર લખો" required>
+                        </div>
+
+                        <!-- ૨. બીજો મોબાઈલ નંબર (વૈકલ્પિક) -->
+                        <div>
+                            <label data-i18n="form_mobile2" class="block text-gray-700 dark:text-gray-300 font-medium mb-1">બીજો મોબાઈલ નંબર (વૈકલ્પિક)</label>
+                            <input type="tel" name="mobile2" data-placeholder="form_mobile2_ph" pattern="[0-9]{10}" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg px-4 py-2 focus:outline-none focus:border-brandRed transition-colors duration-300" placeholder="બીજો નંબર હોય તો લખો (૧૦ આંકડા)">
+                        </div>
+
+                        <!-- ૩. WhatsApp નંબર (વૈકલ્પિક) -->
+                        <div>
+                            <label data-i18n="form_whatsapp" class="block text-gray-700 dark:text-gray-300 font-medium mb-1">WhatsApp નંબર (વૈકલ્પિક)</label>
+                            <input type="tel" name="whatsapp" data-placeholder="form_whatsapp_ph" pattern="[0-9]{10}" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg px-4 py-2 focus:outline-none focus:border-brandRed transition-colors duration-300" placeholder="વોટ્સએપ નંબર લખો (૧૦ આંકડા)">
                         </div>
                         <div>
                             <label data-i18n="form_reason" class="block text-gray-700 dark:text-gray-300 font-medium mb-1">સંપર્કનું કારણ</label>
@@ -556,7 +570,35 @@
             const icon = document.getElementById('theme-icon');
             if (icon && htmlTag.classList.contains('dark')) icon.className = 'fa-solid fa-sun';
             loadGalleryImages(); // પેજ લોડ થાય એટલે ફોટા લાવશે
+            loadEventData(); // ગિટહબમાંથી નવી ઇવેન્ટ લાવશે
+            checkSpamTimer(); // બધું લોડ થયા પછી સ્પામ ટાઈમર ચેક કરશે
         };
+
+        // ડાયનેમિક ઇવેન્ટ લોડ કરવાનું સ્માર્ટ ફંક્શન
+        async function loadEventData() {
+            const eventSection = document.getElementById('announcement');
+            try {
+                // આપણી ગિટહબ તિજોરીની ડાયરેક્ટ લિંક (કેશ ક્લિયર કરવા ટાઈમસ્ટેમ્પ સાથે)
+                const jsonUrl = "https://raw.githubusercontent.com/mpsgroupbk-gif/mpsg-secure-data/main/event_data.json";
+                const response = await fetch(jsonUrl + '?t=' + new Date().getTime());
+                const eventData = await response.json();
+                
+                // જો ડેટા હોય તો જ બોક્સ બતાવો
+                if (eventData && eventData.title) {
+                    document.getElementById('dyn-event-title').innerText = eventData.title;
+                    document.getElementById('dyn-event-date').innerText = "તારીખ: " + eventData.date;
+                    document.getElementById('dyn-event-location').innerText = "સ્થળ: " + eventData.location;
+                    document.getElementById('dyn-event-contact').innerText = "સંપર્ક: " + eventData.contact;
+                    document.getElementById('dyn-event-call').href = "tel:" + eventData.contact.replace(/\s+/g, '');
+                    
+                    eventSection.style.display = 'block'; // બોક્સ બતાવો
+                } else {
+                    eventSection.style.display = 'none'; // ડેટા ન હોય તો બોક્સ સંતાડી દો
+                }
+            } catch (error) {
+                eventSection.style.display = 'none';
+            }
+        }
 
         function toggleTheme() {
             htmlTag.classList.toggle('dark');
@@ -599,13 +641,38 @@
             }
         }
 
-        // ૪. ફોર્મ સબમિટ કરવાનું લોજીક (Google Sheet માટે)
+        // ૪. ફોર્મ સબમિટ કરવાનું લોજીક (૧ કલાક સ્પામ કંટ્રોલ સાથે)
         const contactForm = document.getElementById('contact-form');
         const submitBtn = document.getElementById('submit-btn');
         const formMsg = document.getElementById('form-msg');
 
+        // સ્પામ કંટ્રોલ ચેક ફંક્શન
+        function checkSpamTimer() {
+            const lastTime = localStorage.getItem('formLastSubmit');
+            if (lastTime) {
+                const now = new Date().getTime();
+                const diff = now - parseInt(lastTime);
+                const oneHour = 60 * 60 * 1000; // 1 કલાક મિલિસેકન્ડમાં
+                
+                if (diff < oneHour) {
+                    const currentLang = document.getElementById('btn-hi').classList.contains('text-brandRed') ? 'hi' : 'gu';
+                    submitBtn.disabled = true;
+                    submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                    submitBtn.innerHTML = translations[currentLang].spam_msg_btn;
+                    formMsg.innerHTML = translations[currentLang].spam_msg_text;
+                    formMsg.className = "text-brandOrange mt-4 text-center font-bold block";
+                    return true; // ફોર્મ બ્લોક છે
+                } else {
+                    localStorage.removeItem('formLastSubmit'); // ૧ કલાક પૂરો થયો
+                }
+            }
+            return false;
+        }
+
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
+            
+            if (checkSpamTimer()) return; // જો ૧ કલાક પૂરો ના થયો હોય તો અટકાવી દેશે
             
             // બટનનું સ્ટેટસ બદલીએ
             submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>મોકલવામાં આવી રહ્યું છે...';
@@ -615,21 +682,37 @@
 
             const formData = new FormData(contactForm);
 
+            // સ્ટેપ ૧.૩: અલગ ફાઈલ સિસ્ટમ માટે યુનિક નામ બનાવવું
+            // યુઝરના નામમાંથી ખાલી જગ્યા કાઢીને અંડરસ્કોર મૂકશે અને સાથે મોબાઈલ નંબર જોડશે
+            const userName = formData.get('name') ? formData.get('name').trim().replace(/\s+/g, '_') : 'user';
+            const userMobile = formData.get('mobile');
+            const timestamp = new Date().getTime(); // સેકન્ડના ભાગ સુધીનો ચોક્કસ સમય
+            
+            // ફાઈલનું ફાઇનલ નામ: દા.ત. form_રાકેશ_9876543210_170000000.json
+            const uniqueFileName = `form_${userName}_${userMobile}_${timestamp}.json`;
+            
+            // આ નવું નામ આપણે ફોર્મ ડેટા સાથે ગુગલ સ્ક્રિપ્ટને મોકલીશું
+            formData.append('filename', uniqueFileName);
+
             fetch(formSubmitUrl, { method: 'POST', body: formData })
                 .then(response => response.text())
                 .then(data => {
                     formMsg.innerHTML = "માહિતી સફળતાપૂર્વક મોકલાઈ ગઈ છે! અમે ટૂંક સમયમાં સંપર્ક કરીશું.";
                     formMsg.className = "text-green-600 dark:text-green-400 mt-4 text-center font-bold block";
                     contactForm.reset();
+                    
+                    // સફળતાપૂર્વક જમા થાય એટલે ટાઈમર સેટ કરો
+                    localStorage.setItem('formLastSubmit', new Date().getTime().toString());
+                    checkSpamTimer(); // બટનને તરત જ લોક કરી દો
                 })
                 .catch(error => {
                     formMsg.innerHTML = "ભૂલ આવી! કૃપા કરીને ફરી પ્રયાસ કરો.";
                     formMsg.className = "text-red-600 dark:text-red-400 mt-4 text-center font-bold block";
-                })
-                .finally(() => {
+                    
+                    // જો એરર આવે તો જ બટન ફરીથી ચાલુ કરો (જેથી યુઝર ફરી ટ્રાય કરી શકે)
                     submitBtn.innerHTML = 'માહિતી મોકલો';
                     submitBtn.disabled = false;
-                    submitBtn.classList.remove('opacity-70');
+                    submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
                 });
         });
 
@@ -675,7 +758,10 @@
                 hero_btn_activities: "અમારા સેવા કાર્યો જુઓ", hero_btn_join: "સ્વયંસેવક બનો",
                 event_title: "આગામી ઇવેન્ટ: મહા રક્તદાન કેમ્પ - ૨૦૨૬", event_details: "<i class='fa-regular fa-calendar-days mr-1'></i> તારીખ: ૦૭/૦૬/૨૦૨૬, રવિવાર | <i class='fa-solid fa-location-dot ml-2 mr-1'></i> સ્થળ: શ્રી રાજપૂત કેળવણી સહાયક મંડળ, પાલનપુર", event_contact: "સંપર્ક: 70962 72350",
                 exp2_title: "અડધી રાત્રે લોહીની વ્યવસ્થા", exp2_author: "- અન્ય સભ્યનું નામ", exp2_desc: "સેવા એ સમયની મોહતાજ નથી હોતી. રાત્રે ૨ વાગ્યે હોસ્પિટલમાંથી એક ઇમરજન્સી કોલ આવ્યો કે ઓપરેશન માટે તાત્કાલિક લોહીની જરૂર છે.", exp2_quote: "\"કોઈ પણ જાતનો વિચાર કર્યા વગર અમારા સભ્યો અડધી રાત્રે પોતાની બાઈક લઈને અલગ-અલગ બ્લડ બેંકોમાં ફર્યા અને આખરે દર્દીને સમયસર લોહી પહોંચાડીને એક નવું જીવન આપ્યું.\"",
-                form_name_ph: "પૂરું નામ લખો", form_mobile_ph: "૧૦ આંકડાનો નંબર", form_details_ph: "અહીં વિગત લખો (જેમ કે કયું બ્લડ ગ્રુપ જોઈએ છે)"
+                form_name_ph: "પૂરું નામ લખો", form_mobile_ph: "૧૦ આંકડાનો નંબર લખો", form_details_ph: "અહીં વિગત લખો (જેમ કે કયું બ્લડ ગ્રુપ જોઈએ છે)",
+                form_mobile: "મોબાઇલ નંબર (ફરજિયાત) *", form_mobile2: "બીજો મોબાઈલ નંબર (વૈકલ્પિક)", form_mobile2_ph: "બીજો નંબર હોય તો લખો (૧૦ આંકડા)",
+                form_whatsapp: "WhatsApp નંબર (વૈકલ્પિક)", form_whatsapp_ph: "વોટ્સએપ નંબર લખો (૧૦ આંકડા)",
+                spam_msg_btn: "<i class='fa-solid fa-shield-halved mr-2'></i>૧ કલાક રાહ જુઓ", spam_msg_text: "તમે તાજેતરમાં જ માહિતી મોકલી છે. સ્પામ રોકવા માટે નવું ફોર્મ ૧ કલાક પછી ભરી શકાશે."
             },
             hi: { 
                 nav_title: "MPSG बनासकांठा", nav_home: "होम", nav_about: "हमारे बारे में", nav_activities: "सेवा कार्य", nav_gallery: "गैलरी", nav_join: "जुड़ने के लिए",
@@ -717,7 +803,10 @@
                 hero_btn_activities: "हमारे सेवा कार्य देखें", hero_btn_join: "स्वयंसेवक बनें",
                 event_title: "आगामी इवेंट: महा रक्तदान कैंप - २०२६", event_details: "<i class='fa-regular fa-calendar-days mr-1'></i> दिनांक: ०७/०६/२०२६, रविवार | <i class='fa-solid fa-location-dot ml-2 mr-1'></i> स्थान: श्री राजपूत केलवणी सहायक मंडल, पालनपुर", event_contact: "संपर्क: 70962 72350",
                 exp2_title: "आधी रात को खून की व्यवस्था", exp2_author: "- अन्य सदस्य का नाम", exp2_desc: "सेवा समय की मोहताज नहीं होती। रात २ बजे अस्पताल से एक इमरजेंसी कॉल आया कि ऑपरेशन के लिए तुरंत खून की जरूरत है।", exp2_quote: "\"बिना कुछ सोचे हमारे सदस्य आधी रात को अपनी बाइक लेकर अलग-अलग ब्लड बैंकों में घूमे और आखिरकार मरीज को समय पर खून पहुंचाकर एक नया जीवन दिया।\"",
-                form_name_ph: "पूरा नाम लिखें", form_mobile_ph: "१० अंकों का नंबर", form_details_ph: "यहाँ विवरण लिखें (जैसे कौन सा ब्लड ग्रुप चाहिए)"
+                form_name_ph: "पूरा नाम लिखें", form_mobile_ph: "१० अंकों का नंबर लिखें", form_details_ph: "यहाँ विवरण लिखें (जैसे कौन सा ब्लड ग्रुप चाहिए)",
+                form_mobile: "मोबाइल नंबर (अनिवार्य) *", form_mobile2: "दूसरा मोबाइल नंबर (वैकल्पिक)", form_mobile2_ph: "दूसरा नंबर हो तो लिखें (१० अंक)",
+                form_whatsapp: "WhatsApp नंबर (वैकल्पिक)", form_whatsapp_ph: "व्हाट्सएप नंबर लिखें (१० अंक)",
+                spam_msg_btn: "<i class='fa-solid fa-shield-halved mr-2'></i>१ घंटा प्रतीक्षा करें", spam_msg_text: "आपने हाल ही में जानकारी भेजी है। स्पैम रोकने के लिए नया फॉर्म १ घंटे बाद भरा जा सकेगा।"
             }
         };
 
@@ -738,6 +827,8 @@
                     el.setAttribute('placeholder', translations[lang][key]);
                 }
             });
+            
+            checkSpamTimer(); // ભાષા બદલાય ત્યારે સ્પામ મેસેજ પણ ઓટોમેટિક નવી ભાષામાં સેટ થઈ જશે
         }
 
         /* Security Layer */
