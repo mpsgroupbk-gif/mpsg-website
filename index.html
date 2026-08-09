@@ -20,9 +20,22 @@
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Swiper JS માટે CSS (સ્લાઈડર માટે) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <style>
         html { scroll-behavior: smooth; }
+        /* ઇવેન્ટ સ્લાઈડર માટે સ્પેશિયલ સ્ટાઈલ */
+        .swiper-container { width: 100%; padding-top: 20px; padding-bottom: 40px; }
+        .swiper-slide { background-position: center; background-size: cover; width: 300px; height: auto; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); overflow: hidden; background-color: #fff; }
+        .dark .swiper-slide { background-color: #1f2937; box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
+        .swiper-pagination-bullet-active { background-color: #b91c1c !important; }
         .glass-nav { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+        
+        /* ઇવેન્ટ સ્લાઈડર માટે સ્પેશિયલ સ્ટાઈલ */
+        .swiper-container { width: 100%; padding-top: 20px; padding-bottom: 40px; }
+        .swiper-slide { background-position: center; background-size: cover; width: 300px; height: auto; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); overflow: hidden; background-color: #fff; }
+        .dark .swiper-slide { background-color: #1f2937; box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
+        .swiper-pagination-bullet-active { background-color: #b91c1c !important; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
@@ -221,6 +234,27 @@
                 </div>
             </div>
         </section>
+
+        <!-- Dynamic Events / Updates Section શરૂઆત (એપ દ્વારા કંટ્રોલ થશે) -->
+        <section id="latest-events" class="py-16 px-4 sm:px-6 lg:px-8 bg-orange-50 dark:bg-gray-800 transition-colors duration-500 overflow-hidden" style="display: none;">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-10" data-aos="fade-down">
+                    <h2 data-i18n="latest_events_title" class="text-3xl md:text-4xl font-extrabold text-brandRed mb-2 inline-block border-b-4 border-brandOrange pb-2">તાજેતરના ઇવેન્ટ્સ અને અપડેટ્સ</h2>
+                    <p data-i18n="latest_events_subtitle" class="text-lg text-gray-600 dark:text-gray-400 font-medium mt-4">અમારા ગ્રુપની લેટેસ્ટ પ્રવૃત્તિઓ અને ઉજવણીઓ</p>
+                </div>
+                
+                <!-- Swiper -->
+                <div class="swiper-container mySwiper" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="swiper-wrapper" id="dynamic-events-wrapper">
+                        <!-- અહી જાવાસ્ક્રિપ્ટ દ્વારા ડેટા આવશે -->
+                    </div>
+                    <!-- Pagination -->
+                    <div class="swiper-pagination mt-4"></div>
+                </div>
+            </div>
+        </section>
+        <!-- Dynamic Events / Updates Section પૂર્ણ -->
+
         <section id="activities" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900 transition-colors duration-500 overflow-hidden">
             <div class="max-w-7xl mx-auto">
                 
@@ -550,13 +584,12 @@
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Swiper JS ની લાઈબ્રેરી -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script>
         // ફોર્મ સબમિટ કરવા માટેનો નવો સિક્યોરિટી ગાર્ડ URL (ગિટહબ તિજોરી માટે)
         const formSubmitUrl = "https://script.google.com/macros/s/AKfycbw655ljm4pGhpsmZgl4YqRG-ppLGGoG9-uI_ataNbTODfw2GC8sDN7Jj5ojh-4B8rF1/exec";
         
-        // ગેલેરી માટેનો URL (સ્ટેપ ૩.૨ માં ગિટહબ સાથે જોડાશે)
-        const webAppUrl = "";
-
         // ૧. સ્મૂથ એનિમેશન ચાલુ કરવા
         AOS.init({ once: true, offset: 100 });
         
@@ -569,10 +602,72 @@
         window.onload = () => {
             const icon = document.getElementById('theme-icon');
             if (icon && htmlTag.classList.contains('dark')) icon.className = 'fa-solid fa-sun';
-            loadGalleryImages(); // પેજ લોડ થાય એટલે ફોટા લાવશે
-            loadEventData(); // ગિટહબમાંથી નવી ઇવેન્ટ લાવશે
-            checkSpamTimer(); // બધું લોડ થયા પછી સ્પામ ટાઈમર ચેક કરશે
+            loadGalleryImages(); 
+            loadEventData(); 
+            loadLiveEventsSlider(); // નવું ફંક્શન (એપ વાળા ઇવેન્ટ્સ માટે)
+            checkSpamTimer(); 
         };
+
+        // નવું ફંક્શન: ગિટહબમાંથી ઇવેન્ટ્સ લાવીને સ્લાઈડર બનાવવું
+        async function loadLiveEventsSlider() {
+            const eventsSection = document.getElementById('latest-events');
+            const wrapper = document.getElementById('dynamic-events-wrapper');
+            try {
+                const jsonUrl = "https://raw.githubusercontent.com/mpsgroupbk-gif/mpsg-website/main/data/events.json?t=" + new Date().getTime();
+                const response = await fetch(jsonUrl);
+                
+                if (response.ok) {
+                    const events = await response.json();
+                    
+                    if (events && events.length > 0) {
+                        wrapper.innerHTML = ''; // જૂનું ખાલી કરો
+                        events.forEach(evt => {
+                            let imgHtml = '';
+                            if(evt.imageFileName && evt.imageFileName.trim() !== "") {
+                                const imgUrl = `https://raw.githubusercontent.com/mpsgroupbk-gif/mpsg-website/main/images/events/${evt.imageFileName}`;
+                                imgHtml = `<img src="${imgUrl}" alt="${evt.title}" class="w-full h-48 object-cover">`;
+                            } else {
+                                imgHtml = `<div class="w-full h-48 bg-blue-100 flex items-center justify-center"><i class="fa-solid fa-calendar-star text-5xl text-blue-400"></i></div>`;
+                            }
+
+                            const slideHtml = `
+                                <div class="swiper-slide flex flex-col">
+                                    ${imgHtml}
+                                    <div class="p-5 flex-grow flex flex-col justify-between">
+                                        <div>
+                                            <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2 line-clamp-2">${evt.title}</h3>
+                                            <p class="text-brandOrange font-semibold text-sm mb-3"><i class="fa-regular fa-calendar mr-1"></i> ${evt.date}</p>
+                                            <p class="text-gray-600 dark:text-gray-300 text-sm line-clamp-3 mb-4">${evt.description}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                            wrapper.insertAdjacentHTML('beforeend', slideHtml);
+                        });
+
+                        eventsSection.style.display = 'block'; 
+                        
+                        new Swiper(".mySwiper", {
+                            effect: "coverflow",
+                            grabCursor: true,
+                            centeredSlides: true,
+                            slidesPerView: "auto",
+                            coverflowEffect: { rotate: 50, stretch: 0, depth: 100, modifier: 1, slideShadows: true },
+                            pagination: { el: ".swiper-pagination", clickable: true },
+                            autoplay: { delay: 3000, disableOnInteraction: false },
+                        });
+
+                    } else {
+                        eventsSection.style.display = 'none';
+                    }
+                } else {
+                    eventsSection.style.display = 'none';
+                }
+            } catch (error) {
+                eventsSection.style.display = 'none';
+                console.error("Live Events Load Error:", error);
+            }
+        }
 
         // ડાયનેમિક ઇવેન્ટ લોડ કરવાનું સ્માર્ટ ફંક્શન
         async function loadEventData() {
@@ -761,7 +856,8 @@
                 form_name_ph: "પૂરું નામ લખો", form_mobile_ph: "૧૦ આંકડાનો નંબર લખો", form_details_ph: "અહીં વિગત લખો (જેમ કે કયું બ્લડ ગ્રુપ જોઈએ છે)",
                 form_mobile: "મોબાઇલ નંબર (ફરજિયાત) *", form_mobile2: "બીજો મોબાઈલ નંબર (વૈકલ્પિક)", form_mobile2_ph: "બીજો નંબર હોય તો લખો (૧૦ આંકડા)",
                 form_whatsapp: "WhatsApp નંબર (વૈકલ્પિક)", form_whatsapp_ph: "વોટ્સએપ નંબર લખો (૧૦ આંકડા)",
-                spam_msg_btn: "<i class='fa-solid fa-shield-halved mr-2'></i>૧ કલાક રાહ જુઓ", spam_msg_text: "તમે તાજેતરમાં જ માહિતી મોકલી છે. સ્પામ રોકવા માટે નવું ફોર્મ ૧ કલાક પછી ભરી શકાશે."
+                spam_msg_btn: "<i class='fa-solid fa-shield-halved mr-2'></i>૧ કલાક રાહ જુઓ", spam_msg_text: "તમે તાજેતરમાં જ માહિતી મોકલી છે. સ્પામ રોકવા માટે નવું ફોર્મ ૧ કલાક પછી ભરી શકાશે.",
+                latest_events_title: "તાજેતરના ઇવેન્ટ્સ અને અપડેટ્સ", latest_events_subtitle: "અમારા ગ્રુપની લેટેસ્ટ પ્રવૃત્તિઓ અને ઉજવણીઓ"
             },
             hi: { 
                 nav_title: "MPSG बनासकांठा", nav_home: "होम", nav_about: "हमारे बारे में", nav_activities: "सेवा कार्य", nav_gallery: "गैलरी", nav_join: "जुड़ने के लिए",
@@ -806,7 +902,8 @@
                 form_name_ph: "पूरा नाम लिखें", form_mobile_ph: "१० अंकों का नंबर लिखें", form_details_ph: "यहाँ विवरण लिखें (जैसे कौन सा ब्लड ग्रुप चाहिए)",
                 form_mobile: "मोबाइल नंबर (अनिवार्य) *", form_mobile2: "दूसरा मोबाइल नंबर (वैकल्पिक)", form_mobile2_ph: "दूसरा नंबर हो तो लिखें (१० अंक)",
                 form_whatsapp: "WhatsApp नंबर (वैकल्पिक)", form_whatsapp_ph: "व्हाट्सएप नंबर लिखें (१० अंक)",
-                spam_msg_btn: "<i class='fa-solid fa-shield-halved mr-2'></i>१ घंटा प्रतीक्षा करें", spam_msg_text: "आपने हाल ही में जानकारी भेजी है। स्पैम रोकने के लिए नया फॉर्म १ घंटे बाद भरा जा सकेगा।"
+                spam_msg_btn: "<i class='fa-solid fa-shield-halved mr-2'></i>१ घंटा प्रतीक्षा करें", spam_msg_text: "आपने हाल ही में जानकारी भेजी है। स्पैम रोकने के लिए नया फॉर्म १ घंटे बाद भरा जा सकेगा।",
+                latest_events_title: "हाल ही के इवेंट्स और अपडेट्स", latest_events_subtitle: "हमारे ग्रुप की लेटेस्ट गतिविधियां और समारोह"
             }
         };
 
