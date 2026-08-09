@@ -158,18 +158,17 @@
                         </div>
                         <div>
                             <h4 data-i18n="fac_loc_title" class="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">આશ્રમ અને લાઇબ્રેરીનું સ્થળ</h4>
-                            <p data-i18n="fac_loc_address" class="text-gray-600 font-medium">મહારાણા પ્રતાપ આશ્રમ, પાલનપુર (અહીં તમારું પૂરું એડ્રેસ આવશે)</p>
+                            <p id="dyn-address" class="text-gray-600 font-medium">લોડ થઈ રહ્યું છે...</p>
                         </div>
                     </div>
                     <div class="flex flex-col items-center bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 w-full md:w-auto mt-6 md:mt-0">
                         <p data-i18n="fac_qr_title" class="text-sm font-bold text-gray-800 mb-2">ગુગલ મેપ (Google Map) સ્કેન કરો</p>
-                                                <div class="w-24 h-24 bg-white border-2 border-dashed border-gray-400 flex items-center justify-center text-5xl text-gray-400 rounded-md">
+                        <div id="dyn-qr-container" class="w-24 h-24 bg-white border-2 border-dashed border-gray-400 flex items-center justify-center text-5xl text-gray-400 rounded-md">
                             <i class="fa-solid fa-qrcode"></i>
                         </div>
-                        <p data-i18n="fac_qr_note" class="text-xs text-gray-500 mt-2 text-center">*અહીં QR કોડનો ફોટો મૂકી શકાશે.</p>
-<div class="mt-4 w-full h-32 rounded-md overflow-hidden shadow-sm border border-gray-300 dark:border-gray-600 grayscale hover:grayscale-0 transition-all duration-500">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14578.100913959146!2d72.2471676!3d24.1706692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395ce99522137cd5%3A0x6bba847bb0de186b!2sPalanpur%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-</div>
+                        <div id="dyn-map-container" class="mt-4 w-full h-32 rounded-md overflow-hidden shadow-sm border border-gray-300 dark:border-gray-600 grayscale hover:grayscale-0 transition-all duration-500">
+                            <!-- અહી જાવાસ્ક્રિપ્ટ દ્વારા મેપ આવશે -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -203,31 +202,8 @@
                             <span class="text-xs bg-brandRed text-white px-3 py-1 rounded-full animate-pulse whitespace-nowrap">Swipe <i class="fa-solid fa-arrow-right-long ml-1"></i></span>
                         </div>
                         
-                        <div class="flex overflow-x-auto gap-4 pb-4 snap-x snap-mandatory scroll-smooth" style="scrollbar-width: thin;">
-                            
-                            <div class="min-w-[100%] md:min-w-[85%] bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 snap-center relative">
-                                <i class="fa-solid fa-quote-right absolute top-4 right-4 text-4xl text-red-50 dark:text-gray-800 opacity-50"></i>
-                                <h4 data-i18n="exp1_title" class="font-bold text-brandRed mb-1">કલાકો લાઈનમાં, પણ સેવામાં આગળ</h4>
-<p data-i18n="exp1_desc" class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed text-justify mb-3">
-    અમારા ગ્રુપમાં એવા પણ સદસ્યો છે જેઓને મોટી ઓફિસોમાં મળવા માટે કલાકો સુધી લાઈનમાં ઊભું રહેવું પડે છે. સામાન્ય જીવનમાં તેઓ ખૂબ વ્યસ્ત હોય છે.
-</p>
-                                <blockquote data-i18n="exp1_quote" class="italic text-gray-800 dark:text-gray-400 border-l-4 border-brandOrange pl-3 text-sm text-justify">
-                                    "પરંતુ જ્યારે અંબાજી કેમ્પ શરૂ થાય, ત્યારે તેઓ પોતાનો મોભો બાજુ પર મૂકીને હાથમાં સાવરણી લઈ કચરો વાળવાનું અને માઈ ભક્તોના પગ પર ટ્યુબ ઘસીને માલિશ કરવાનું કામ પણ ખુશીથી કરે છે."
-                                </blockquote>
-                            </div>
-
-                            <div class="min-w-[100%] md:min-w-[85%] bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 snap-center relative">
-                                <i class="fa-solid fa-quote-right absolute top-4 right-4 text-4xl text-red-50 dark:text-gray-800 opacity-50"></i>
-                                <h4 data-i18n="exp2_title" class="font-bold text-brandRed mb-1">અડધી રાત્રે લોહીની વ્યવસ્થા</h4>
-                                <p data-i18n="exp2_author" class="text-sm text-gray-500 dark:text-gray-400 mb-3 font-semibold">- અન્ય સભ્યનું નામ</p>
-                                <p data-i18n="exp2_desc" class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed text-justify mb-3">
-                                    સેવા એ સમયની મોહતાજ નથી હોતી. રાત્રે ૨ વાગ્યે હોસ્પિટલમાંથી એક ઇમરજન્સી કોલ આવ્યો કે ઓપરેશન માટે તાત્કાલિક લોહીની જરૂર છે.
-                                </p>
-                                <blockquote data-i18n="exp2_quote" class="italic text-gray-800 dark:text-gray-400 border-l-4 border-brandOrange pl-3 text-sm text-justify">
-                                    "કોઈ પણ જાતનો વિચાર કર્યા વગર અમારા સભ્યો અડધી રાત્રે પોતાની બાઈક લઈને અલગ-અલગ બ્લડ બેંકોમાં ફર્યા અને આખરે દર્દીને સમયસર લોહી પહોંચાડીને એક નવું જીવન આપ્યું."
-                                </blockquote>
-                            </div>
-
+                        <div id="dynamic-testimonials-wrapper" class="flex overflow-x-auto gap-4 pb-4 snap-x snap-mandatory scroll-smooth" style="scrollbar-width: thin;">
+                            <!-- અહી જાવાસ્ક્રિપ્ટ દ્વારા અનુભવો આવશે -->
                         </div>
                     </div>
 
@@ -604,7 +580,9 @@
             if (icon && htmlTag.classList.contains('dark')) icon.className = 'fa-solid fa-sun';
             loadGalleryImages(); 
             loadEventData(); 
-            loadLiveEventsSlider(); // નવું ફંક્શન (એપ વાળા ઇવેન્ટ્સ માટે)
+            loadLiveEventsSlider(); 
+            loadLocationData(); 
+            loadTestimonials(); // નવું ફંક્શન (અનુભવો માટે)
             checkSpamTimer(); 
         };
 
@@ -667,6 +645,55 @@
                 eventsSection.style.display = 'none';
                 console.error("Live Events Load Error:", error);
             }
+        }
+
+        // નવું ફંક્શન: ગિટહબમાંથી અનુભવો (Testimonials) લાવવા
+        async function loadTestimonials() {
+            const wrapper = document.getElementById('dynamic-testimonials-wrapper');
+            if (!wrapper) return;
+            try {
+                const jsonUrl = "https://raw.githubusercontent.com/mpsgroupbk-gif/mpsg-website/main/data/testimonials.json?t=" + new Date().getTime();
+                const response = await fetch(jsonUrl);
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data && data.length > 0) {
+                        wrapper.innerHTML = ''; // જૂનું લખાણ ક્લિયર કરો
+                        data.forEach(item => {
+                            const html = `
+                            <div class="min-w-[100%] md:min-w-[85%] bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 snap-center relative">
+                                <i class="fa-solid fa-quote-right absolute top-4 right-4 text-4xl text-red-50 dark:text-gray-800 opacity-50"></i>
+                                <h4 class="font-bold text-brandRed mb-1">${item.title || ''}</h4>
+                                <p class="text-sm text-gray-500 dark:text-gray-400 mb-3 font-semibold">${item.author || ''}</p>
+                                <blockquote class="italic text-gray-800 dark:text-gray-400 border-l-4 border-brandOrange pl-3 text-sm text-justify">
+                                    "${item.quote || ''}"
+                                </blockquote>
+                            </div>`;
+                            wrapper.insertAdjacentHTML('beforeend', html);
+                        });
+                    } else {
+                        wrapper.innerHTML = '<p class="p-4 text-gray-500 font-bold">હજુ કોઈ અનુભવ ઉમેરવામાં આવ્યો નથી.</p>';
+                    }
+                }
+            } catch (error) { console.error("Testimonials Load Error:", error); }
+        }
+
+        // નવું ફંક્શન: ગિટહબમાંથી લોકેશન ડેટા લાવવું
+        async function loadLocationData() {
+            try {
+                const jsonUrl = "https://raw.githubusercontent.com/mpsgroupbk-gif/mpsg-website/main/data/location.json?t=" + new Date().getTime();
+                const response = await fetch(jsonUrl);
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.address) document.getElementById('dyn-address').innerText = data.address;
+                    if (data.mapUrl) {
+                        document.getElementById('dyn-map-container').innerHTML = `<iframe src="${data.mapUrl}" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>`;
+                    }
+                    if (data.qrImageFileName) {
+                        const qrUrl = `https://raw.githubusercontent.com/mpsgroupbk-gif/mpsg-website/main/images/${data.qrImageFileName}`;
+                        document.getElementById('dyn-qr-container').innerHTML = `<img src="${qrUrl}" class="w-full h-full object-cover">`;
+                    }
+                }
+            } catch (error) { console.error("Location Load Error:", error); }
         }
 
         // ડાયનેમિક ઇવેન્ટ લોડ કરવાનું સ્માર્ટ ફંક્શન
