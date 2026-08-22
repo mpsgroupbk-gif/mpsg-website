@@ -686,7 +686,15 @@
                     const data = await response.json();
                     if (data.address) document.getElementById('dyn-address').innerText = data.address;
                     if (data.mapUrl) {
-                        document.getElementById('dyn-map-container').innerHTML = `<iframe src="${data.mapUrl}" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>`;
+                        // અહી iframe ની જગ્યાએ ગુગલ મેપમાં ખોલવા માટેનું સુંદર બટન બનાવ્યું છે
+                        document.getElementById('dyn-map-container').innerHTML = `
+                            <a href="${data.mapUrl}" target="_blank" class="w-full h-full flex flex-col items-center justify-center bg-green-50 hover:bg-green-100 dark:bg-green-900/20 dark:hover:bg-green-900/40 text-green-700 dark:text-green-500 transition-colors duration-300 no-underline cursor-pointer">
+                                <i class="fa-solid fa-map-location-dot text-4xl mb-2 animate-bounce"></i>
+                                <span class="font-bold text-sm">ગુગલ મેપમાં (Map) જુઓ</span>
+                            </a>
+                        `;
+                        // મેપના બોક્સમાંથી બ્લેક એન્ડ વ્હાઇટ ઇફેક્ટ કાઢી નાખીએ છીએ
+                        document.getElementById('dyn-map-container').classList.remove('grayscale', 'hover:grayscale-0');
                     }
                     if (data.qrImageFileName) {
                         const qrUrl = `https://raw.githubusercontent.com/mpsgroupbk-gif/mpsg-website/main/images/${data.qrImageFileName}`;
