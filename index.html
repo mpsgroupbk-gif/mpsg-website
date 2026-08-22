@@ -677,7 +677,7 @@
             } catch (error) { console.error("Testimonials Load Error:", error); }
         }
 
-        // નવું ફંક્શન: ગિટહબમાંથી લોકેશન ડેટા લાવવું
+        // નવું ફંક્શન: ગિટહબમાંથી લોકેશન ડેટા લાવવું (ઓટોમેટિક QR કોડ સાથે)
         async function loadLocationData() {
             try {
                 const jsonUrl = "https://raw.githubusercontent.com/mpsgroupbk-gif/mpsg-website/main/data/location.json?t=" + new Date().getTime();
@@ -686,19 +686,22 @@
                     const data = await response.json();
                     if (data.address) document.getElementById('dyn-address').innerText = data.address;
                     if (data.mapUrl) {
-                        // અહી iframe ની જગ્યાએ ગુગલ મેપમાં ખોલવા માટેનું સુંદર બટન બનાવ્યું છે
+                        // ૧. ગુગલ મેપમાં ખોલવા માટેનું સુંદર બટન
                         document.getElementById('dyn-map-container').innerHTML = `
                             <a href="${data.mapUrl}" target="_blank" class="w-full h-full flex flex-col items-center justify-center bg-green-50 hover:bg-green-100 dark:bg-green-900/20 dark:hover:bg-green-900/40 text-green-700 dark:text-green-500 transition-colors duration-300 no-underline cursor-pointer">
                                 <i class="fa-solid fa-map-location-dot text-4xl mb-2 animate-bounce"></i>
                                 <span class="font-bold text-sm">ગુગલ મેપમાં (Map) જુઓ</span>
                             </a>
                         `;
-                        // મેપના બોક્સમાંથી બ્લેક એન્ડ વ્હાઇટ ઇફેક્ટ કાઢી નાખીએ છીએ
                         document.getElementById('dyn-map-container').classList.remove('grayscale', 'hover:grayscale-0');
-                    }
-                    if (data.qrImageFileName) {
+                        
+                        // ૨. સ્માર્ટ ઓટોમેટિક QR કોડ જનરેટર (લિંક પરથી સીધો QR બનશે)
+                        const autoQrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(data.mapUrl)}`;
+                        document.getElementById('dyn-qr-container').innerHTML = `<img src="${autoQrUrl}" alt="Map QR" class="w-full h-full object-cover rounded-md shadow-sm p-1">`;
+                    } else if (data.qrImageFileName) {
+                        // જો કોઈ કારણસર લિંક ના હોય, તો જૂનો ફોટો વાપરો (Backup)
                         const qrUrl = `https://raw.githubusercontent.com/mpsgroupbk-gif/mpsg-website/main/images/${data.qrImageFileName}`;
-                        document.getElementById('dyn-qr-container').innerHTML = `<img src="${qrUrl}" class="w-full h-full object-cover">`;
+                        document.getElementById('dyn-qr-container').innerHTML = `<img src="${qrUrl}" class="w-full h-full object-cover rounded-md p-1">`;
                     }
                 }
             } catch (error) { console.error("Location Load Error:", error); }
