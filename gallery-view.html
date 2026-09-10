@@ -1,1 +1,171 @@
+<!DOCTYPE html>
+<html lang="gu" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>સેવા ગેલેરી - MPSG બનાસકાંઠા</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brandRed: '#b91c1c',     /* ગ્રુપનો લાલ કલર */
+                        brandOrange: '#f97316',  /* ગ્રુપનો કેસરી કલર */
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        .glass-nav { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500 min-h-screen flex flex-col">
 
+    <!-- Navbar સાવ સિમ્પલ અને Back બટન સાથે -->
+    <nav class="glass-nav bg-brandRed/95 dark:bg-gray-900/95 text-white shadow-lg sticky top-0 z-50 transition-colors duration-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                
+                <!-- Back Button -->
+                <a href="index.html" class="flex items-center text-white hover:text-yellow-300 font-bold transition duration-300 bg-white/10 px-4 py-2 rounded-full border border-white/20 hover:bg-white/20">
+                    <i class="fa-solid fa-arrow-left mr-2"></i> પાછા જાઓ
+                </a>
+                
+                <!-- Title -->
+                <div class="hidden sm:flex items-center">
+                    <span class="font-bold text-xl tracking-wider"><i class="fa-solid fa-shield-halved mr-2"></i>MPSG બનાસકાંઠા</span>
+                </div>
+                
+                <!-- Dark Mode Toggle -->
+                <button onclick="toggleTheme()" class="text-xl hover:text-yellow-300 transition duration-300 bg-white/10 w-10 h-10 rounded-full flex items-center justify-center border border-white/20">
+                    <i id="theme-icon" class="fa-solid fa-moon"></i>
+                </button>
+
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow">
+        <section class="py-12 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                
+                <div class="text-center mb-10" data-aos="fade-down">
+                    <h1 id="gallery-title" class="text-3xl md:text-4xl font-extrabold text-brandRed mb-4 inline-block border-b-4 border-brandOrange pb-2">
+                        લોડ થઈ રહ્યું છે...
+                    </h1>
+                    <p class="text-gray-600 dark:text-gray-400 font-medium">આ વિભાગના તમામ ફોટા અહીં પ્રદર્શિત થશે.</p>
+                </div>
+
+                <!-- અહી ફોટાઓ લોડ થશે -->
+                <div id="category-gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <!-- Loading Spinner -->
+                    <div class="col-span-full flex flex-col items-center justify-center py-20 text-gray-500">
+                        <i class="fa-solid fa-spinner fa-spin text-5xl text-brandOrange mb-4"></i>
+                        <p class="font-bold text-lg">ફોટાઓ શોધાઈ રહ્યા છે...</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-6 text-center mt-auto">
+        <p>© 2026 મહારાણા પ્રતાપ સેવા ગ્રુપ - બનાસકાંઠા. સર્વાધિકાર સુરક્ષિત.</p>
+        <p class="text-sm mt-2">Design & Developed with <i class="fa-solid fa-heart text-brandRed"></i> by MPSG Team</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true });
+
+        // ડાર્ક મોડ કંટ્રોલ
+        const htmlTag = document.documentElement;
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlTag.classList.add('dark');
+        }
+        
+        const icon = document.getElementById('theme-icon');
+        if (icon && htmlTag.classList.contains('dark')) icon.className = 'fa-solid fa-sun';
+
+        function toggleTheme() {
+            htmlTag.classList.toggle('dark');
+            localStorage.setItem('theme', htmlTag.classList.contains('dark') ? 'dark' : 'light');
+            if (icon) icon.className = htmlTag.classList.contains('dark') ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+        }
+
+        // સ્માર્ટ ગેલેરી સિસ્ટમ
+        const urlParams = new URLSearchParams(window.location.search);
+        const category = urlParams.get('category');
+
+        // ટાઇટલ સેટ કરવા માટેની ડિક્શનરી
+        const categoryTitles = {
+            'ashram': 'મહારાણા પ્રતાપ આશ્રમ ગેલેરી',
+            'library': 'ચેતક લાઇબ્રેરી ગેલેરી',
+            'blood_seva': 'ઇમરજન્સી બ્લડ સેવા ગેલેરી',
+            'winter_warmth': 'શિયાળામાં હૂંફ ગેલેરી',
+            'diwali_sweets': 'દિવાળી મીઠાઈ વિતરણ ગેલેરી',
+            'utrayan_safety': 'ઉતરાયણ સેફ્ટી ગેલેરી',
+            'water_service': 'જળ એ જ જીવન ગેલેરી',
+            'bird_campaign': 'પક્ષીઓ માટે અભિયાન ગેલેરી',
+            'ambaji_camp': 'અંબાજી ભાદરવી કેમ્પ ગેલેરી',
+            'ranuja_camp': 'રણુજા સેવા કેમ્પ ગેલેરી'
+        };
+
+        const titleElement = document.getElementById('gallery-title');
+        titleElement.innerText = categoryTitles[category] || 'MPSG વિશેષ ગેલેરી';
+
+        // ગિટહબમાંથી ડેટા લાવવાનું ફંક્શન
+        async function loadCategoryGallery() {
+            const grid = document.getElementById('category-gallery-grid');
+            if(!category) {
+                 grid.innerHTML = '<p class="col-span-full text-center text-red-500 font-bold text-xl py-10"><i class="fa-solid fa-triangle-exclamation text-3xl mb-2 block"></i> કોઈ કેટેગરી પસંદ કરેલ નથી!</p>';
+                 return;
+            }
+
+            try {
+                // આપણે જે નવું સિક્યોર માળખું (સ્ટેપ ૩) માં બનાવવાના છીએ ત્યાંથી ડેટા લેશે
+                const jsonUrl = `https://raw.githubusercontent.com/mpsgroupbk-gif/mpsg-website/main/data/gallery_${category}.json?t=${new Date().getTime()}`;
+                const response = await fetch(jsonUrl);
+
+                if(!response.ok) {
+                    grid.innerHTML = '<div class="col-span-full text-center py-20"><i class="fa-solid fa-images text-6xl text-gray-300 dark:text-gray-700 mb-4 block"></i><p class="text-gray-500 font-bold text-lg">આ વિભાગમાં હજુ કોઈ ફોટા અપલોડ કરવામાં આવ્યા નથી.</p></div>';
+                    return;
+                }
+
+                const images = await response.json();
+                grid.innerHTML = ''; 
+
+                if(images.length === 0) {
+                    grid.innerHTML = '<div class="col-span-full text-center py-20"><i class="fa-solid fa-images text-6xl text-gray-300 dark:text-gray-700 mb-4 block"></i><p class="text-gray-500 font-bold text-lg">આ વિભાગમાં હજુ કોઈ ફોટા અપલોડ કરવામાં આવ્યા નથી.</p></div>';
+                    return;
+                }
+
+                images.forEach(img => {
+                    // ફોટા ગિટહબના ચોક્કસ ફોલ્ડરમાંથી લોડ થશે
+                    const imgUrl = `https://raw.githubusercontent.com/mpsgroupbk-gif/mpsg-website/main/images/gallery/${category}/${img.filename}`;
+                    const html = `
+                    <div class="group relative overflow-hidden rounded-xl shadow-md cursor-pointer border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-800" data-aos="zoom-in">
+                        <img src="${imgUrl}" alt="MPSG Photo" class="w-full h-56 object-cover transform group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-brandOrange bg-opacity-0 group-hover:bg-opacity-60 transition duration-300 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100">
+                            <i class="fa-solid fa-expand text-white text-4xl drop-shadow-md mb-2 transform scale-50 group-hover:scale-100 transition-all duration-300 delay-100"></i>
+                            <p class="text-white font-bold text-sm px-2 text-center drop-shadow-md transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 delay-150">${categoryTitles[category].replace(' ગેલેરી', '')}</p>
+                        </div>
+                    </div>`;
+                    grid.insertAdjacentHTML('beforeend', html);
+                });
+            } catch(error) {
+                grid.innerHTML = '<div class="col-span-full text-center py-20"><i class="fa-solid fa-images text-6xl text-gray-300 dark:text-gray-700 mb-4 block"></i><p class="text-gray-500 font-bold text-lg">આ વિભાગમાં હજુ કોઈ ફોટા અપલોડ કરવામાં આવ્યા નથી.</p></div>';
+            }
+        }
+
+        // પેજ લોડ થાય એટલે તરત જ ગેલેરી લોડ કરો
+        window.onload = loadCategoryGallery;
+    </script>
+</body>
+</html>
