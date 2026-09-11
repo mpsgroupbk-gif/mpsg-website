@@ -528,8 +528,8 @@
                                     <p class="text-lg font-bold text-brandOrange">762280 6382</p>
                                 </div>
                                 <!-- ડાયનેમિક પેમેન્ટ QR માટેનું કન્ટેનર -->
-                                <div id="dyn-payment-qr-wrapper" class="bg-white p-1 rounded-lg shadow-sm border border-gray-200 flex items-center justify-center transition-all duration-300" style="width: 100px; height: 100px;">
-                                    <img id="dyn-payment-qr-img" src="" alt="Donation QR Code" class="w-full h-full object-contain rounded-md hidden">
+                                <div id="dyn-payment-qr-wrapper" class="bg-white p-1 rounded-lg shadow-sm border border-gray-200 flex items-center justify-center transition-all duration-300" style="width: 100px; height: auto;">
+                                    <img id="dyn-payment-qr-img" src="" alt="Donation QR Code" class="w-full h-auto object-contain rounded-md hidden">
                                     <i id="dyn-payment-qr-icon" class="fa-solid fa-qrcode text-5xl text-gray-300"></i>
                                 </div>
                             </div>
@@ -720,7 +720,7 @@
                         // એપમાંથી આવેલી સાઈઝ સેટ કરવી
                         const qrSize = data.paymentQrSize ? data.paymentQrSize : 100;
                         payWrapper.style.width = qrSize + 'px';
-                        payWrapper.style.height = qrSize + 'px';
+                        payWrapper.style.height = 'auto';
                     }
                 }
             } catch (error) { console.error("Location Load Error:", error); }
