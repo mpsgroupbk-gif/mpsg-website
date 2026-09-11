@@ -438,8 +438,7 @@
                 
                 <!-- Section Title -->
                 <div class="text-center mb-12">
-                    <h2 data-i18n="gallery_title" class="text-3xl md:text-4xl font-extrabold text-brandRed mb-4 inline-block border-b-4 border-brandOrange pb-2">અમારી સેવાકીય ઝલક</h2>
-                    <p data-i18n="gallery_subtitle" class="text-lg text-gray-600 dark:text-gray-400 font-medium max-w-2xl mx-auto">અમારા વિવિધ સેવા કેમ્પો અને કાર્યોની કેટલીક યાદગાર ક્ષણો.</p>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-brandRed mb-4 inline-block border-b-4 border-brandOrange pb-2"><span data-i18n="gallery_title">તાજેતરનાં સેવા કાર્યો</span></h2>
                 </div>
 
                 <!-- Dynamic Gallery Grid -->
@@ -779,10 +778,18 @@
                     // નવી સિસ્ટમ મુજબ ફોલ્ડરમાંથી ફોટો લોડ થશે
                     const imgUrl = `https://raw.githubusercontent.com/mpsgroupbk-gif/mpsg-website/main/images/gallery/main_gallery/${img.filename}`;
                     const html = `
-                    <div class="group relative overflow-hidden rounded-xl shadow-md cursor-pointer">
-                        <img src="${imgUrl}" alt="${img.title || 'MPSG Photo'}" class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500">
-                        <div class="absolute inset-0 bg-brandOrange bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
-                            <i class="fa-solid fa-magnifying-glass-plus text-white opacity-0 group-hover:opacity-100 text-4xl drop-shadow-md"></i>
+                    <div class="group relative overflow-hidden rounded-xl shadow-md cursor-pointer border border-gray-200 dark:border-gray-800 bg-black">
+                        <img src="${imgUrl}" alt="${img.title || 'MPSG Photo'}" class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500 opacity-90 group-hover:opacity-100">
+                        
+                        <!-- ઉપરનો ભાગ (સેવાનું નામ) -->
+                        <div class="absolute top-0 left-0 w-full bg-gradient-to-b from-black/90 via-black/60 to-transparent px-4 py-4 transform -translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                            <h3 class="text-white font-extrabold text-lg drop-shadow-lg leading-tight line-clamp-2">${img.title || 'સેવા કાર્ય'}</h3>
+                        </div>
+
+                        <!-- નીચેનો ભાગ (તારીખ અને દાતાનું નામ) -->
+                        <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/90 via-black/70 to-transparent px-4 py-4 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 flex flex-col justify-end">
+                            <p class="text-yellow-400 font-bold text-sm mb-1 drop-shadow-md"><i class="fa-regular fa-calendar-days mr-2"></i>${img.date || 'તારીખ નથી'}</p>
+                            <p class="text-white text-sm font-semibold drop-shadow-md line-clamp-1"><i class="fa-solid fa-hand-holding-heart text-red-400 mr-2"></i>દાતા: ${img.donor || 'MPSG ગ્રુપ'}</p>
                         </div>
                     </div>`;
                     galleryGrid.insertAdjacentHTML('beforeend', html);
@@ -899,7 +906,7 @@
                 blood_2025_title: "૨૦૨૫: મહા રક્તદાન તરફ પ્રયાણ", blood_bottle_4: "બોટલ", blood_2025_desc: "આ વર્ષે સંસ્થાએ એક મોટો માઇલસ્ટોન પાર કર્યો. અડધા હજારથી વધુ રક્તદાતાઓ ઉમટી પડ્યા અને ૫૧૬ બોટલ બ્લડ એકત્ર કરીને એક નવો જ આયામ સ્થાપિત કર્યો.",
                 blood_2026_title: "૨૦૨૬: ઐતિહાસિક સિદ્ધિ", blood_2026_record: "બ્લડ બોટલ (રેકોર્ડ)", blood_2026_desc: "પાંચ વર્ષની અવિરત નિષ્ઠા અને જનતાના અપાર પ્રેમે ઇતિહાસ રચી દીધો. એક જ કેમ્પમાં ૧૦૨૫ બ્લડ બોટલ એકત્ર કરીને બનાસકાંઠામાં એક નવો રેકોર્ડ પ્રસ્થાપિત કર્યો.",
                 blood_target: "૧૦૦% લક્ષ્ય પૂર્ણ",
-                gallery_title: "અમારી સેવાકીય ઝલક", gallery_subtitle: "અમારા વિવિધ સેવા કેમ્પો અને કાર્યોની કેટલીક યાદગાર ક્ષણો.", gallery_note: "* નોંધ: આ ગેલેરી નિયમિત રૂપે અપડેટ કરવામાં આવે છે, જેથી તમે અમારા લેટેસ્ટ સેવા કાર્યો સાથે જોડાયેલા રહી શકો.",
+                gallery_title: "તાજેતરનાં સેવા કાર્યો", gallery_note: "* નોંધ: આ ગેલેરી નિયમિત રૂપે અપડેટ કરવામાં આવે છે, જેથી તમે અમારા લેટેસ્ટ સેવા કાર્યો સાથે જોડાયેલા રહી શકો.",
                 contact_title: "મદદ માટે કે સ્વયંસેવક બનવા સંપર્ક કરો", form_name: "તમારું નામ", form_mobile: "મોબાઇલ નંબર", form_reason: "સંપર્કનું કારણ", 
                 form_opt1: "સ્વયંસેવક તરીકે જોડાવવા", form_opt2: "ઇમરજન્સી રક્ત (Blood) ની જરૂર છે", form_opt3: "અન્ય માહિતી / પ્રશ્ન", form_details: "વિગતવાર માહિતી", 
                 form_submit: "માહિતી મોકલો", form_note: "*આ ફોર્મનો ડેટા સીધો અમારી ટીમને મળશે.",
@@ -945,7 +952,7 @@
                 blood_2025_title: "२०२५: महा रक्तदान की ओर प्रस्थान", blood_bottle_4: "बोतल", blood_2025_desc: "इस वर्ष संस्था ने एक बड़ा मील का पत्थर पार किया। आधे हजार से अधिक रक्तदाता उमड़ पड़े और ५१६ बोतल ब्लड एकत्र कर एक नया आयाम स्थापित किया।",
                 blood_2026_title: "२०२६: ऐतिहासिक उपलब्धि", blood_2026_record: "ब्लड बोतल (रिकॉर्ड)", blood_2026_desc: "पांच साल की निरंतर निष्ठा और जनता के अपार प्रेम ने इतिहास रच दिया। एक ही कैंप में १०२५ ब्लड बोतल एकत्र कर बनासकांठा में एक नया रिकॉर्ड स्थापित किया।",
                 blood_target: "१००% लक्ष्य पूर्ण",
-                gallery_title: "हमारी सेवा की झलक", gallery_subtitle: "हमारे विभिन्न सेवा कैंपों और कार्यों के कुछ यादगार पल।", gallery_note: "* नोट: इस गैलरी को नियमित रूप से अपडेट किया जाता है, ताकि आप हमारी नवीनतम सेवा गतिविधियों से जुड़े रह सकें।",
+                gallery_title: "हाल ही के सेवा कार्य", gallery_note: "* नोट: इस गैलरी को नियमित रूप से अपडेट किया जाता है, ताकि आप हमारी नवीनतम सेवा गतिविधियों से जुड़े रह सकें।",
                 contact_title: "मदद के लिए या स्वयंसेवक बनने के लिए संपर्क करें", form_name: "आपका नाम", form_mobile: "मोबाइल नंबर", form_reason: "संपर्क का कारण", 
                 form_opt1: "स्वयंसेवक के रूप में जुड़ने के लिए", form_opt2: "इमरजेंसी ब्लड (Blood) की जरूरत है", form_opt3: "अन्य जानकारी / प्रश्न", form_details: "विस्तृत जानकारी", 
                 form_submit: "जानकारी भेजें", form_note: "*इस फॉर्म का डेटा सीधा हमारी टीम को मिलेगा।",
