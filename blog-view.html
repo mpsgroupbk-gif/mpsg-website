@@ -142,7 +142,7 @@
 
             try {
                 // ગિટહબના ડેટાબેઝમાંથી તે વર્ષની JSON ફાઈલ વાંચવી
-                const jsonUrl = `https://raw.githubusercontent.com/mpsgroupbk-gif/mpsg-website/main/data/blog_${year}.json?t=${new Date().getTime()}`;
+                const jsonUrl = `https://raw.githubusercontent.com/mpsgroupbk-gif/mpsg-website/main/data/blogs/blog_${year}.json?t=${new Date().getTime()}`;
                 const response = await fetch(jsonUrl);
 
                 spinner.classList.add('hidden'); // લોડિંગ પૂરું
