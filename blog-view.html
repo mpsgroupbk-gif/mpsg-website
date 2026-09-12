@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="gu" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>રક્તદાન મહાદાન - MPSG</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brandRed: '#b91c1c',     /* ગ્રુપનો લાલ કલર */
+                        brandOrange: '#f97316',  /* ગ્રુપનો કેસરી કલર */
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        .glass-nav { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+        /* બ્લોગના લખાણને સુંદર બનાવવા માટેની સ્પેશિયલ ડીઝાઈન */
+        .blog-content p { margin-bottom: 1.5rem; line-height: 1.8; font-size: 1.1rem; text-align: justify; }
+        .blog-content strong { color: #b91c1c; }
+        .dark .blog-content strong { color: #f97316; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500 min-h-screen flex flex-col">
+
+    <!-- Navbar સાવ સિમ્પલ અને Back બટન સાથે -->
+    <nav class="glass-nav bg-brandRed/95 dark:bg-gray-900/95 text-white shadow-lg sticky top-0 z-50 transition-colors duration-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                
+                <!-- Back Button (પાછા મેઈન પેજ પર જવા) -->
+                <a href="index.html#blood-stats" class="flex items-center text-white hover:text-yellow-300 font-bold transition duration-300 bg-white/10 px-4 py-2 rounded-full border border-white/20 hover:bg-white/20">
+                    <i class="fa-solid fa-arrow-left mr-2"></i> પાછા જાઓ
+                </a>
+                
+                <!-- Title -->
+                <div class="hidden sm:flex items-center">
+                    <span class="font-bold text-xl tracking-wider"><i class="fa-solid fa-shield-halved mr-2"></i>MPSG બનાસકાંઠા</span>
+                </div>
+                
+                <!-- Dark Mode Toggle -->
+                <button onclick="toggleTheme()" class="text-xl hover:text-yellow-300 transition duration-300 bg-white/10 w-10 h-10 rounded-full flex items-center justify-center border border-white/20">
+                    <i id="theme-icon" class="fa-solid fa-moon"></i>
+                </button>
+
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow">
+        <!-- હેડર સેક્શન (ફોટો અને ટાઇટલ) -->
+        <section class="relative w-full h-64 md:h-96 bg-gray-200 dark:bg-gray-800 overflow-hidden flex items-end justify-center" id="blog-header-section">
+            <img id="blog-cover-img" src="" alt="Blog Cover" class="absolute inset-0 w-full h-full object-cover hidden">
+            <!-- ફોટા પરનો પડછાયો (જેથી લખાણ સ્પષ્ટ વંચાય) -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+            
+            <div class="relative z-10 text-center pb-10 px-4 w-full max-w-4xl" data-aos="fade-up">
+                <p id="blog-date" class="text-brandOrange font-bold tracking-widest uppercase mb-2 drop-shadow-md"></p>
+                <h1 id="blog-title" class="text-3xl md:text-5xl font-black text-white drop-shadow-lg leading-tight">
+                    લોડ થઈ રહ્યું છે...
+                </h1>
+            </div>
+        </section>
+
+        <!-- લખાણ (Content) સેક્શન -->
+        <section class="py-12 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto bg-white dark:bg-gray-800 p-6 md:p-10 rounded-2xl shadow-xl -mt-20 relative z-20 border border-gray-100 dark:border-gray-700" data-aos="fade-up" data-aos-delay="100">
+                
+                <!-- લોડિંગ સ્પિનર -->
+                <div id="loading-spinner" class="flex flex-col items-center justify-center py-20 text-gray-500">
+                    <i class="fa-solid fa-spinner fa-spin text-5xl text-brandRed mb-4"></i>
+                    <p class="font-bold text-lg">માહિતી શોધાઈ રહી છે...</p>
+                </div>
+
+                <!-- અહી અસલી બ્લોગનું લખાણ દેખાશે -->
+                <div id="blog-content-area" class="blog-content text-gray-700 dark:text-gray-300 hidden">
+                    <!-- JavaScript થી લખાણ અહી આવશે -->
+                </div>
+
+                <!-- જો ડેટા ના મળે તો એરર મેસેજ -->
+                <div id="error-message" class="hidden text-center py-20">
+                    <i class="fa-solid fa-file-circle-xmark text-6xl text-gray-300 dark:text-gray-600 mb-4 block"></i>
+                    <h3 class="text-xl font-bold text-brandRed mb-2">માહિતી ઉપલબ્ધ નથી!</h3>
+                    <p class="text-gray-500 font-medium">આ વર્ષના રક્તદાન કેમ્પનો લેખ હજુ સુધી અપડેટ કરવામાં આવ્યો નથી.</p>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-6 text-center mt-auto">
+        <p>© 2026 મહારાણા પ્રતાપ સેવા ગ્રુપ - બનાસકાંઠા. સર્વાધિકાર સુરક્ષિત.</p>
+        <p class="text-sm mt-2">Design & Developed with <i class="fa-solid fa-heart text-brandRed"></i> by MPSG Team</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true });
+
+        // ડાર્ક મોડ કંટ્રોલ
+        const htmlTag = document.documentElement;
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlTag.classList.add('dark');
+        }
+        
+        const icon = document.getElementById('theme-icon');
+        if (icon && htmlTag.classList.contains('dark')) icon.className = 'fa-solid fa-sun';
+
+        function toggleTheme() {
+            htmlTag.classList.toggle('dark');
+            localStorage.setItem('theme', htmlTag.classList.contains('dark') ? 'dark' : 'light');
+            if (icon) icon.className = htmlTag.classList.contains('dark') ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+        }
+
+        // સ્માર્ટ બ્લોગ લોડર (URL માંથી વર્ષ પકડીને)
+        const urlParams = new URLSearchParams(window.location.search);
+        const year = urlParams.get('year');
+
+        async function loadBlogData() {
+            const titleEl = document.getElementById('blog-title');
+            const dateEl = document.getElementById('blog-date');
+            const imgEl = document.getElementById('blog-cover-img');
+            const contentArea = document.getElementById('blog-content-area');
+            const spinner = document.getElementById('loading-spinner');
+            const errorMsg = document.getElementById('error-message');
+
+            if(!year) {
+                 titleEl.innerText = "ભૂલ!";
+                 spinner.classList.add('hidden');
+                 errorMsg.classList.remove('hidden');
+                 errorMsg.innerHTML = '<h3 class="text-xl font-bold text-brandRed mb-2">વર્ષ પસંદ કરેલ નથી!</h3>';
+                 return;
+            }
+
+            try {
+                // ગિટહબના ડેટાબેઝમાંથી તે વર્ષની JSON ફાઈલ વાંચવી
+                const jsonUrl = `https://raw.githubusercontent.com/mpsgroupbk-gif/mpsg-website/main/data/blog_${year}.json?t=${new Date().getTime()}`;
+                const response = await fetch(jsonUrl);
+
+                spinner.classList.add('hidden'); // લોડિંગ પૂરું
+
+                if(!response.ok) {
+                    titleEl.innerText = `${year} ની માહિતી`;
+                    errorMsg.classList.remove('hidden');
+                    return;
+                }
+
+                const data = await response.json();
+
+                // જો ફાઈલ ખાલી હોય (એપમાંથી હજુ લખાણ નાખ્યું ના હોય)
+                if(Object.keys(data).length === 0 || !data.title) {
+                    titleEl.innerText = `${year} રક્તદાન કેમ્પ`;
+                    errorMsg.classList.remove('hidden');
+                    return;
+                }
+
+                // ડેટા મળી ગયો! હવે UI માં ગોઠવો
+                titleEl.innerText = data.title;
+                if(data.date) {
+                    dateEl.innerHTML = `<i class="fa-solid fa-calendar-check mr-2"></i>${data.date}`;
+                }
+
+                // જો ફોટો હોય તો બતાવો
+                if(data.imageFileName && data.imageFileName.trim() !== "") {
+                    imgEl.src = `https://raw.githubusercontent.com/mpsgroupbk-gif/mpsg-website/main/images/blogs/${data.imageFileName}`;
+                    imgEl.classList.remove('hidden');
+                }
+
+                // લખાણ (Content) સેટ કરવું (જો ફકરા પાડેલા હોય તો તે જાળવી રાખવા)
+                if(data.content) {
+                    // \n (એન્ટર) ને <br> માં ફેરવીને લખાણને ફકરામાં (Paragraphs) વહેંચવું
+                    const formattedContent = data.content.split('\n').map(p => p.trim() !== '' ? `<p>${p}</p>` : '').join('');
+                    contentArea.innerHTML = formattedContent;
+                    contentArea.classList.remove('hidden');
+                } else {
+                    errorMsg.classList.remove('hidden');
+                }
+
+            } catch(error) {
+                spinner.classList.add('hidden');
+                titleEl.innerText = "ક્ષમા કરશો!";
+                errorMsg.classList.remove('hidden');
+            }
+        }
+
+        // પેજ લોડ થાય એટલે તરત જ લેખ શોધવાનું ચાલુ કરો
+        window.onload = loadBlogData;
+    </script>
+</body>
+</html>
