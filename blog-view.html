@@ -20,14 +20,10 @@
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Swiper CSS (સ્લાઈડર માટે) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <style>
-        /* પ્રીમિયમ સ્લાઈડર માટે */
-        .swiper-button-next, .swiper-button-prev { color: rgba(255,255,255,0.7) !important; transition: 0.3s; }
-        .swiper-button-next:hover, .swiper-button-prev:hover { color: #fff !important; transform: scale(1.1); }
-        .swiper-pagination-bullet { background: #fff !important; opacity: 0.5; }
-        .swiper-pagination-bullet-active { opacity: 1 !important; background: #b91c1c !important; }
+        /* Lightbox અને Grid માટે હોવર ઇફેક્ટ */
+        .gallery-img { transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: zoom-in; }
+        .gallery-img:hover { transform: translateY(-5px); box-shadow: 0 12px 25px rgba(0,0,0,0.2); z-index: 10; position: relative; }
         .glass-nav { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
         /* બ્લોગના લખાણને સુંદર બનાવવા માટેની સ્પેશિયલ ડીઝાઈન */
         .blog-content p { margin-bottom: 1.5rem; line-height: 1.8; font-size: 1.1rem; text-align: justify; }
@@ -61,56 +57,50 @@
         </div>
     </nav>
 
-    <main class="flex-grow">
-        <!-- હેડર સેક્શન (ફોટો સ્લાઈડર અને ટાઇટલ) -->
-        <section class="relative w-full h-[400px] md:h-[500px] bg-black overflow-hidden flex items-end justify-center" id="blog-header-section">
+    <main class="flex-grow pt-8 pb-16">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             
-            <!-- Swiper Slider -->
-            <div class="swiper myBlogSwiper absolute inset-0 w-full h-full">
-                <div class="swiper-wrapper" id="blog-slider-wrapper">
-                    <!-- અહી JS દ્વારા ફોટા આવશે -->
-                </div>
-                <div class="swiper-pagination mb-[90px]"></div>
-                <div class="swiper-button-next mb-[60px]"></div>
-                <div class="swiper-button-prev mb-[60px]"></div>
+            <!-- લોડિંગ સ્પિનર -->
+            <div id="loading-spinner" class="flex flex-col items-center justify-center py-20 text-gray-500 mt-10">
+                <i class="fa-solid fa-spinner fa-spin text-5xl text-brandRed mb-4"></i>
+                <p class="font-bold text-lg">માહિતી શોધાઈ રહી છે...</p>
             </div>
 
-            <!-- ફોટા પરનો કાળો પડછાયો (લખાણ માટે) -->
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent pointer-events-none z-10"></div>
-            
-            <div class="relative z-20 text-center pb-8 px-4 w-full max-w-4xl" data-aos="fade-up">
-                <p id="blog-date" class="text-brandOrange font-bold tracking-widest uppercase mb-2 drop-shadow-md"></p>
-                <h1 id="blog-title" class="text-3xl md:text-5xl font-black text-white drop-shadow-lg leading-tight">
-                    લોડ થઈ રહ્યું છે...
-                </h1>
+            <!-- જો ડેટા ના મળે તો એરર મેસેજ -->
+            <div id="error-message" class="hidden text-center py-20 mt-10 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700">
+                <i class="fa-solid fa-file-circle-xmark text-6xl text-gray-300 dark:text-gray-600 mb-4 block"></i>
+                <h3 class="text-xl font-bold text-brandRed mb-2">માહિતી ઉપલબ્ધ નથી!</h3>
+                <p class="text-gray-500 font-medium">આ વર્ષના રક્તદાન કેમ્પની માહિતી હજુ અપડેટ કરવામાં આવી નથી.</p>
             </div>
-        </section>
 
-        <!-- લખાણ (Content) સેક્શન -->
-        <section class="py-12 px-4 sm:px-6 lg:px-8">
-            <div class="max-w-4xl mx-auto bg-white dark:bg-gray-800 p-6 md:p-10 rounded-2xl shadow-xl -mt-20 relative z-20 border border-gray-100 dark:border-gray-700" data-aos="fade-up" data-aos-delay="100">
-                
-                <!-- લોડિંગ સ્પિનર -->
-                <div id="loading-spinner" class="flex flex-col items-center justify-center py-20 text-gray-500">
-                    <i class="fa-solid fa-spinner fa-spin text-5xl text-brandRed mb-4"></i>
-                    <p class="font-bold text-lg">માહિતી શોધાઈ રહી છે...</p>
-                </div>
+            <!-- ૧. ટાઇટલ અને તારીખ (Optional) -->
+            <div id="blog-header" class="text-center mb-10 hidden" data-aos="fade-up">
+                <h1 id="blog-title" class="text-3xl md:text-5xl font-black text-brandRed dark:text-brandOrange drop-shadow-sm mb-4 leading-tight"></h1>
+                <p id="blog-date" class="text-gray-600 dark:text-gray-400 font-bold tracking-widest uppercase inline-block bg-gray-200 dark:bg-gray-800 px-4 py-2 rounded-full text-sm"></p>
+            </div>
 
-                <!-- અહી અસલી બ્લોગનું લખાણ દેખાશે -->
-                <div id="blog-content-area" class="blog-content text-gray-700 dark:text-gray-300 hidden">
+            <!-- ૨. ફોટાની મસ્ત ગ્રીડ ગેલેરી -->
+            <div id="blog-gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mb-12 hidden" data-aos="fade-up" data-aos-delay="100">
+                <!-- JavaScript થી અહી ફોટા આવશે -->
+            </div>
+
+            <!-- ૩. બ્લોગનો લેખ (Optional) -->
+            <div id="blog-content-container" class="hidden max-w-4xl mx-auto bg-white dark:bg-gray-800 p-6 md:p-10 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700" data-aos="fade-up" data-aos-delay="200">
+                <div id="blog-content-area" class="blog-content text-gray-700 dark:text-gray-300">
                     <!-- JavaScript થી લખાણ અહી આવશે -->
                 </div>
-
-                <!-- જો ડેટા ના મળે તો એરર મેસેજ -->
-                <div id="error-message" class="hidden text-center py-20">
-                    <i class="fa-solid fa-file-circle-xmark text-6xl text-gray-300 dark:text-gray-600 mb-4 block"></i>
-                    <h3 class="text-xl font-bold text-brandRed mb-2">માહિતી ઉપલબ્ધ નથી!</h3>
-                    <p class="text-gray-500 font-medium">આ વર્ષના રક્તદાન કેમ્પનો લેખ હજુ સુધી અપડેટ કરવામાં આવ્યો નથી.</p>
-                </div>
-
             </div>
-        </section>
+
+        </div>
     </main>
+
+    <!-- ફૂલ સ્ક્રીન ફોટો જોવા માટે Lightbox (Modal) -->
+    <div id="lightbox-modal" class="fixed inset-0 z-[100] bg-black/95 hidden flex justify-center items-center opacity-0 transition-opacity duration-300 backdrop-blur-sm">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white/70 hover:text-brandRed text-4xl bg-black/50 w-12 h-12 rounded-full flex items-center justify-center transition-colors z-[110]"><i class="fa-solid fa-xmark"></i></button>
+        <div class="relative w-full h-full p-4 md:p-12 flex justify-center items-center" onclick="closeLightbox()">
+            <img id="lightbox-img" src="" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl" onclick="event.stopPropagation();">
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-gray-400 py-6 text-center mt-auto">
@@ -120,7 +110,6 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script>
         AOS.init({ once: true });
 
@@ -129,7 +118,7 @@
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             htmlTag.classList.add('dark');
         }
-        
+
         const icon = document.getElementById('theme-icon');
         if (icon && htmlTag.classList.contains('dark')) icon.className = 'fa-solid fa-sun';
 
@@ -139,20 +128,44 @@
             if (icon) icon.className = htmlTag.classList.contains('dark') ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
         }
 
+        // --- Lightbox Functions ---
+        const modal = document.getElementById('lightbox-modal');
+        const modalImg = document.getElementById('lightbox-img');
+
+        function openLightbox(imgUrl) {
+            modalImg.src = imgUrl;
+            modal.classList.remove('hidden');
+            setTimeout(() => modal.classList.remove('opacity-0'), 10);
+            document.body.style.overflow = 'hidden'; // પાછળનું પેજ સ્ક્રોલ ના થાય
+        }
+
+        function closeLightbox() {
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modalImg.src = "";
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+
         // સ્માર્ટ બ્લોગ લોડર (URL માંથી વર્ષ પકડીને)
         const urlParams = new URLSearchParams(window.location.search);
         const year = urlParams.get('year');
 
         async function loadBlogData() {
+            const headerDiv = document.getElementById('blog-header');
             const titleEl = document.getElementById('blog-title');
             const dateEl = document.getElementById('blog-date');
-            const imgEl = document.getElementById('blog-cover-img');
+            
+            const gridDiv = document.getElementById('blog-gallery-grid');
+            
+            const contentContainer = document.getElementById('blog-content-container');
             const contentArea = document.getElementById('blog-content-area');
+            
             const spinner = document.getElementById('loading-spinner');
             const errorMsg = document.getElementById('error-message');
 
             if(!year) {
-                 titleEl.innerText = "ભૂલ!";
                  spinner.classList.add('hidden');
                  errorMsg.classList.remove('hidden');
                  errorMsg.innerHTML = '<h3 class="text-xl font-bold text-brandRed mb-2">વર્ષ પસંદ કરેલ નથી!</h3>';
@@ -160,85 +173,68 @@
             }
 
             try {
-                // ગિટહબના ડેટાબેઝમાંથી તે વર્ષની JSON ફાઈલ વાંચવી
                 const jsonUrl = `https://raw.githubusercontent.com/mpsgroupbk-gif/mpsg-website/main/data/blogs/blog_${year}.json?t=${new Date().getTime()}`;
                 const response = await fetch(jsonUrl);
-
-                spinner.classList.add('hidden'); // લોડિંગ પૂરું
+                spinner.classList.add('hidden');
 
                 if(!response.ok) {
-                    titleEl.innerText = `${year} ની માહિતી`;
                     errorMsg.classList.remove('hidden');
                     return;
                 }
 
                 const data = await response.json();
 
-                // જો ફાઈલ ખાલી હોય (એપમાંથી હજુ લખાણ નાખ્યું ના હોય)
-                if(Object.keys(data).length === 0 || !data.title) {
-                    titleEl.innerText = `${year} રક્તદાન કેમ્પ`;
+                if(Object.keys(data).length === 0 || (!data.title && !data.content && (!data.images || data.images.length === 0))) {
                     errorMsg.classList.remove('hidden');
                     return;
                 }
 
-                // ડેટા મળી ગયો! હવે UI માં ગોઠવો
-                titleEl.innerText = data.title;
-                if(data.date) {
-                    dateEl.innerHTML = `<i class="fa-solid fa-calendar-check mr-2"></i>${data.date}`;
+                // ૧. ટાઇટલ અને તારીખ સેટ કરો (જો હોય તો જ બતાવો)
+                if (data.title && data.title.trim() !== "") {
+                    titleEl.innerText = data.title;
+                    headerDiv.classList.remove('hidden');
+                    
+                    if (data.date && data.date.trim() !== "") {
+                        dateEl.innerHTML = `<i class="fa-solid fa-calendar-check mr-2 text-brandRed"></i>${data.date}`;
+                        dateEl.classList.remove('hidden');
+                    } else {
+                        dateEl.classList.add('hidden');
+                    }
                 }
 
-                // સ્માર્ટ ઈમેજ સ્લાઈડર લોજીક (સિંગલ કે મલ્ટીપલ ફોટા માટે)
-                const sliderWrapper = document.getElementById('blog-slider-wrapper');
+                // ૨. ફોટાની ગ્રીડ સેટ કરો
                 let imagesArray = [];
-                
-                // જો નવા અપડેટ પ્રમાણે એકથી વધુ ફોટા હોય
                 if (data.images && Array.isArray(data.images) && data.images.length > 0) {
                     imagesArray = data.images;
-                } 
-                // અથવા જૂના અપડેટ પ્રમાણે એક જ ફોટો હોય
-                else if (data.imageFileName && data.imageFileName.trim() !== "") {
+                } else if (data.imageFileName && data.imageFileName.trim() !== "") {
                     imagesArray = [data.imageFileName];
                 }
 
                 if (imagesArray.length > 0) {
+                    gridDiv.innerHTML = ""; // જૂનું ક્લિયર
                     imagesArray.forEach(imgName => {
                         const imgUrl = `https://raw.githubusercontent.com/mpsgroupbk-gif/mpsg-website/main/images/blogs/${imgName}`;
-                        const slideHtml = `
-                        <div class="swiper-slide relative w-full h-full flex items-center justify-center overflow-hidden bg-black">
-                            <!-- પાછળનો બ્લર (Blur) પડછાયો -->
-                            <div class="absolute inset-0 w-full h-full bg-cover bg-center opacity-40 scale-110 filter blur-xl" style="background-image: url('${imgUrl}')"></div>
-                            <!-- આગળનો ઓરીજીનલ સાઈઝનો ફોટો (object-contain) -->
-                            <img src="${imgUrl}" alt="Blog Image" class="relative z-10 w-full h-full object-contain drop-shadow-2xl">
+                        const gridItem = `
+                        <div class="relative w-full h-48 md:h-64 rounded-xl overflow-hidden border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm gallery-img" onclick="openLightbox('${imgUrl}')">
+                            <img src="${imgUrl}" alt="Gallery Image" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black/0 hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                                <i class="fa-solid fa-expand text-white text-3xl opacity-0 hover:opacity-100 drop-shadow-md"></i>
+                            </div>
                         </div>`;
-                        sliderWrapper.insertAdjacentHTML('beforeend', slideHtml);
+                        gridDiv.insertAdjacentHTML('beforeend', gridItem);
                     });
-
-                    // Swiper ચાલુ કરો (ઓટોમેટિક પ્લે અને ફેડ ઇફેક્ટ સાથે)
-                    new Swiper(".myBlogSwiper", {
-                        loop: imagesArray.length > 1,
-                        effect: "fade", // સિનેમેટિક લુક માટે
-                        autoplay: { delay: 3000, disableOnInteraction: false },
-                        pagination: { el: ".swiper-pagination", clickable: true },
-                        navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
-                    });
-                } else {
-                    // જો કોઈ જ ફોટો ના હોય તો ખાલી બેકગ્રાઉન્ડ રાખો
-                    sliderWrapper.innerHTML = '<div class="swiper-slide bg-gray-900 w-full h-full"></div>';
+                    gridDiv.classList.remove('hidden');
                 }
 
-                // લખાણ (Content) સેટ કરવું (જો ફકરા પાડેલા હોય તો તે જાળવી રાખવા)
-                if(data.content) {
-                    // \n (એન્ટર) ને <br> માં ફેરવીને લખાણને ફકરામાં (Paragraphs) વહેંચવું
+                // ૩. લેખ (Content) સેટ કરો (જો હોય તો જ બતાવો)
+                if(data.content && data.content.trim() !== "") {
                     const formattedContent = data.content.split('\n').map(p => p.trim() !== '' ? `<p>${p}</p>` : '').join('');
                     contentArea.innerHTML = formattedContent;
-                    contentArea.classList.remove('hidden');
-                } else {
-                    errorMsg.classList.remove('hidden');
+                    contentContainer.classList.remove('hidden');
                 }
 
             } catch(error) {
                 spinner.classList.add('hidden');
-                titleEl.innerText = "ક્ષમા કરશો!";
                 errorMsg.classList.remove('hidden');
             }
         }
