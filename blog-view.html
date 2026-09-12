@@ -20,7 +20,14 @@
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Swiper CSS (સ્લાઈડર માટે) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <style>
+        /* પ્રીમિયમ સ્લાઈડર માટે */
+        .swiper-button-next, .swiper-button-prev { color: rgba(255,255,255,0.7) !important; transition: 0.3s; }
+        .swiper-button-next:hover, .swiper-button-prev:hover { color: #fff !important; transform: scale(1.1); }
+        .swiper-pagination-bullet { background: #fff !important; opacity: 0.5; }
+        .swiper-pagination-bullet-active { opacity: 1 !important; background: #b91c1c !important; }
         .glass-nav { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
         /* બ્લોગના લખાણને સુંદર બનાવવા માટેની સ્પેશિયલ ડીઝાઈન */
         .blog-content p { margin-bottom: 1.5rem; line-height: 1.8; font-size: 1.1rem; text-align: justify; }
@@ -55,13 +62,23 @@
     </nav>
 
     <main class="flex-grow">
-        <!-- હેડર સેક્શન (ફોટો અને ટાઇટલ) -->
-        <section class="relative w-full h-64 md:h-96 bg-gray-200 dark:bg-gray-800 overflow-hidden flex items-end justify-center" id="blog-header-section">
-            <img id="blog-cover-img" src="" alt="Blog Cover" class="absolute inset-0 w-full h-full object-cover hidden">
-            <!-- ફોટા પરનો પડછાયો (જેથી લખાણ સ્પષ્ટ વંચાય) -->
-            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+        <!-- હેડર સેક્શન (ફોટો સ્લાઈડર અને ટાઇટલ) -->
+        <section class="relative w-full h-[400px] md:h-[500px] bg-black overflow-hidden flex items-end justify-center" id="blog-header-section">
             
-            <div class="relative z-10 text-center pb-10 px-4 w-full max-w-4xl" data-aos="fade-up">
+            <!-- Swiper Slider -->
+            <div class="swiper myBlogSwiper absolute inset-0 w-full h-full">
+                <div class="swiper-wrapper" id="blog-slider-wrapper">
+                    <!-- અહી JS દ્વારા ફોટા આવશે -->
+                </div>
+                <div class="swiper-pagination mb-[90px]"></div>
+                <div class="swiper-button-next mb-[60px]"></div>
+                <div class="swiper-button-prev mb-[60px]"></div>
+            </div>
+
+            <!-- ફોટા પરનો કાળો પડછાયો (લખાણ માટે) -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent pointer-events-none z-10"></div>
+            
+            <div class="relative z-20 text-center pb-8 px-4 w-full max-w-4xl" data-aos="fade-up">
                 <p id="blog-date" class="text-brandOrange font-bold tracking-widest uppercase mb-2 drop-shadow-md"></p>
                 <h1 id="blog-title" class="text-3xl md:text-5xl font-black text-white drop-shadow-lg leading-tight">
                     લોડ થઈ રહ્યું છે...
@@ -102,6 +119,8 @@
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script>
         AOS.init({ once: true });
 
@@ -168,10 +187,43 @@
                     dateEl.innerHTML = `<i class="fa-solid fa-calendar-check mr-2"></i>${data.date}`;
                 }
 
-                // જો ફોટો હોય તો બતાવો
-                if(data.imageFileName && data.imageFileName.trim() !== "") {
-                    imgEl.src = `https://raw.githubusercontent.com/mpsgroupbk-gif/mpsg-website/main/images/blogs/${data.imageFileName}`;
-                    imgEl.classList.remove('hidden');
+                // સ્માર્ટ ઈમેજ સ્લાઈડર લોજીક (સિંગલ કે મલ્ટીપલ ફોટા માટે)
+                const sliderWrapper = document.getElementById('blog-slider-wrapper');
+                let imagesArray = [];
+                
+                // જો નવા અપડેટ પ્રમાણે એકથી વધુ ફોટા હોય
+                if (data.images && Array.isArray(data.images) && data.images.length > 0) {
+                    imagesArray = data.images;
+                } 
+                // અથવા જૂના અપડેટ પ્રમાણે એક જ ફોટો હોય
+                else if (data.imageFileName && data.imageFileName.trim() !== "") {
+                    imagesArray = [data.imageFileName];
+                }
+
+                if (imagesArray.length > 0) {
+                    imagesArray.forEach(imgName => {
+                        const imgUrl = `https://raw.githubusercontent.com/mpsgroupbk-gif/mpsg-website/main/images/blogs/${imgName}`;
+                        const slideHtml = `
+                        <div class="swiper-slide relative w-full h-full flex items-center justify-center overflow-hidden bg-black">
+                            <!-- પાછળનો બ્લર (Blur) પડછાયો -->
+                            <div class="absolute inset-0 w-full h-full bg-cover bg-center opacity-40 scale-110 filter blur-xl" style="background-image: url('${imgUrl}')"></div>
+                            <!-- આગળનો ઓરીજીનલ સાઈઝનો ફોટો (object-contain) -->
+                            <img src="${imgUrl}" alt="Blog Image" class="relative z-10 w-full h-full object-contain drop-shadow-2xl">
+                        </div>`;
+                        sliderWrapper.insertAdjacentHTML('beforeend', slideHtml);
+                    });
+
+                    // Swiper ચાલુ કરો (ઓટોમેટિક પ્લે અને ફેડ ઇફેક્ટ સાથે)
+                    new Swiper(".myBlogSwiper", {
+                        loop: imagesArray.length > 1,
+                        effect: "fade", // સિનેમેટિક લુક માટે
+                        autoplay: { delay: 3000, disableOnInteraction: false },
+                        pagination: { el: ".swiper-pagination", clickable: true },
+                        navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+                    });
+                } else {
+                    // જો કોઈ જ ફોટો ના હોય તો ખાલી બેકગ્રાઉન્ડ રાખો
+                    sliderWrapper.innerHTML = '<div class="swiper-slide bg-gray-900 w-full h-full"></div>';
                 }
 
                 // લખાણ (Content) સેટ કરવું (જો ફકરા પાડેલા હોય તો તે જાળવી રાખવા)
