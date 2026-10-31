@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="gu" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ચેતક લાઇબ્રેરી એડમિશન - MPSG</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brandRed: '#b91c1c',     /* ગ્રુપનો લાલ કલર */
+                        brandOrange: '#f97316',  /* ગ્રુપનો કેસરી કલર */
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        .glass-nav { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500 min-h-screen flex flex-col">
+
+    <!-- Navbar સાવ સિમ્પલ અને Back બટન સાથે -->
+    <nav class="glass-nav bg-brandRed/95 dark:bg-gray-900/95 text-white shadow-lg sticky top-0 z-50 transition-colors duration-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                
+                <!-- Back Button -->
+                <a href="index.html#facilities" class="flex items-center text-white hover:text-yellow-300 font-bold transition duration-300 bg-white/10 px-4 py-2 rounded-full border border-white/20 hover:bg-white/20">
+                    <i class="fa-solid fa-arrow-left mr-2"></i> <span data-i18n="btn_back">પાછા જાઓ</span>
+                </a>
+                
+                <!-- Title -->
+                <div class="hidden sm:flex items-center">
+                    <span class="font-bold text-xl tracking-wider"><i class="fa-solid fa-shield-halved mr-2"></i>MPSG બનાસકાંઠા</span>
+                </div>
+                
+                <div class="flex items-center">
+                    <div class="flex bg-white/20 rounded-full p-1 mr-4">
+                        <button onclick="changeLanguage('gu')" id="btn-gu" class="px-2 py-1 rounded-full bg-white text-brandRed text-xs font-bold shadow-sm transition-all">GU</button>
+                        <button onclick="changeLanguage('hi')" id="btn-hi" class="px-2 py-1 rounded-full text-white hover:text-gray-200 text-xs font-bold transition-all">HI</button>
+                    </div>
+                    <!-- Dark Mode Toggle -->
+                    <button onclick="toggleTheme()" class="text-xl hover:text-yellow-300 transition duration-300 bg-white/10 w-10 h-10 rounded-full flex items-center justify-center border border-white/20">
+                        <i id="theme-icon" class="fa-solid fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow pt-8 pb-16">
+        
+        <!-- Header Section -->
+        <section class="px-4 sm:px-6 lg:px-8 mb-12">
+            <div class="max-w-7xl mx-auto text-center" data-aos="fade-down">
+                <p data-i18n="lib_trust" class="text-sm md:text-lg font-bold text-brandOrange tracking-widest uppercase mb-2">જન સેવા ચેરીટેબલ ટ્રસ્ટ સંચાલિત</p>
+                <h1 data-i18n="lib_title" class="text-4xl md:text-5xl font-black text-brandRed mb-4 inline-block border-b-4 border-brandOrange pb-2">ચેતક લાઈબ્રેરી - રૂપાલ</h1>
+                <p data-i18n="lib_subtitle" class="text-xl text-gray-700 dark:text-gray-300 font-bold max-w-2xl mx-auto mb-2">(મહારાણા પ્રતાપ આશ્રમ)</p>
+                <p data-i18n="lib_desc" class="text-md text-gray-600 dark:text-gray-400 font-medium bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm inline-block border border-gray-200 dark:border-gray-700">સ્પર્ધાત્મક પરીક્ષાઓની તૈયારી કરતા ભાઈઓ તથા બહેનો માટે શાંત, આધુનિક અને સલામત અભ્યાસ સ્થળ.</p>
+            </div>
+        </section>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12">
+            
+            <!-- Left Side: Features & Rules -->
+            <div class="space-y-8">
+                <!-- Features Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" data-aos="fade-right">
+                    <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-sm border-l-4 border-blue-500">
+                        <h3 data-i18n="feat1_title" class="font-bold text-lg text-gray-800 dark:text-gray-100 mb-1"><i class="fa-solid fa-snowflake text-blue-500 mr-2"></i>સંપૂર્ણ AC</h3>
+                        <p data-i18n="feat1_desc" class="text-gray-600 dark:text-gray-400 text-sm">100% મફત વાતાનુકૂલિત હોલ.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-sm border-l-4 border-brandOrange">
+                        <h3 data-i18n="feat2_title" class="font-bold text-lg text-gray-800 dark:text-gray-100 mb-1"><i class="fa-solid fa-restroom text-brandOrange mr-2"></i>સ્વતંત્ર વ્યવસ્થા</h3>
+                        <p data-i18n="feat2_desc" class="text-gray-600 dark:text-gray-400 text-sm">ભાઈઓ અને બહેનો માટે અલગ-અલગ રીડિંગ રૂમ.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-sm border-l-4 border-gray-700 dark:border-gray-400">
+                        <h3 data-i18n="feat3_title" class="font-bold text-lg text-gray-800 dark:text-gray-100 mb-1"><i class="fa-solid fa-video text-gray-700 dark:text-gray-400 mr-2"></i>CCTV સુરક્ષા</h3>
+                        <p data-i18n="feat3_desc" class="text-gray-600 dark:text-gray-400 text-sm">૨૪ કલાક સત્તા કેમેરા દ્વારા કડક મોનિટરિંગ.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-sm border-l-4 border-amber-600">
+                        <h3 data-i18n="feat4_title" class="font-bold text-lg text-gray-800 dark:text-gray-100 mb-1"><i class="fa-solid fa-mug-hot text-amber-600 mr-2"></i>નિઃશુલ્ક ચા</h3>
+                        <p data-i18n="feat4_desc" class="text-gray-600 dark:text-gray-400 text-sm">દરરોજ બપોરે 3:30 વાગ્યે તાજગી માટે ચાની સુવિધા.</p>
+                    </div>
+                </div>
+
+                <!-- Rules Box -->
+                <div class="bg-red-50 dark:bg-red-900/10 p-6 md:p-8 rounded-2xl shadow-sm border border-red-200 dark:border-red-900/30" data-aos="fade-up">
+                    <h3 data-i18n="rule_title" class="text-xl font-bold text-brandRed mb-4"><i class="fa-solid fa-triangle-exclamation mr-2"></i>નિયમો અને શરતો (ચેતક લાઈબ્રેરી કમિટી)</h3>
+                    <ul class="list-disc pl-5 space-y-3 text-gray-700 dark:text-gray-300 font-medium text-sm md:text-base">
+                        <li data-i18n="rule1">લાઈબ્રેરી પરિસરમાં સંપૂર્ણ શાંતિ જાળવવી ફરજિયાત છે.</li>
+                        <li data-i18n="rule2">નિયમિત હાજરી અનિવાર્ય છે. નિયમોનું પાલન વિદ્યાર્થી અને વાલી બંને માટે રહેશે.</li>
+                        <li data-i18n="rule3"><strong>ખાસ નોંધ:</strong> ઓનલાઈન રજીસ્ટ્રેશન બાદ નિયમો સમજવા તથા ફોર્મ જમા કરાવવા રૂબરૂ આવવું ફરજિયાત છે. નિયમો મંજૂર હશે તો જ પ્રવેશ મળશે.</li>
+                        <li data-i18n="rule4">કોઈપણ પ્રકારની ભલામણ સ્વીકારવામાં આવશે નહીં. (પ્રાયોરિટી મહારાણા પ્રતાપ સેવા ગ્રુપના સભ્યના પુત્ર/પુત્રીની રહેશે).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Right Side: Admission Form -->
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border-t-8 border-brandRed transition-colors duration-300" data-aos="fade-left">
+                <h3 data-i18n="form_title" class="text-2xl font-black text-gray-800 dark:text-gray-100 mb-2">એડમિશન ફોર્મ</h3>
+                <p data-i18n="form_subtitle" class="text-sm text-gray-500 dark:text-gray-400 mb-6 font-medium border-b pb-4 dark:border-gray-700">નીચેની વિગતો ભરીને રજીસ્ટ્રેશન કરો. કમિટી દ્વારા તમને રૂબરૂ બોલાવવામાં આવશે.</p>
+                
+                <form id="admission-form" class="space-y-4">
+                    <div>
+                        <label data-i18n="f_name" class="block text-gray-700 dark:text-gray-300 font-bold mb-1 text-sm">પોતાનું આખું નામ *</label>
+                        <input type="text" name="name" data-placeholder="f_name_p" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg px-4 py-2 focus:outline-none focus:border-brandRed transition-colors" placeholder="પૂરું નામ લખો" required>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label data-i18n="f_mobile" class="block text-gray-700 dark:text-gray-300 font-bold mb-1 text-sm">વિદ્યાર્થીનો WhatsApp નંબર *</label>
+                            <input type="tel" name="whatsapp" data-placeholder="f_mobile_p" pattern="[0-9]{10}" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg px-4 py-2 focus:outline-none focus:border-brandRed transition-colors" placeholder="૧૦ આંકડાનો નંબર" required>
+                        </div>
+                        <div>
+                            <label data-i18n="f_parent" class="block text-gray-700 dark:text-gray-300 font-bold mb-1 text-sm">પિતાનો/માતાનો નંબર *</label>
+                            <input type="tel" name="mobile2" data-placeholder="f_parent_p" pattern="[0-9]{10}" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg px-4 py-2 focus:outline-none focus:border-brandRed transition-colors" placeholder="૧૦ આંકડાનો નંબર" required>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label data-i18n="f_village" class="block text-gray-700 dark:text-gray-300 font-bold mb-1 text-sm">ગામનું નામ *</label>
+                        <input type="text" name="village" data-placeholder="f_village_p" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg px-4 py-2 focus:outline-none focus:border-brandRed transition-colors" placeholder="ગામનું નામ લખો" required>
+                    </div>
+
+                    <div>
+                        <label data-i18n="f_study" class="block text-gray-700 dark:text-gray-300 font-bold mb-1 text-sm">હાલમાં શું અભ્યાસ ચાલી રહ્યો છે? *</label>
+                        <input type="text" name="study" data-placeholder="f_study_p" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg px-4 py-2 focus:outline-none focus:border-brandRed transition-colors" placeholder="દા.ત. B.A., B.Com, અથવા જોબ" required>
+                    </div>
+
+                    <div>
+                        <label data-i18n="f_exam" class="block text-gray-700 dark:text-gray-300 font-bold mb-1 text-sm">કઈ પરીક્ષાની તૈયારી કરો છો? *</label>
+                        <input type="text" name="reason" data-placeholder="f_exam_p" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg px-4 py-2 focus:outline-none focus:border-brandRed transition-colors" placeholder="દા.ત. GPSC, તલાટી, પોલીસ" required>
+                    </div>
+
+                    <div>
+                        <label data-i18n="f_category" class="block text-gray-700 dark:text-gray-300 font-bold mb-1 text-sm">વિભાગ પસંદ કરો *</label>
+                        <select name="details" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg px-4 py-2 focus:outline-none focus:border-brandRed transition-colors">
+                            <option data-i18n="f_cat_boy" value="Boy">ભાઈઓ માટે (રિડિંગ રૂમ)</option>
+                            <option data-i18n="f_cat_girl" value="Girl">બહેનો માટે (રિડિંગ રૂમ)</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" id="submit-btn" data-i18n="f_submit" class="w-full bg-brandRed text-white font-bold py-3 rounded-lg shadow-md hover:bg-brandOrange transition duration-300 mt-2">
+                        એડમિશન ફોર્મ જમા કરો
+                    </button>
+                    <p id="form-msg" class="hidden text-sm font-bold mt-2 text-center"></p>
+                </form>
+            </div>
+        </div>
+
+        <!-- લાઇબ્રેરી ગેલેરી સેક્શન શરૂઆત -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 mb-8" data-aos="fade-up">
+            <div class="text-center mb-8">
+                <h3 data-i18n="lib_gallery_title" class="text-2xl md:text-3xl font-bold text-brandRed inline-block border-b-4 border-brandOrange pb-2">ચેતક લાઇબ્રેરીની ઝલક</h3>
+            </div>
+            
+            <div id="library-gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Loading Spinner -->
+                <div class="col-span-full flex flex-col items-center justify-center py-10 text-gray-500">
+                    <i class="fa-solid fa-spinner fa-spin text-4xl text-brandOrange mb-4"></i>
+                    <p class="font-bold text-sm mt-2">ફોટાઓ લોડ થઈ રહ્યા છે...</p>
+                </div>
+            </div>
+        </section>
+        <!-- લાઇબ્રેરી ગેલેરી સેક્શન પૂર્ણ -->
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 dark:bg-gray-950 text-gray-300 dark:text-gray-400 py-8 text-center border-t border-gray-800 transition-colors duration-500 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p data-i18n="footer_copy" class="text-base font-semibold tracking-wide mb-2">© 2026 મહારાણા પ્રતાપ સેવા ગ્રુપ - બનાસકાંઠા. સર્વાધિકાર સુરક્ષિત.</p>
+            <p data-i18n="footer_dev" class="text-sm opacity-80 hover:opacity-100 transition-opacity">Design & Developed with <i class="fa-solid fa-heart text-brandRed animate-pulse mx-1"></i> by MPSG Team - <span class="text-brandOrange font-bold">ચેતન ભૂદેવ</span> (Shree Maa Studio vadgam)</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true });
+        const formSubmitUrl = "https://script.google.com/macros/s/AKfycbw655ljm4pGhpsmZgl4YqRG-ppLGGoG9-uI_ataNbTODfw2GC8sDN7Jj5ojh-4B8rF1/exec";
+
+        // ડાર્ક મોડ કંટ્રોલ
+        const htmlTag = document.documentElement;
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlTag.classList.add('dark');
+        }
+        const icon = document.getElementById('theme-icon');
+        if (icon && htmlTag.classList.contains('dark')) icon.className = 'fa-solid fa-sun';
+
+        function toggleTheme() {
+            htmlTag.classList.toggle('dark');
+            localStorage.setItem('theme', htmlTag.classList.contains('dark') ? 'dark' : 'light');
+            if (icon) icon.className = htmlTag.classList.contains('dark') ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+        }
+
+        // ફોર્મ સબમિટ લોજીક
+        const admissionForm = document.getElementById('admission-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const formMsg = document.getElementById('form-msg');
+
+        function checkSpamTimer() {
+            const lastTime = localStorage.getItem('libFormSubmit');
+            if (lastTime) {
+                const now = new Date().getTime();
+                const diff = now - parseInt(lastTime);
+                if (diff < (60 * 60 * 1000)) { // 1 કલાક
+                    const currentLang = document.getElementById('btn-hi').classList.contains('text-brandRed') ? 'hi' : 'gu';
+                    submitBtn.disabled = true;
+                    submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                    submitBtn.innerHTML = translations[currentLang].spam_btn;
+                    formMsg.innerHTML = translations[currentLang].spam_msg;
+                    formMsg.className = "text-brandOrange mt-4 text-center font-bold block";
+                    return true;
+                } else {
+                    localStorage.removeItem('libFormSubmit');
+                }
+            }
+            return false;
+        }
+
+        async function loadLibraryPhotos() {
+            const grid = document.getElementById('library-gallery-grid');
+            try {
+                const jsonUrl = `https://raw.githubusercontent.com/mpsgroupbk-gif/mpsg-website/main/data/gallery_library.json?t=${new Date().getTime()}`;
+                const response = await fetch(jsonUrl);
+                if (!response.ok) {
+                    grid.innerHTML = '<div class="col-span-full text-center py-10"><i class="fa-solid fa-images text-4xl text-gray-300 mb-2 block"></i><p class="text-gray-500 font-bold">હજુ સુધી કોઈ ફોટા અપલોડ કરવામાં આવ્યા નથી.</p></div>';
+                    return;
+                }
+                const images = await response.json();
+                grid.innerHTML = ''; 
+                if (images.length === 0) {
+                    grid.innerHTML = '<div class="col-span-full text-center py-10"><i class="fa-solid fa-images text-4xl text-gray-300 mb-2 block"></i><p class="text-gray-500 font-bold">હજુ સુધી કોઈ ફોટા અપલોડ કરવામાં આવ્યા નથી.</p></div>';
+                    return;
+                }
+                images.forEach(img => {
+                    const imgUrl = `https://raw.githubusercontent.com/mpsgroupbk-gif/mpsg-website/main/images/gallery/library/${img.filename}`;
+                    const html = `
+                    <div class="group relative overflow-hidden rounded-xl shadow-md border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-800" data-aos="zoom-in">
+                        <img src="${imgUrl}" alt="Library Photo" class="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500">
+                    </div>`;
+                    grid.insertAdjacentHTML('beforeend', html);
+                });
+            } catch (error) {
+                grid.innerHTML = '<div class="col-span-full text-center py-10"><p class="text-red-500 font-bold">ફોટા લોડ કરવામાં ભૂલ આવી.</p></div>';
+            }
+        }
+
+        window.onload = () => { 
+            checkSpamTimer(); 
+            loadLibraryPhotos();
+        };
+
+        admissionForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (checkSpamTimer()) return;
+            
+            const currentLang = document.getElementById('btn-hi').classList.contains('text-brandRed') ? 'hi' : 'gu';
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>...';
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-70');
+            formMsg.classList.add('hidden');
+
+            const formData = new FormData(admissionForm);
+            
+            // નામની આગળ 'lib_' લગાવીશું જેથી એપમાં ખબર પડે કે આ લાઈબ્રેરીનું ફોર્મ છે
+            const userName = formData.get('name') ? formData.get('name').trim().replace(/\s+/g, '_') : 'user';
+            const userMobile = formData.get('whatsapp');
+            const timestamp = new Date().getTime();
+            const uniqueFileName = `form_lib_${userName}_${userMobile}_${timestamp}.json`;
+            formData.append('filename', uniqueFileName);
+
+            fetch(formSubmitUrl, { method: 'POST', body: formData })
+                .then(response => response.text())
+                .then(data => {
+                    formMsg.innerHTML = translations[currentLang].success_msg;
+                    formMsg.className = "text-green-600 dark:text-green-400 mt-4 text-center font-bold block";
+                    admissionForm.reset();
+                    localStorage.setItem('libFormSubmit', new Date().getTime().toString());
+                    checkSpamTimer();
+                })
+                .catch(error => {
+                    formMsg.innerHTML = translations[currentLang].error_msg;
+                    formMsg.className = "text-red-600 dark:text-red-400 mt-4 text-center font-bold block";
+                    submitBtn.innerHTML = translations[currentLang].f_submit;
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+                });
+        });
+
+        // ભાષાંતર ડિક્શનરી (માત્ર આ પેજ માટે)
+        const translations = {
+            gu: {
+                btn_back: "પાછા જાઓ",
+                lib_trust: "જન સેવા ચેરીટેબલ ટ્રસ્ટ સંચાલિત",
+                lib_title: "ચેતક લાઈબ્રેરી - રૂપાલ",
+                lib_subtitle: "(મહારાણા પ્રતાપ આશ્રમ)",
+                lib_desc: "સ્પર્ધાત્મક પરીક્ષાઓની તૈયારી કરતા ભાઈઓ તથા બહેનો માટે શાંત, આધુનિક અને સલામત અભ્યાસ સ્થળ. <br><span class='text-brandOrange font-bold'>100% તદ્દન નિ:શુલ્ક (FREE)</span>",
+                feat1_title: "<i class='fa-solid fa-snowflake text-blue-500 mr-2'></i>સંપૂર્ણ AC", feat1_desc: "100% મફત વાતાનુકૂલિત હોલ.",
+                feat2_title: "<i class='fa-solid fa-restroom text-brandOrange mr-2'></i>સ્વતંત્ર વ્યવસ્થા", feat2_desc: "ભાઈઓ (૧૮ સીટ) અને બહેનો (૧૮ સીટ) માટે અલગ-અલગ રીડિંગ રૂમ.",
+                feat3_title: "<i class='fa-solid fa-video text-gray-700 dark:text-gray-400 mr-2'></i>CCTV સુરક્ષા", feat3_desc: "૨૪ કલાક સત્તા કેમેરા દ્વારા કડક મોનિટરિંગ.",
+                feat4_title: "<i class='fa-solid fa-mug-hot text-amber-600 mr-2'></i>નિઃશુલ્ક ચા", feat4_desc: "દરરોજ બપોરે 3:30 વાગ્યે તાજગી માટે ચાની સુવિધા.",
+                rule_title: "<i class='fa-solid fa-triangle-exclamation mr-2'></i>નિયમો અને શરતો",
+                rule1: "લાઈબ્રેરી પરિસરમાં સંપૂર્ણ શાંતિ જાળવવી ફરજિયાત છે.",
+                rule2: "નિયમિત હાજરી અનિવાર્ય છે. નિયમોનું પાલન વિદ્યાર્થી અને વાલી બંને માટે રહેશે.",
+                rule3: "<strong>ખાસ નોંધ:</strong> ઓનલાઈન રજીસ્ટ્રેશન બાદ નિયમો સમજવા તથા ફોર્મ જમા કરાવવા રૂબરૂ આવવું ફરજિયાત છે. નિયમો મંજૂર હશે તો જ પ્રવેશ મળશે.",
+                rule4: "કોઈપણ પ્રકારની ભલામણ સ્વીકારવામાં આવશે નહીં. (પ્રાયોરિટી મહારાણા પ્રતાપ સેવા ગ્રુપના સભ્યના પુત્ર/પુત્રીની રહેશે).",
+                form_title: "એડમિશન ફોર્મ", form_subtitle: "નીચેની વિગતો ભરીને રજીસ્ટ્રેશન કરો. કમિટી દ્વારા તમને રૂબરૂ બોલાવવામાં આવશે.",
+                f_name: "પોતાનું આખું નામ *", f_name_p: "પૂરું નામ લખો",
+                f_mobile: "વિદ્યાર્થીનો WhatsApp નંબર *", f_mobile_p: "૧૦ આંકડાનો નંબર",
+                f_parent: "પિતાનો/માતાનો નંબર *", f_parent_p: "૧૦ આંકડાનો નંબર",
+                f_village: "ગામનું નામ *", f_village_p: "ગામનું નામ લખો",
+                f_study: "હાલમાં શું અભ્યાસ ચાલી રહ્યો છે? *", f_study_p: "દા.ત. B.A., B.Com, અથવા જોબ",
+                f_exam: "કઈ પરીક્ષાની તૈયારી કરો છો? *", f_exam_p: "દા.ત. GPSC, તલાટી, પોલીસ",
+                f_category: "વિભાગ પસંદ કરો *", f_cat_boy: "ભાઈઓ માટે (રિડિંગ રૂમ)", f_cat_girl: "બહેનો માટે (રિડિંગ રૂમ)",
+                f_submit: "એડમિશન ફોર્મ જમા કરો",
+                lib_gallery_title: "ચેતક લાઇબ્રેરીની ઝલક",
+                footer_copy: "© 2026 મહારાણા પ્રતાપ સેવા ગ્રુપ - બનાસકાંઠા. સર્વાધિકાર સુરક્ષિત.",
+                spam_btn: "<i class='fa-solid fa-shield-halved mr-2'></i>૧ કલાક રાહ જુઓ",
+                spam_msg: "તમે તાજેતરમાં જ ફોર્મ ભર્યું છે. સ્પામ રોકવા માટે નવું ફોર્મ ૧ કલાક પછી ભરી શકાશે.",
+                success_msg: "ફોર્મ સફળતાપૂર્વક જમા થઈ ગયું છે! કમિટી ટૂંક સમયમાં તમારો સંપર્ક કરશે.",
+                error_msg: "ભૂલ આવી! કૃપા કરીને ફરી પ્રયાસ કરો."
+            },
+            hi: {
+                btn_back: "वापस जाएं",
+                lib_trust: "जन सेवा चेरिटेबल ट्रस्ट द्वारा संचालित",
+                lib_title: "चेतक लाइब्रेरी - रूपाल",
+                lib_subtitle: "(महाराणा प्रताप आश्रम)",
+                lib_desc: "प्रतियोगी परीक्षाओं की तैयारी करने वाले भाइयों और बहनों के लिए शांत, आधुनिक और सुरक्षित अध्ययन स्थल। <br><span class='text-brandOrange font-bold'>100% बिल्कुल मुफ्त (FREE)</span>",
+                feat1_title: "<i class='fa-solid fa-snowflake text-blue-500 mr-2'></i>संपूर्ण AC", feat1_desc: "100% मुफ्त वातानुकूलित हॉल।",
+                feat2_title: "<i class='fa-solid fa-restroom text-brandOrange mr-2'></i>स्वतंत्र व्यवस्था", feat2_desc: "भाइयों (18 सीट) और बहनों (18 सीट) के लिए अलग-अलग रीडिंग रूम।",
+                feat3_title: "<i class='fa-solid fa-video text-gray-700 dark:text-gray-400 mr-2'></i>CCTV सुरक्षा", feat3_desc: "24 घंटे कैमरों द्वारा सख्त निगरानी।",
+                feat4_title: "<i class='fa-solid fa-mug-hot text-amber-600 mr-2'></i>मुफ्त चाय", feat4_desc: "रोजाना दोपहर 3:30 बजे ताजगी के लिए चाय की सुविधा।",
+                rule_title: "<i class='fa-solid fa-triangle-exclamation mr-2'></i>नियम और शर्तें",
+                rule1: "लाइब्रेरी परिसर में पूर्ण शांति बनाए रखना अनिवार्य है।",
+                rule2: "नियमित उपस्थिति अनिवार्य है। नियमों का पालन छात्र और अभिभावक दोनों के लिए रहेगा।",
+                rule3: "<strong>खास नोट:</strong> ऑनलाइन पंजीकरण के बाद नियम समझने और फॉर्म जमा करने के लिए व्यक्तिगत रूप से आना अनिवार्य है। नियम मंजूर होने पर ही प्रवेश मिलेगा।",
+                rule4: "किसी भी प्रकार की सिफारिश स्वीकार नहीं की जाएगी। (प्राथमिकता महाराणा प्रताप सेवा ग्रुप के सदस्य के पुत्र/पुत्री को रहेगी)।",
+                form_title: "एडमिशन फॉर्म", form_subtitle: "नीचे दिए गए विवरण भरकर पंजीकरण करें। कमेटी द्वारा आपको व्यक्तिगत रूप से बुलाया जाएगा।",
+                f_name: "अपना पूरा नाम *", f_name_p: "पूरा नाम लिखें",
+                f_mobile: "छात्र का WhatsApp नंबर *", f_mobile_p: "10 अंकों का नंबर",
+                f_parent: "पिता/माता का नंबर *", f_parent_p: "10 अंकों का नंबर",
+                f_village: "गाँव का नाम *", f_village_p: "गाँव का नाम लिखें",
+                f_study: "वर्तमान में क्या पढ़ाई चल रही है? *", f_study_p: "उदा. B.A., B.Com, या जॉब",
+                f_exam: "किस परीक्षा की तैयारी कर रहे हैं? *", f_exam_p: "उदा. GPSC, तलाटी, पुलिस",
+                f_category: "विभाग चुनें *", f_cat_boy: "भाइयों के लिए (रीडिंग रूम)", f_cat_girl: "बहनों के लिए (रीडिंग रूम)",
+                f_submit: "एडमिशन फॉर्म जमा करें",
+                lib_gallery_title: "चेतक लाइब्रेरी की झलक",
+                footer_copy: "© 2026 महाराणा प्रताप सेवा ग्रुप - बनासकांठा. सर्वाधिकार सुरक्षित।",
+                spam_btn: "<i class='fa-solid fa-shield-halved mr-2'></i>1 घंटा प्रतीक्षा करें",
+                spam_msg: "आपने हाल ही में फॉर्म भरा है। स्पैम रोकने के लिए नया फॉर्म 1 घंटे बाद भरा जा सकेगा।",
+                success_msg: "फॉर्म सफलतापूर्वक जमा हो गया है! कमेटी जल्द ही आपसे संपर्क करेगी।",
+                error_msg: "त्रुटि आई! कृपया पुनः प्रयास करें।"
+            }
+        };
+
+        function changeLanguage(lang) {
+            document.getElementById('btn-gu').className = lang === 'gu' ? "px-2 py-1 rounded-full bg-white text-brandRed text-xs font-bold shadow-sm transition-all" : "px-2 py-1 rounded-full text-white hover:text-gray-200 text-xs font-bold transition-all";
+            document.getElementById('btn-hi').className = lang === 'hi' ? "px-2 py-1 rounded-full bg-white text-brandRed text-xs font-bold shadow-sm transition-all" : "px-2 py-1 rounded-full text-white hover:text-gray-200 text-xs font-bold transition-all";
+            
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) { el.innerHTML = translations[lang][key]; }
+            });
+            
+            document.querySelectorAll('[data-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-placeholder');
+                if (translations[lang] && translations[lang][key]) { el.setAttribute('placeholder', translations[lang][key]); }
+            });
+            checkSpamTimer();
+        }
+    </script>
+</body>
+</html>

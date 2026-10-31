@@ -41,6 +41,12 @@
                     <span class="font-bold text-xl tracking-wider"><i class="fa-solid fa-shield-halved mr-2"></i>MPSG બનાસકાંઠા</span>
                 </div>
                 
+                <!-- Language Switcher -->
+                <div class="flex items-center space-x-1 bg-white/10 p-1 rounded-full border border-white/20 mr-2 sm:mr-4">
+                    <button onclick="changeLanguage('gu')" id="btn-gu" class="px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-bold bg-white text-brandRed transition-all duration-300 shadow-sm">GU</button>
+                    <button onclick="changeLanguage('hi')" id="btn-hi" class="px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-bold text-white hover:bg-white/20 transition-all duration-300">HI</button>
+                </div>
+
                 <!-- Dark Mode Toggle -->
                 <button onclick="toggleTheme()" class="text-xl hover:text-yellow-300 transition duration-300 bg-white/10 w-10 h-10 rounded-full flex items-center justify-center border border-white/20">
                     <i id="theme-icon" class="fa-solid fa-moon"></i>
@@ -70,14 +76,34 @@
                     </div>
                 </div>
 
+                <!-- ડાયનેમિક આર્ટિકલ/લેખ વિભાગ (ભવિષ્યની બધી સેવાઓ માટે) -->
+                <div id="category-article-section" class="mt-20 hidden" data-aos="fade-up" data-aos-duration="1000">
+                    <!-- આકર્ષક હેડિંગ -->
+                    <div class="text-center mb-12">
+                        <h2 id="article-main-title" class="text-3xl md:text-4xl font-extrabold text-brandRed mb-4 inline-block border-b-4 border-brandOrange pb-2">
+                            <!-- ટાઇટલ જાવાસ્ક્રિપ્ટથી આવશે -->
+                        </h2>
+                        <p id="article-main-desc" class="text-lg text-gray-700 dark:text-gray-300 font-medium max-w-4xl mx-auto leading-relaxed text-justify mt-4">
+                            <!-- મુખ્ય વર્ણન જાવાસ્ક્રિપ્ટથી આવશે -->
+                        </p>
+                    </div>
+
+                    <!-- સેવા અને પ્રસંગોના ડાયનેમિક કાર્ડ્સ અહી ઉમેરાશે -->
+                    <div id="article-cards-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- કાર્ડ્સ જાવાસ્ક્રિપ્ટથી રન-ટાઇમ પર બનશે -->
+                    </div>
+                </div>
+
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-400 py-6 text-center mt-auto">
-        <p>© 2026 મહારાણા પ્રતાપ સેવા ગ્રુપ - બનાસકાંઠા. સર્વાધિકાર સુરક્ષિત.</p>
-        <p class="text-sm mt-2">Design & Developed with <i class="fa-solid fa-heart text-brandRed"></i> by MPSG Team</p>
+    <footer class="bg-gray-900 dark:bg-gray-950 text-gray-300 dark:text-gray-400 py-8 text-center border-t border-gray-800 transition-colors duration-500 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p data-i18n="footer_copy" class="text-base font-semibold tracking-wide mb-2">© 2026 મહારાણા પ્રતાપ સેવા ગ્રુપ - બનાસકાંઠા. સર્વાધિકાર સુરક્ષિત.</p>
+            <p data-i18n="footer_dev" class="text-sm opacity-80 hover:opacity-100 transition-opacity">Design & Developed with <i class="fa-solid fa-heart text-brandRed animate-pulse mx-1"></i> by MPSG Team - <span class="text-brandOrange font-bold">ચેતન ભૂદેવ</span> (Shree Maa Studio vadgam)</p>
+        </div>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -103,22 +129,48 @@
         const urlParams = new URLSearchParams(window.location.search);
         const category = urlParams.get('category');
 
-        // ટાઇટલ સેટ કરવા માટેની ડિક્શનરી
+        // ટાઇટલ અને ફૂટર માટેની દ્વિભાષી (Bilingual) ડિક્શનરી
         const categoryTitles = {
-            'ashram': 'મહારાણા પ્રતાપ આશ્રમ ગેલેરી',
-            'library': 'ચેતક લાઇબ્રેરી ગેલેરી',
-            'blood_seva': 'ઇમરજન્સી બ્લડ સેવા ગેલેરી',
-            'winter_warmth': 'શિયાળામાં હૂંફ ગેલેરી',
-            'diwali_sweets': 'દિવાળી મીઠાઈ વિતરણ ગેલેરી',
-            'utrayan_safety': 'ઉતરાયણ સેફ્ટી ગેલેરી',
-            'water_service': 'જળ એ જ જીવન ગેલેરી',
-            'bird_campaign': 'પક્ષીઓ માટે અભિયાન ગેલેરી',
-            'ambaji_camp': 'અંબાજી ભાદરવી કેમ્પ ગેલેરી',
-            'ranuja_camp': 'રણુજા સેવા કેમ્પ ગેલેરી'
+            gu: {
+                'ashram': 'મહારાણા પ્રતાપ આશ્રમ ગેલેરી', 'library': 'ચેતક લાઇબ્રેરી ગેલેરી', 'blood_seva': 'ઇમરજન્સી બ્લડ સેવા ગેલેરી',
+                'winter_warmth': 'શિયાળામાં હૂંફ ગેલેરી', 'diwali_sweets': 'દિવાળી મીઠાઈ વિતરણ ગેલેરી', 'utrayan_safety': 'ઉતરાયણ સેફ્ટી ગેલેરી',
+                'water_service': 'જળ એ જ જીવન ગેલેરી', 'bird_campaign': 'પક્ષીઓ માટે અભિયાન ગેલેરી', 'ambaji_camp': 'અંબાજી ભાદરવી કેમ્પ ગેલેરી',
+                'ranuja_camp': 'રણુજા સેવા કેમ્પ ગેલેરી',
+                'default': 'MPSG વિશેષ ગેલેરી',
+                'subtitle': 'આ વિભાગના તમામ ફોટા અહીં પ્રદર્શિત થશે.',
+                'footer_copy': '© 2026 મહારાણા પ્રતાપ સેવા ગ્રુપ - બનાસકાંઠા. સર્વાધિકાર સુરક્ષિત.',
+                'footer_dev': 'Design & Developed with <i class="fa-solid fa-heart text-brandRed animate-pulse mx-1"></i> by MPSG Team - <span class="text-brandOrange font-bold">ચેતન ભૂદેવ</span> (Shree Maa Studio vadgam)'
+            },
+            hi: {
+                'ashram': 'महाराणा प्रताप आश्रम गैलरी', 'library': 'चेतक लाइब्रेरी गैलरी', 'blood_seva': 'इमरजेंसी ब्लड सेवा गैलरी',
+                'winter_warmth': 'सर्दियों में गर्माहट गैलरी', 'diwali_sweets': 'दिवाली मिठाई वितरण गैलरी', 'utrayan_safety': 'उत्तरायण सेफ्टी गैलरी',
+                'water_service': 'जल ही जीवन गैलरी', 'bird_campaign': 'पक्षियों के लिए अभियान गैलरी', 'ambaji_camp': 'अंबाजी भादरवी कैंप गैलरी',
+                'ranuja_camp': 'रुणिचा सेवा कैंप गैलरी',
+                'default': 'MPSG विशेष गैलरी',
+                'subtitle': 'इस विभाग के सभी फोटो यहाँ प्रदर्शित होंगे।',
+                'footer_copy': '© 2026 महाराणा प्रताप सेवा ग्रुप - बनासकांठा. सर्वाधिकार सुरक्षित।',
+                'footer_dev': 'Design & Developed with <i class="fa-solid fa-heart text-brandRed animate-pulse mx-1"></i> by MPSG Team - <span class="text-brandOrange font-bold">चेतन भूदेव</span> (Shree Maa Studio vadgam)'
+            }
         };
 
-        const titleElement = document.getElementById('gallery-title');
-        titleElement.innerText = categoryTitles[category] || 'MPSG વિશેષ ગેલેરી';
+        // પેજના હાર્ડકોડ લખાણોને ભાષા મુજબ બદલવાનું ફંક્શન
+        function updatePageStaticContent(lang) {
+            const dict = categoryTitles[lang];
+            
+            // ગેલેરી ટાઇટલ અને સબ-ટાઇટલ
+            document.getElementById('gallery-title').innerText = dict[category] || dict['default'];
+            document.querySelector('#gallery-title + p').innerText = dict['subtitle'];
+
+            // ફૂટર
+            document.querySelector('footer p[data-i18n="footer_copy"]').innerText = dict['footer_copy'];
+            document.querySelector('footer p[data-i18n="footer_dev"]').innerHTML = dict['footer_dev'];
+
+            // Back બટન (પાછા જાઓ)
+            const backBtn = document.querySelector('a[href="index.html"]');
+            if (backBtn) {
+                backBtn.innerHTML = lang === 'hi' ? '<i class="fa-solid fa-arrow-left mr-2"></i> वापस जाएं' : '<i class="fa-solid fa-arrow-left mr-2"></i> પાછા જાઓ';
+            }
+        }
 
         // ગિટહબમાંથી ડેટા લાવવાનું ફંક્શન
         async function loadCategoryGallery() {
@@ -154,7 +206,7 @@
                         <img src="${imgUrl}" alt="MPSG Photo" class="w-full h-56 object-cover transform group-hover:scale-110 transition duration-500">
                         <div class="absolute inset-0 bg-brandOrange bg-opacity-0 group-hover:bg-opacity-60 transition duration-300 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100">
                             <i class="fa-solid fa-expand text-white text-4xl drop-shadow-md mb-2 transform scale-50 group-hover:scale-100 transition-all duration-300 delay-100"></i>
-                            <p class="text-white font-bold text-sm px-2 text-center drop-shadow-md transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 delay-150">${categoryTitles[category].replace(' ગેલેરી', '')}</p>
+                            <p class="text-white font-bold text-sm px-2 text-center drop-shadow-md transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 delay-150">${(categoryTitles[currentLang][category] || categoryTitles[currentLang]['default']).replace(' ગેલેરી', '').replace(' गैलरी', '')}</p>
                         </div>
                     </div>`;
                     grid.insertAdjacentHTML('beforeend', html);
@@ -164,8 +216,133 @@
             }
         }
 
-        // પેજ લોડ થાય એટલે તરત જ ગેલેરી લોડ કરો
-        window.onload = loadCategoryGallery;
+        // ભાષા બદલવાનું (Language Toggle) સ્માર્ટ ફંક્શન
+        let currentLang = localStorage.getItem('language') || 'gu';
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('language', lang);
+            
+            // બટનની ડિઝાઇન (Active State) બદલવી
+            if (lang === 'hi') {
+                document.getElementById('btn-hi').classList.add('bg-white', 'text-brandRed', 'shadow-sm');
+                document.getElementById('btn-hi').classList.remove('text-white', 'hover:bg-white/20');
+                document.getElementById('btn-gu').classList.add('text-white', 'hover:bg-white/20');
+                document.getElementById('btn-gu').classList.remove('bg-white', 'text-brandRed', 'shadow-sm');
+            } else {
+                document.getElementById('btn-gu').classList.add('bg-white', 'text-brandRed', 'shadow-sm');
+                document.getElementById('btn-gu').classList.remove('text-white', 'hover:bg-white/20');
+                document.getElementById('btn-hi').classList.add('text-white', 'hover:bg-white/20');
+                document.getElementById('btn-hi').classList.remove('bg-white', 'text-brandRed', 'shadow-sm');
+            }
+
+            // ટાઇટલ, સબ-ટાઇટલ અને ફૂટર તરત જ બદલો
+            updatePageStaticContent(lang);
+
+            // ફોટાઓ (અને તેની પરનું હોવર લખાણ) તરત જ નવી ભાષામાં લોડ કરો
+            loadCategoryGallery();
+
+            // લેખ ને તરત જ નવી ભાષામાં લોડ કરો (જો હોય તો)
+            loadCategoryArticle();
+        }
+
+        // પેજ લોડ થાય ત્યારે બટન સેટ કરવા
+        document.addEventListener('DOMContentLoaded', () => {
+            changeLanguage(currentLang);
+        });
+
+        // ડાયનેમિક આર્ટિકલ (લેખ) લોડ કરવાનું સ્માર્ટ ફંક્શન
+        async function loadCategoryArticle() {
+            const articleSection = document.getElementById('category-article-section');
+            const mainTitle = document.getElementById('article-main-title');
+            const mainDesc = document.getElementById('article-main-desc');
+            const cardsGrid = document.getElementById('article-cards-grid');
+            
+            if (!category) {
+                articleSection.classList.add('hidden');
+                return;
+            }
+
+            try {
+                // JSON ફાઈલ ફેચ કરીએ (નવા 'article' ફોલ્ડરમાંથી)
+                const jsonUrl = `data/article/article_${category}.json?t=${new Date().getTime()}`;
+                const response = await fetch(jsonUrl);
+                
+                if (!response.ok) {
+                    articleSection.classList.add('hidden'); // જો જે-તે કેટેગરીનો લેખ ના હોય તો છુપાવી દો
+                    return;
+                }
+
+                const rawData = await response.json();
+                articleSection.classList.remove('hidden');
+
+                // હાલની ભાષા મેળવો (જો સિસ્ટમમાં currentLang ના હોય તો localStorage માંથી લો)
+                const lang = typeof currentLang !== 'undefined' ? currentLang : (localStorage.getItem('language') || 'gu');
+                
+                // જે-તે ભાષાનો ડેટા ખેંચો (જો હિન્દી ડેટા ના હોય તો ડિફોલ્ટ ગુજરાતી જ રહેશે)
+                const data = rawData[lang] || rawData['gu'];
+
+                // 1. ટાઇટલ અને વર્ણન
+                mainTitle.innerHTML = data.mainTitle;
+                mainDesc.innerHTML = data.mainDesc;
+
+                // 2. કાર્ડ્સ જનરેટ કરવા (સ્માર્ટ કલર સિસ્ટમ સાથે)
+                let htmlContent = '';
+                data.cards.forEach(card => {
+                    // JSON માંથી કલરનો કોડ જાતે જ ક્લાસમાં ફેરવી દેશે
+                    const baseColor = card.colorTheme.replace('brand', '').toLowerCase();
+                    const textColor = card.colorTheme.startsWith('brand') ? `text-${card.colorTheme}` : `text-${card.colorTheme}-500`;
+                    const borderColor = card.colorTheme.startsWith('brand') ? `border-${card.colorTheme}` : `border-${card.colorTheme}-500`;
+                    
+                    htmlContent += `
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-md border-t-4 ${borderColor} hover:-translate-y-2 transition-transform duration-300">
+                        <div class="w-14 h-14 bg-${baseColor}-100 dark:bg-${baseColor}-900/30 ${textColor} rounded-full flex items-center justify-center text-2xl mb-6 shadow-inner">
+                            <i class="fa-solid ${card.icon}"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">${card.title}</h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed text-sm text-justify">${card.description}</p>
+                    </div>`;
+                });
+
+                // 3. સ્પેશિયલ મોમેન્ટ્સ (પ્રસંગો) અને અપીલ જનરેટ કરવી
+                htmlContent += `<div class="col-span-1 md:col-span-2 mt-8 space-y-8">`;
+                
+                if (data.specialMoments) {
+                    data.specialMoments.forEach((moment, index) => {
+                        const isQuote = moment.type === 'quote';
+                        const bgGradient = index % 2 === 0 ? 'from-orange-50 to-red-50 dark:from-gray-800 dark:to-gray-800 border-orange-200' : 'from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 border-blue-200';
+                        const titleColor = index % 2 === 0 ? 'text-brandRed' : 'text-indigo-700 dark:text-indigo-400';
+                        htmlContent += `
+                        <div class="bg-gradient-to-r ${bgGradient} p-8 rounded-2xl shadow-md border relative overflow-hidden">
+                            <h3 class="text-xl font-bold ${titleColor} mb-3 relative z-10">${moment.title}</h3>
+                            <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-sm text-justify relative z-10">${moment.text}</p>
+                        </div>`;
+                    });
+                }
+
+                if (data.appeal) {
+                    htmlContent += `
+                    <div class="bg-brandRed text-white p-8 rounded-2xl shadow-lg text-center mt-8">
+                        <h3 class="text-2xl font-bold mb-4"><i class="fa-solid fa-hands-praying mr-2"></i>${data.appeal.title}</h3>
+                        <p class="text-red-50 text-base leading-relaxed max-w-3xl mx-auto">${data.appeal.text}</p>
+                    </div>`;
+                }
+                
+                htmlContent += `</div>`;
+                cardsGrid.innerHTML = htmlContent;
+
+            } catch (error) {
+                console.error("Error loading article:", error);
+                articleSection.classList.add('hidden');
+            }
+        }
+
+        // પેજ લોડ થાય એટલે તરત જ બધું લોડ કરો
+        window.onload = () => {
+            updatePageStaticContent(currentLang); // પહેલા ટાઇટલ અને ફૂટર સેટ કરો
+            loadCategoryGallery(); // પછી ફોટા લાવો
+            loadCategoryArticle(); // અને પછી લેખ લાવો
+        };
     </script>
 </body>
 </html>
