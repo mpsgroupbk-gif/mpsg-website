@@ -41,7 +41,7 @@
 <body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
 
     <!-- Coming Soon Overlay શરૂઆત -->
-    <div id="coming-soon-overlay" class="fixed inset-0 z-[9999] flex flex-col justify-between items-center bg-gradient-to-br from-brandRed to-brandOrange text-white transition-all duration-1000">
+    <div id="coming-soon-overlay" class="fixed inset-0 z-[9999] flex-col justify-between items-center bg-gradient-to-br from-brandRed to-brandOrange text-white transition-all duration-1000" style="display: none;">
         <div id="overlay-content-wrapper" class="flex-1 flex flex-col justify-center items-center px-4 text-center w-full relative overflow-hidden transition-all duration-500">
             <!-- બેકગ્રાઉન્ડ એનિમેશન -->
             <div class="absolute top-10 left-10 w-64 h-64 bg-white opacity-10 rounded-full mix-blend-overlay filter blur-3xl animate-pulse"></div>
@@ -58,7 +58,7 @@
             </p>
             <div class="bg-white/10 px-6 py-2 rounded-full border border-white/20 mb-8 z-10">
                 <p class="text-sm md:text-base font-bold text-yellow-100 tracking-wide">
-                    રજી. નં. એફ/6728/બ.કાં.   •   ગુજર./6629/બ.કાં.
+                    રજી. નં. એફ/6728/બ.કાં.   •   ગુજ./6629/બ.કાં.
                 </p>
             </div>
             
@@ -657,17 +657,28 @@
         // ⚠️ અહીં તમારે સ્ટેપ-૧ માં જે નવું Web App URL બનાવ્યું તે પેસ્ટ કરવાનું છે!
         const appsScriptSettingsUrl = "https://script.google.com/macros/s/AKfycbwYr1JMVXsuB9WXdXaT0KnEMrft_PZiwVB2zzyn_KFMR_J0V3HojP_T1dGzKqfKXMDt/exec";
         
-        let lastStatus = null; 
+        // 1. લોકલ સ્ટોરેજથી પહેલા ચેક કરીએ (FOUC Bug Fix)
+        let savedStatus = localStorage.getItem('website_status');
+        const overlay = document.getElementById('coming-soon-overlay');
+        
+        // જો અગાઉથી જ ખબર હોય કે સાઈટ LIVE છે, તો પડદો બિલકુલ નહિ દેખાડીએ
+        if (savedStatus === 'LIVE') {
+            document.body.style.overflow = 'auto';
+        } else {
+            // જો ખબર ન હોય અથવા કમિંગ સૂન હોય, તો પડદો દેખાડીશું
+            if (overlay) {
+                overlay.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        let lastStatus = savedStatus; 
 
         async function checkWebsiteStatus() {
             const overlay = document.getElementById('coming-soon-overlay');
             const wrapper = document.getElementById('overlay-content-wrapper');
             if (!overlay) return; 
 
-            if (lastStatus !== 'LIVE') {
-                document.body.style.overflow = 'hidden'; 
-            }
-            
             try {
                 const response = await fetch(appsScriptSettingsUrl + "?t=" + new Date().getTime());
                 const data = await response.json();
@@ -675,16 +686,23 @@
                 if (data.success && data.config) {
                     const currentStatus = data.config['website_status'];
                     
+                    // સ્ટેટસને લોકલમાં સેવ કરો જેથી બીજા પેજ પરથી આવતા તકલીફ ના પડે
+                    localStorage.setItem('website_status', currentStatus);
+                    
+                    // જો પહેલા COMING_SOON હોય અને હવે LIVE થાય (ઉદ્ઘાટન)
                     if (lastStatus === 'COMING_SOON' && currentStatus === 'LIVE') {
                         let countdown = 7;
-                        const overlayFooter = document.getElementById('overlay-footer');
-                        if(overlayFooter) overlayFooter.style.display = 'none'; // કાઉન્ટડાઉન વખતે ફૂટર સંતાડી દો
                         
+                        // પ્લેન એનિમેશન (વધારાનું લખાણ કાઢી નાખ્યું)
                         if(wrapper) {
                             wrapper.innerHTML = `
-                                <h1 class="text-5xl md:text-7xl font-black text-yellow-300 drop-shadow-lg mb-6">ઉદ્ઘાટન થઈ રહ્યું છે!</h1>
-                                <div class="w-32 h-32 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border-4 border-yellow-300 shadow-2xl">
-                                    <span id="countdown-timer" class="text-6xl font-black text-white">${countdown}</span>
+                                <div class="relative flex items-center justify-center">
+                                    <!-- પાછળ ફરતું સર્કલ -->
+                                    <div class="absolute w-48 h-48 border-t-4 border-b-4 border-yellow-300 rounded-full animate-spin"></div>
+                                    <!-- અંદરનું કાઉન્ટડાઉન -->
+                                    <div class="w-40 h-40 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border-2 border-white/50 shadow-2xl z-10">
+                                        <span id="countdown-timer" class="text-7xl font-black text-white drop-shadow-md">${countdown}</span>
+                                    </div>
                                 </div>
                             `;
                         }
@@ -700,20 +718,23 @@
                             }
                         }, 1000);
                     } 
+                    // જો પહેલા LIVE હોય અને હવે COMING_SOON થાય
                     else if (lastStatus === 'LIVE' && currentStatus === 'COMING_SOON') {
                         let countdown = 7;
                         document.body.style.overflow = 'hidden'; 
                         overlay.style.display = 'flex'; 
                         overlay.classList.remove('opacity-0', 'pointer-events-none');
                         
-                        const overlayFooter = document.getElementById('overlay-footer');
-                        if(overlayFooter) overlayFooter.style.display = 'none'; // કાઉન્ટડાઉન વખતે ફૂટર સંતાડી દો
-                        
+                        // પ્લેન એનિમેશન (વધારાનું લખાણ કાઢી નાખ્યું)
                         if(wrapper) {
                             wrapper.innerHTML = `
-                                <h1 class="text-4xl md:text-6xl font-black text-white drop-shadow-lg mb-6">વેબસાઈટ બંધ થઈ રહી છે...</h1>
-                                <div class="w-32 h-32 bg-black/30 backdrop-blur-md rounded-full flex items-center justify-center border-4 border-white shadow-2xl">
-                                    <span id="countdown-timer-close" class="text-6xl font-black text-white">${countdown}</span>
+                                <div class="relative flex items-center justify-center">
+                                    <!-- પાછળ ફરતું લાલ સર્કલ -->
+                                    <div class="absolute w-48 h-48 border-t-4 border-b-4 border-white rounded-full animate-spin"></div>
+                                    <!-- અંદરનું કાઉન્ટડાઉન -->
+                                    <div class="w-40 h-40 bg-black/20 backdrop-blur-md rounded-full flex items-center justify-center border-2 border-white/50 shadow-2xl z-10">
+                                        <span id="countdown-timer-close" class="text-7xl font-black text-white drop-shadow-md">${countdown}</span>
+                                    </div>
                                 </div>
                             `;
                         }
@@ -729,24 +750,33 @@
                             }
                         }, 1000);
                     }
-                    else if (lastStatus === null && currentStatus === 'LIVE') {
+                    // જો પેજ પહેલીવાર જ લોડ થતું હોય અને સીધું LIVE હોય
+                    else if (currentStatus === 'LIVE' && overlay.style.display !== 'none') {
                         document.body.style.overflow = 'auto';
                         overlay.style.display = 'none';
+                    }
+                    // જો સીધું જ કમિંગ સૂન હોય
+                    else if (currentStatus === 'COMING_SOON' && overlay.style.display === 'none') {
+                        document.body.style.overflow = 'hidden';
+                        overlay.style.display = 'flex';
                     }
 
                     lastStatus = currentStatus;
                 }
             } catch (error) {
                 console.error("Status Check Error:", error);
-                document.body.style.overflow = 'auto';
-                overlay.style.display = 'none';
+                // એરર આવે અને જો લોકલમાં LIVE સેવ હોય તો સાઈટ ચાલુ રાખો
+                if (localStorage.getItem('website_status') === 'LIVE') {
+                    document.body.style.overflow = 'auto';
+                    if (overlay) overlay.style.display = 'none';
+                }
             }
         }
         
         // પેજ લોડ થતાં પહેલીવાર ચેક કરો
         checkWebsiteStatus();
         
-        // દર 5 સેકન્ડે બેકગ્રાઉન્ડમાં ચેક કરતા રહો (જેથી એપમાંથી બટન દબાવતા જ ખબર પડે)
+        // દર 5 સેકન્ડે બેકગ્રાઉન્ડમાં ચેક કરતા રહો
         setInterval(checkWebsiteStatus, 5000);
         // --- COMING SOON LOGIC પૂર્ણ ---
 
