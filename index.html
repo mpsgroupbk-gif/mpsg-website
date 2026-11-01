@@ -40,6 +40,33 @@
 </head>
 <body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
 
+    <!-- Coming Soon Overlay શરૂઆત -->
+    <div id="coming-soon-overlay" class="fixed inset-0 z-[9999] flex flex-col justify-between items-center bg-gradient-to-br from-brandRed to-brandOrange text-white transition-all duration-1000">
+        <div class="flex-1 flex flex-col justify-center items-center px-4 text-center w-full relative overflow-hidden">
+            <!-- બેકગ્રાઉન્ડ એનિમેશન -->
+            <div class="absolute top-10 left-10 w-64 h-64 bg-white opacity-10 rounded-full mix-blend-overlay filter blur-3xl animate-pulse"></div>
+            <div class="absolute bottom-10 right-10 w-64 h-64 bg-yellow-300 opacity-20 rounded-full mix-blend-overlay filter blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+            
+            <p class="text-sm md:text-xl font-bold text-yellow-200 tracking-widest uppercase mb-4 drop-shadow-md z-10">
+                જન સેવા ચેરીટેબલ ટ્રસ્ટ સંચાલિત
+            </p>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight mb-8 drop-shadow-lg leading-tight z-10">
+                મહારાણા પ્રતાપ સેવા ગ્રુપ<br><span class="text-2xl sm:text-4xl mt-2 block">બનાસકાંઠા</span>
+            </h1>
+            <div class="bg-white/20 backdrop-blur-md px-8 py-4 rounded-full border border-white/30 shadow-2xl z-10">
+                <p class="text-2xl md:text-3xl font-black text-yellow-300 tracking-wider flex items-center gap-3">
+                    <i class="fa-solid fa-hourglass-half fa-spin"></i> Coming Soon...
+                </p>
+            </div>
+        </div>
+        <!-- ફૂટર -->
+        <div class="w-full bg-black/30 py-4 text-center z-10">
+            <p class="text-sm md:text-base font-semibold text-gray-200 mb-1">© 2026 મહારાણા પ્રતાપ સેવા ગ્રુપ - બનાસકાંઠા.</p>
+            <p class="text-xs text-gray-300 opacity-80">Design & Developed with <i class="fa-solid fa-heart text-brandRed animate-pulse mx-1"></i> by MPSG Team - <span class="text-yellow-400 font-bold">ચેતન ભૂદેવ</span></p>
+        </div>
+    </div>
+    <!-- Coming Soon Overlay પૂર્ણ -->
+
     <nav class="glass-nav bg-brandRed/95 dark:bg-gray-900/95 text-white shadow-lg sticky top-0 z-50 transition-colors duration-500">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
@@ -613,6 +640,102 @@
     <!-- Swiper JS ની લાઈબ્રેરી -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script>
+        // --- COMING SOON LOGIC શરૂઆત ---
+        // ⚠️ અહીં તમારે સ્ટેપ-૧ માં જે નવું Web App URL બનાવ્યું તે પેસ્ટ કરવાનું છે!
+        const appsScriptSettingsUrl = "https://script.google.com/macros/s/AKfycbwYr1JMVXsuB9WXdXaT0KnEMrft_PZiwVB2zzyn_KFMR_J0V3HojP_T1dGzKqfKXMDt/exec";
+        
+        let lastStatus = null; // છેલ્લું સ્ટેટસ સેવ રાખવા માટે
+
+        async function checkWebsiteStatus() {
+            const overlay = document.getElementById('coming-soon-overlay');
+            if (!overlay) return; 
+
+            // જો સાઈટ લાઈવ ન હોય તો જ સ્ક્રોલિંગ બંધ રાખો
+            if (lastStatus !== 'LIVE') {
+                document.body.style.overflow = 'hidden'; 
+            }
+            
+            try {
+                // અહીં આપણે કેશ (Cache) વગર નવીનતમ ડેટા મંગાવીએ છીએ
+                const response = await fetch(appsScriptSettingsUrl + "?t=" + new Date().getTime());
+                const data = await response.json();
+                
+                if (data.success && data.config) {
+                    const currentStatus = data.config['website_status'];
+                    
+                    // જો પહેલા COMING_SOON હોય અને હવે LIVE થાય, તો 7 સેકન્ડનું કાઉન્ટડાઉન બતાવો
+                    if (lastStatus === 'COMING_SOON' && currentStatus === 'LIVE') {
+                        let countdown = 7;
+                        overlay.innerHTML = `
+                            <div class="flex-1 flex flex-col justify-center items-center px-4 text-center w-full">
+                                <h1 class="text-5xl md:text-7xl font-black text-yellow-300 drop-shadow-lg mb-6">ઉદ્ઘાટન થઈ રહ્યું છે!</h1>
+                                <div class="w-32 h-32 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border-4 border-yellow-300 shadow-2xl">
+                                    <span id="countdown-timer" class="text-6xl font-black text-white">${countdown}</span>
+                                </div>
+                            </div>
+                        `;
+                        
+                        const timerInterval = setInterval(() => {
+                            countdown--;
+                            const timerEl = document.getElementById('countdown-timer');
+                            if(timerEl) timerEl.innerText = countdown;
+                            
+                            if (countdown <= 0) {
+                                clearInterval(timerInterval);
+                                window.location.reload(true); 
+                            }
+                        }, 1000);
+                    } 
+                    // જો પહેલા LIVE હોય અને હવે COMING_SOON થાય, તો 7 સેકન્ડનું કાઉન્ટડાઉન બતાવો
+                    else if (lastStatus === 'LIVE' && currentStatus === 'COMING_SOON') {
+                        let countdown = 7;
+                        document.body.style.overflow = 'hidden'; // સ્ક્રોલિંગ બંધ કરો
+                        overlay.style.display = 'flex'; // પડદો પાછો લાવો
+                        overlay.classList.remove('opacity-0', 'pointer-events-none');
+                        
+                        overlay.innerHTML = `
+                            <div class="flex-1 flex flex-col justify-center items-center px-4 text-center w-full">
+                                <h1 class="text-4xl md:text-6xl font-black text-white drop-shadow-lg mb-6">વેબસાઈટ બંધ થઈ રહી છે...</h1>
+                                <div class="w-32 h-32 bg-black/30 backdrop-blur-md rounded-full flex items-center justify-center border-4 border-white shadow-2xl">
+                                    <span id="countdown-timer-close" class="text-6xl font-black text-white">${countdown}</span>
+                                </div>
+                            </div>
+                        `;
+                        
+                        const timerInterval = setInterval(() => {
+                            countdown--;
+                            const timerEl = document.getElementById('countdown-timer-close');
+                            if(timerEl) timerEl.innerText = countdown;
+                            
+                            if (countdown <= 0) {
+                                clearInterval(timerInterval);
+                                window.location.reload(true); 
+                            }
+                        }, 1000);
+                    }
+                    // જો પેજ પહેલીવાર જ લોડ થતું હોય અને સીધું LIVE હોય
+                    else if (lastStatus === null && currentStatus === 'LIVE') {
+                        document.body.style.overflow = 'auto';
+                        overlay.style.display = 'none';
+                    }
+
+                    // સ્ટેટસને અપડેટ કરો
+                    lastStatus = currentStatus;
+                }
+            } catch (error) {
+                console.error("Status Check Error:", error);
+                document.body.style.overflow = 'auto';
+                overlay.style.display = 'none';
+            }
+        }
+        
+        // પેજ લોડ થતાં પહેલીવાર ચેક કરો
+        checkWebsiteStatus();
+        
+        // દર 5 સેકન્ડે બેકગ્રાઉન્ડમાં ચેક કરતા રહો (જેથી એપમાંથી બટન દબાવતા જ ખબર પડે)
+        setInterval(checkWebsiteStatus, 5000);
+        // --- COMING SOON LOGIC પૂર્ણ ---
+
         // ફોર્મ સબમિટ કરવા માટેનો નવો સિક્યોરિટી ગાર્ડ URL (ગિટહબ તિજોરી માટે)
         const formSubmitUrl = "https://script.google.com/macros/s/AKfycbw655ljm4pGhpsmZgl4YqRG-ppLGGoG9-uI_ataNbTODfw2GC8sDN7Jj5ojh-4B8rF1/exec";
         
