@@ -693,13 +693,15 @@
                     if (lastStatus === 'COMING_SOON' && currentStatus === 'LIVE') {
                         let countdown = 7;
                         
-                        // પ્લેન એનિમેશન (વધારાનું લખાણ કાઢી નાખ્યું)
+                        // ફૂટરને કાયમ માટે છુપાવી દો
+                        const footer = document.getElementById('overlay-footer');
+                        if (footer) footer.style.display = 'none';
+                        
+                        // પ્લેન એનિમેશન
                         if(wrapper) {
                             wrapper.innerHTML = `
                                 <div class="relative flex items-center justify-center">
-                                    <!-- પાછળ ફરતું સર્કલ -->
                                     <div class="absolute w-48 h-48 border-t-4 border-b-4 border-yellow-300 rounded-full animate-spin"></div>
-                                    <!-- અંદરનું કાઉન્ટડાઉન -->
                                     <div class="w-40 h-40 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border-2 border-white/50 shadow-2xl z-10">
                                         <span id="countdown-timer" class="text-7xl font-black text-white drop-shadow-md">${countdown}</span>
                                     </div>
@@ -725,13 +727,15 @@
                         overlay.style.display = 'flex'; 
                         overlay.classList.remove('opacity-0', 'pointer-events-none');
                         
-                        // પ્લેન એનિમેશન (વધારાનું લખાણ કાઢી નાખ્યું)
+                        // ફૂટરને કાયમ માટે છુપાવી દો
+                        const footer = document.getElementById('overlay-footer');
+                        if (footer) footer.style.display = 'none';
+                        
+                        // પ્લેન એનિમેશન
                         if(wrapper) {
                             wrapper.innerHTML = `
                                 <div class="relative flex items-center justify-center">
-                                    <!-- પાછળ ફરતું લાલ સર્કલ -->
                                     <div class="absolute w-48 h-48 border-t-4 border-b-4 border-white rounded-full animate-spin"></div>
-                                    <!-- અંદરનું કાઉન્ટડાઉન -->
                                     <div class="w-40 h-40 bg-black/20 backdrop-blur-md rounded-full flex items-center justify-center border-2 border-white/50 shadow-2xl z-10">
                                         <span id="countdown-timer-close" class="text-7xl font-black text-white drop-shadow-md">${countdown}</span>
                                     </div>
