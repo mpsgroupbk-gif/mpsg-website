@@ -792,6 +792,9 @@
             htmlTag.classList.add('dark');
         }
         
+        // પેજ લોડ થાય ત્યારે સેવ કરેલી ભાષા લાવવા માટે
+        let currentLang = localStorage.getItem('language') || 'gu';
+
         window.onload = () => {
             const icon = document.getElementById('theme-icon');
             if (icon && htmlTag.classList.contains('dark')) icon.className = 'fa-solid fa-sun';
@@ -801,6 +804,9 @@
             loadLocationData(); 
             loadTestimonials(); // નવું ફંક્શન (અનુભવો માટે)
             checkSpamTimer(); 
+            
+            // પેજ લોડ થાય એટલે તરત જ સેવ કરેલી ભાષા સેટ કરો
+            changeLanguage(currentLang);
         };
 
         // નવું ફંક્શન: ગિટહબમાંથી ઇવેન્ટ્સ લાવીને સ્લાઈડર બનાવવું
@@ -1200,6 +1206,9 @@
         };
 
         function changeLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('language', lang); // ભાષાને બ્રાઉઝરમાં કાયમ માટે સેવ કરે છે
+
             document.getElementById('btn-gu').className = lang === 'gu' ? "px-2 py-1 rounded-full bg-white text-brandRed text-xs font-bold shadow-sm transition-all" : "px-2 py-1 rounded-full text-white hover:text-gray-200 text-xs font-bold transition-all";
             document.getElementById('btn-hi').className = lang === 'hi' ? "px-2 py-1 rounded-full bg-white text-brandRed text-xs font-bold shadow-sm transition-all" : "px-2 py-1 rounded-full text-white hover:text-gray-200 text-xs font-bold transition-all";
             

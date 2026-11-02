@@ -256,6 +256,8 @@
         }
 
         window.onload = () => { 
+            const savedLang = localStorage.getItem('language') || 'gu';
+            changeLanguage(savedLang); // પેજ ખૂલતા જ સેવ કરેલી ભાષા સેટ કરો
             checkSpamTimer(); 
             loadLibraryPhotos();
         };
@@ -364,6 +366,8 @@
         };
 
         function changeLanguage(lang) {
+            localStorage.setItem('language', lang); // ભાષાને બ્રાઉઝરમાં કાયમ માટે સેવ કરે છે
+
             document.getElementById('btn-gu').className = lang === 'gu' ? "px-2 py-1 rounded-full bg-white text-brandRed text-xs font-bold shadow-sm transition-all" : "px-2 py-1 rounded-full text-white hover:text-gray-200 text-xs font-bold transition-all";
             document.getElementById('btn-hi').className = lang === 'hi' ? "px-2 py-1 rounded-full bg-white text-brandRed text-xs font-bold shadow-sm transition-all" : "px-2 py-1 rounded-full text-white hover:text-gray-200 text-xs font-bold transition-all";
             
@@ -376,6 +380,13 @@
                 const key = el.getAttribute('data-placeholder');
                 if (translations[lang] && translations[lang][key]) { el.setAttribute('placeholder', translations[lang][key]); }
             });
+            
+            // Back બટન (પાછા જાઓ) ને પણ બદલવા
+            const backBtn = document.querySelector('a[href="index.html#facilities"]');
+            if (backBtn) {
+                backBtn.innerHTML = lang === 'hi' ? '<i class="fa-solid fa-arrow-left mr-2"></i> वापस जाएं' : '<i class="fa-solid fa-arrow-left mr-2"></i> પાછા જાઓ';
+            }
+            
             checkSpamTimer();
         }
     </script>
