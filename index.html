@@ -683,8 +683,9 @@
                 const response = await fetch(appsScriptSettingsUrl + "?t=" + new Date().getTime());
                 const data = await response.json();
                 
-                if (data.success && data.config) {
-                    const currentStatus = data.config['website_status'];
+                if (data.success) {
+                    // નવી સિસ્ટમ મુજબ, હવે આપણે ડાયરેક્ટ 'web_live_status' વાંચીશું
+                    const currentStatus = data.web_live_status || 'COMING_SOON';
                     
                     // સ્ટેટસને લોકલમાં સેવ કરો જેથી બીજા પેજ પરથી આવતા તકલીફ ના પડે
                     localStorage.setItem('website_status', currentStatus);
