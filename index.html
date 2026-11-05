@@ -982,18 +982,19 @@
         async function loadEventData() {
             const eventSection = document.getElementById('announcement');
             try {
-                // આપણી ગિટહબ તિજોરીની ડાયરેક્ટ લિંક (કેશ ક્લિયર કરવા ટાઈમસ્ટેમ્પ સાથે)
-                const jsonUrl = "https://raw.githubusercontent.com/mpsgroupbk-gif/mpsg-secure-data/main/event_data.json";
+                // હેક ફ્રી રીત: હવે પબ્લિક ડેટા પબ્લિક ફોલ્ડર (mpsg-website) માંથી જ લેવાશે
+                const jsonUrl = "https://raw.githubusercontent.com/mpsgroupbk-gif/mpsg-website/main/data/events.json";
                 const response = await fetch(jsonUrl + '?t=' + new Date().getTime());
-                const eventData = await response.json();
+                const eventArray = await response.json();
                 
-                // જો ડેટા હોય તો જ બોક્સ બતાવો
-                if (eventData && eventData.title) {
+                // જો ડેટા હોય તો જ બોક્સ બતાવો (લેટેસ્ટ ઇવેન્ટ બતાવશે)
+                if (eventArray && eventArray.length > 0 && eventArray[0].title) {
+                    const eventData = eventArray[0];
                     document.getElementById('dyn-event-title').innerText = eventData.title;
                     document.getElementById('dyn-event-date').innerText = "તારીખ: " + eventData.date;
-                    document.getElementById('dyn-event-location').innerText = "સ્થળ: " + eventData.location;
-                    document.getElementById('dyn-event-contact').innerText = "સંપર્ક: " + eventData.contact;
-                    document.getElementById('dyn-event-call').href = "tel:" + eventData.contact.replace(/\s+/g, '');
+                    document.getElementById('dyn-event-location').innerText = "વિગત: " + eventData.description.substring(0, 30) + "...";
+                    document.getElementById('dyn-event-contact').innerText = "વધુ જુઓ";
+                    document.getElementById('dyn-event-call').href = "#latest-events";
                     
                     eventSection.style.display = 'block'; // બોક્સ બતાવો
                 } else {
