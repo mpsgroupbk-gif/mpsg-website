@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- મુખ્ય પેજ (Homepage) - સૌથી વધુ અગત્યનું -->
+  <url>
+    <loc>https://maharanapratapsevagroup.com/</loc>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  
+  <!-- ગેલેરી પેજ -->
+  <url>
+    <loc>https://maharanapratapsevagroup.com/gallery-view.html</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <!-- રક્તદાન બ્લોગ પેજ -->
+  <url>
+    <loc>https://maharanapratapsevagroup.com/blog-view.html</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <!-- લાઈબ્રેરી એડમિશન પેજ -->
+  <url>
+    <loc>https://maharanapratapsevagroup.com/library-admission.html</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+</urlset>
