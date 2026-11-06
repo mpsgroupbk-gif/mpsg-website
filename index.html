@@ -166,26 +166,7 @@
                 </div>
             </div>
         </section>
-        <!-- Dynamic Event Section (ગિટહબ સાથે જોડાયેલ) -->
-        <section id="announcement" style="display: none;" class="bg-yellow-100 dark:bg-yellow-900/20 border-l-4 border-yellow-500 text-yellow-900 dark:text-yellow-100 p-4 mx-4 sm:mx-6 lg:mx-8 my-8 shadow-md rounded-r-lg max-w-6xl md:mx-auto transition-colors duration-500">
-            <div class="flex flex-col md:flex-row items-center justify-between">
-                <div class="flex items-center mb-4 md:mb-0">
-                    <i class="fa-solid fa-bullhorn text-3xl text-brandRed dark:text-brandOrange mr-4 animate-bounce"></i>
-                    <div>
-                        <h3 id="dyn-event-title" class="font-bold text-lg md:text-xl text-brandRed dark:text-brandOrange"></h3>
-                        <p class="text-sm md:text-base font-semibold mt-1">
-                            <i class="fa-regular fa-calendar-days mr-1"></i> <span id="dyn-event-date"></span> | 
-                            <i class="fa-solid fa-location-dot ml-2 mr-1"></i> <span id="dyn-event-location"></span>
-                        </p>
-                    </div>
-                </div>
-                <div>
-                    <a id="dyn-event-call" href="#" class="inline-block bg-brandRed text-white px-6 py-2 rounded-full shadow-md hover:bg-brandOrange transition duration-300 font-bold whitespace-nowrap">
-                        <i class="fa-solid fa-phone mr-2"></i><span id="dyn-event-contact"></span>
-                    </a>
-                </div>
-            </div>
-        </section>
+        <!-- Announcement Section Removed -->
         <!-- Location Section Moved to Bottom -->
         <section id="about" class="py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors duration-500">
             <div class="max-w-7xl mx-auto">
@@ -979,32 +960,8 @@
             } catch (error) { console.error("Location Load Error:", error); }
         }
 
-        // ડાયનેમિક ઇવેન્ટ લોડ કરવાનું સ્માર્ટ ફંક્શન
-        async function loadEventData() {
-            const eventSection = document.getElementById('announcement');
-            try {
-                // હેક ફ્રી રીત: હવે પબ્લિક ડેટા પબ્લિક ફોલ્ડર (mpsg-website) માંથી જ લેવાશે
-                const jsonUrl = "https://raw.githubusercontent.com/mpsgroupbk-gif/mpsg-website/main/data/events.json";
-                const response = await fetch(jsonUrl + '?t=' + new Date().getTime());
-                const eventArray = await response.json();
-                
-                // જો ડેટા હોય તો જ બોક્સ બતાવો (લેટેસ્ટ ઇવેન્ટ બતાવશે)
-                if (eventArray && eventArray.length > 0 && eventArray[0].title) {
-                    const eventData = eventArray[0];
-                    document.getElementById('dyn-event-title').innerText = eventData.title;
-                    document.getElementById('dyn-event-date').innerText = "તારીખ: " + eventData.date;
-                    document.getElementById('dyn-event-location').innerText = "વિગત: " + eventData.description.substring(0, 30) + "...";
-                    document.getElementById('dyn-event-contact').innerText = "વધુ જુઓ";
-                    document.getElementById('dyn-event-call').href = "#latest-events";
-                    
-                    eventSection.style.display = 'block'; // બોક્સ બતાવો
-                } else {
-                    eventSection.style.display = 'none'; // ડેટા ન હોય તો બોક્સ સંતાડી દો
-                }
-            } catch (error) {
-                eventSection.style.display = 'none';
-            }
-        }
+        // ડાયનેમિક ઇવેન્ટ લોડ કરવાનું જૂનું ફંક્શન (બોક્સ કાઢી નાખ્યું હોવાથી હવે આ ખાલી છે)
+        async function loadEventData() {}
 
         function toggleTheme() {
             htmlTag.classList.toggle('dark');
